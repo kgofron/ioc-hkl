@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <display version="2.0.0">
   <name>Initials</name>
-  <width>1300</width>
+  <width>900</width>
   <widget type="label" version="2.0.0">
     <name>Label</name>
     <class>TITLE</class>
@@ -23,7 +23,7 @@
   <widget type="textupdate" version="2.0.0">
     <name>Text Update_3</name>
     <pv_name>$(Sys)wlen.DESC</pv_name>
-    <x>460</x>
+    <x>278</x>
     <y>31</y>
     <width>132</width>
     <height>22</height>
@@ -49,9 +49,9 @@
   <widget type="textentry" version="3.0.0">
     <name>Text Input</name>
     <pv_name>$(Sys)wlen.VAL</pv_name>
-    <x>460</x>
+    <x>278</x>
     <y>61</y>
-    <width>150</width>
+    <width>112</width>
     <height>22</height>
     <background_color>
       <color red="255" green="255" blue="255">
@@ -71,9 +71,9 @@
   <widget type="textupdate" version="2.0.0">
     <name>Text Update_4</name>
     <pv_name>$(Sys)wlen_RBV</pv_name>
-    <x>622</x>
+    <x>407</x>
     <y>61</y>
-    <width>146</width>
+    <width>102</width>
     <height>18</height>
     <background_color>
       <color red="255" green="255" blue="255">
@@ -96,7 +96,7 @@
   <widget type="combo" version="2.0.0">
     <name>Menu Button</name>
     <pv_name>$(Sys)geom</pv_name>
-    <x>80</x>
+    <x>10</x>
     <y>53</y>
     <height>25</height>
     <background_color>
@@ -108,7 +108,7 @@
   <widget type="textupdate" version="2.0.0">
     <name>Text Update_13</name>
     <pv_name>$(Sys)geom_RBV</pv_name>
-    <x>210</x>
+    <x>140</x>
     <y>53</y>
     <width>96</width>
     <height>25</height>
@@ -149,7 +149,7 @@
     <file>../lattice/_lattice.bob</file>
     <x>10</x>
     <y>134</y>
-    <width>800</width>
+    <width>790</width>
     <height>150</height>
   </widget>
   <widget type="label" version="2.0.0">
@@ -191,8 +191,8 @@
     </actions>
     <pv_name>$(Sys)set_sample</pv_name>
     <text>Set Wavelength &amp; Sample Lattice</text>
-    <x>80</x>
-    <y>294</y>
+    <x>257</x>
+    <y>304</y>
     <width>252</width>
     <height>40</height>
     <tooltip>$(actions)</tooltip>
@@ -201,22 +201,22 @@
   <widget type="label" version="2.0.0">
     <name>Label_9</name>
     <text>Current UB Matrix</text>
-    <x>498</x>
-    <y>390</y>
+    <x>98</x>
+    <y>470</y>
     <width>140</width>
   </widget>
   <widget type="arc" version="2.0.0">
     <name>Arc</name>
-    <x>535</x>
-    <y>470</y>
+    <x>135</x>
+    <y>550</y>
     <width>1</width>
     <height>1</height>
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>Text Input_16</name>
     <pv_name>$(Sys)UBa11</pv_name>
-    <x>420</x>
-    <y>410</y>
+    <x>20</x>
+    <y>490</y>
     <width>78</width>
     <height>22</height>
     <background_color>
@@ -237,8 +237,8 @@
   <widget type="textentry" version="3.0.0">
     <name>Text Input_17</name>
     <pv_name>$(Sys)UBa12</pv_name>
-    <x>510</x>
-    <y>410</y>
+    <x>110</x>
+    <y>490</y>
     <width>78</width>
     <height>22</height>
     <background_color>
@@ -259,8 +259,8 @@
   <widget type="textentry" version="3.0.0">
     <name>Text Input_18</name>
     <pv_name>$(Sys)UBa13</pv_name>
-    <x>600</x>
-    <y>410</y>
+    <x>200</x>
+    <y>490</y>
     <width>78</width>
     <height>22</height>
     <background_color>
@@ -281,8 +281,8 @@
   <widget type="textentry" version="3.0.0">
     <name>Text Input_19</name>
     <pv_name>$(Sys)UBa21</pv_name>
-    <x>420</x>
-    <y>432</y>
+    <x>20</x>
+    <y>512</y>
     <width>78</width>
     <height>22</height>
     <background_color>
@@ -303,8 +303,8 @@
   <widget type="textentry" version="3.0.0">
     <name>Text Input_20</name>
     <pv_name>$(Sys)UBa22</pv_name>
-    <x>510</x>
-    <y>432</y>
+    <x>110</x>
+    <y>512</y>
     <width>78</width>
     <height>22</height>
     <background_color>
@@ -325,8 +325,8 @@
   <widget type="textentry" version="3.0.0">
     <name>Text Input_21</name>
     <pv_name>$(Sys)UBa23</pv_name>
-    <x>600</x>
-    <y>432</y>
+    <x>200</x>
+    <y>512</y>
     <width>78</width>
     <height>22</height>
     <background_color>
@@ -347,8 +347,8 @@
   <widget type="textentry" version="3.0.0">
     <name>Text Input_22</name>
     <pv_name>$(Sys)UBa31</pv_name>
-    <x>420</x>
-    <y>454</y>
+    <x>20</x>
+    <y>534</y>
     <width>78</width>
     <height>22</height>
     <background_color>
@@ -369,8 +369,8 @@
   <widget type="textentry" version="3.0.0">
     <name>Text Input_23</name>
     <pv_name>$(Sys)UBa32</pv_name>
-    <x>510</x>
-    <y>454</y>
+    <x>110</x>
+    <y>534</y>
     <width>78</width>
     <height>22</height>
     <background_color>
@@ -391,8 +391,8 @@
   <widget type="textentry" version="3.0.0">
     <name>Text Input_24</name>
     <pv_name>$(Sys)UBa33</pv_name>
-    <x>600</x>
-    <y>454</y>
+    <x>200</x>
+    <y>534</y>
     <width>78</width>
     <height>22</height>
     <background_color>
@@ -413,7 +413,7 @@
   <widget type="textupdate" version="2.0.0">
     <name>Text Update_14</name>
     <pv_name>$(Sys)latt_vol_RBV</pv_name>
-    <x>630</x>
+    <x>640</x>
     <y>304</y>
     <width>96</width>
     <height>25</height>
@@ -438,7 +438,7 @@
   <widget type="textupdate" version="2.0.0">
     <name>Text Update_15</name>
     <pv_name>$(Sys)latt_vol_RBV.DESC</pv_name>
-    <x>490</x>
+    <x>530</x>
     <y>304</y>
     <width>132</width>
     <height>22</height>
@@ -464,22 +464,22 @@
   <widget type="label" version="2.0.0">
     <name>Label_11</name>
     <text>Input UB Matrix</text>
-    <x>138</x>
-    <y>380</y>
+    <x>98</x>
+    <y>370</y>
     <width>124</width>
   </widget>
   <widget type="arc" version="2.0.0">
     <name>Arc_1</name>
-    <x>175</x>
-    <y>460</y>
+    <x>135</x>
+    <y>450</y>
     <width>1</width>
     <height>1</height>
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>Text Input_26</name>
     <pv_name>$(Sys)UBa11_input</pv_name>
-    <x>60</x>
-    <y>400</y>
+    <x>20</x>
+    <y>390</y>
     <width>78</width>
     <height>22</height>
     <background_color>
@@ -500,8 +500,8 @@
   <widget type="textentry" version="3.0.0">
     <name>Text Input_27</name>
     <pv_name>$(Sys)UBa12_input</pv_name>
-    <x>150</x>
-    <y>400</y>
+    <x>110</x>
+    <y>390</y>
     <width>78</width>
     <height>22</height>
     <background_color>
@@ -522,8 +522,8 @@
   <widget type="textentry" version="3.0.0">
     <name>Text Input_29</name>
     <pv_name>$(Sys)UBa13_input</pv_name>
-    <x>240</x>
-    <y>400</y>
+    <x>200</x>
+    <y>390</y>
     <width>78</width>
     <height>22</height>
     <background_color>
@@ -544,8 +544,8 @@
   <widget type="textentry" version="3.0.0">
     <name>Text Input_30</name>
     <pv_name>$(Sys)UBa21_input</pv_name>
-    <x>60</x>
-    <y>422</y>
+    <x>20</x>
+    <y>412</y>
     <width>78</width>
     <height>22</height>
     <background_color>
@@ -566,8 +566,8 @@
   <widget type="textentry" version="3.0.0">
     <name>Text Input_32</name>
     <pv_name>$(Sys)UBa22_input</pv_name>
-    <x>150</x>
-    <y>422</y>
+    <x>110</x>
+    <y>412</y>
     <width>78</width>
     <height>22</height>
     <background_color>
@@ -588,8 +588,8 @@
   <widget type="textentry" version="3.0.0">
     <name>Text Input_33</name>
     <pv_name>$(Sys)UBa23_input</pv_name>
-    <x>240</x>
-    <y>422</y>
+    <x>200</x>
+    <y>412</y>
     <width>78</width>
     <height>22</height>
     <background_color>
@@ -610,8 +610,8 @@
   <widget type="textentry" version="3.0.0">
     <name>Text Input_34</name>
     <pv_name>$(Sys)UBa31_input</pv_name>
-    <x>60</x>
-    <y>444</y>
+    <x>20</x>
+    <y>434</y>
     <width>78</width>
     <height>22</height>
     <background_color>
@@ -632,8 +632,8 @@
   <widget type="textentry" version="3.0.0">
     <name>Text Input_35</name>
     <pv_name>$(Sys)UBa32_input</pv_name>
-    <x>150</x>
-    <y>444</y>
+    <x>110</x>
+    <y>434</y>
     <width>78</width>
     <height>22</height>
     <background_color>
@@ -654,8 +654,8 @@
   <widget type="textentry" version="3.0.0">
     <name>Text Input_36</name>
     <pv_name>$(Sys)UBa33_input</pv_name>
-    <x>240</x>
-    <y>444</y>
+    <x>200</x>
+    <y>434</y>
     <width>78</width>
     <height>22</height>
     <background_color>
@@ -684,8 +684,8 @@
     </actions>
     <pv_name>$(Sys)set_input_UB</pv_name>
     <text>Set UB matrix</text>
-    <x>100</x>
-    <y>480</y>
+    <x>290</x>
+    <y>400</y>
     <width>158</width>
     <height>40</height>
     <tooltip>$(actions)</tooltip>
@@ -694,18 +694,18 @@
   <widget type="label" version="2.0.0">
     <name>Label_12</name>
     <text>Error status</text>
-    <x>810</x>
-    <y>304</y>
-    <width>274</width>
-    <height>50</height>
+    <x>622</x>
+    <y>379</y>
+    <width>90</width>
+    <height>26</height>
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>Text Input_1</name>
     <pv_name>$(Sys)errors</pv_name>
-    <x>810</x>
-    <y>324</y>
-    <width>330</width>
-    <height>98</height>
+    <x>488</x>
+    <y>400</y>
+    <width>362</width>
+    <height>112</height>
     <background_color>
       <color red="255" green="255" blue="255">
       </color>
@@ -724,8 +724,8 @@
   <widget type="textentry" version="3.0.0">
     <name>Text Input_39</name>
     <pv_name>$(Sys)energy</pv_name>
-    <x>1040</x>
-    <y>114</y>
+    <x>630</x>
+    <y>40</y>
     <width>120</width>
     <height>22</height>
     <background_color>
@@ -746,22 +746,22 @@
   <widget type="label" version="2.0.0">
     <name>Label_13</name>
     <text>Neutron energy to wavelength</text>
-    <x>950</x>
-    <y>72</y>
+    <x>590</x>
+    <y>10</y>
     <width>200</width>
   </widget>
   <widget type="label" version="2.0.0">
     <name>Label_14</name>
     <text>energy (mev)</text>
-    <x>950</x>
-    <y>114</y>
+    <x>540</x>
+    <y>40</y>
     <width>110</width>
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>Text Input_40</name>
     <pv_name>$(Sys)wavelength_result</pv_name>
-    <x>1080</x>
-    <y>200</y>
+    <x>720</x>
+    <y>79</y>
     <width>120</width>
     <height>22</height>
     <background_color>
@@ -782,8 +782,8 @@
   <widget type="label" version="2.0.0">
     <name>Label_15</name>
     <text>wavelength (angstrom)</text>
-    <x>920</x>
-    <y>200</y>
+    <x>560</x>
+    <y>79</y>
     <width>150</width>
   </widget>
   <widget type="action_button" version="3.0.0">
@@ -797,11 +797,119 @@
     </actions>
     <pv_name>$(Sys)convert</pv_name>
     <text>convert</text>
-    <x>1000</x>
-    <y>154</y>
+    <x>760</x>
+    <y>40</y>
     <width>110</width>
     <height>28</height>
     <tooltip>$(actions)</tooltip>
     <border_alarm_sensitive>false</border_alarm_sensitive>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button_8</name>
+    <actions>
+      <action type="execute">
+        <description>Execute Script</description>
+        <script file="EmbeddedPy">
+          <text><![CDATA[# Embedded python script
+#from org.csstudio.display.builder.runtime.script import PVUtil, ScriptUtil
+#print 'Hello'
+# widget.setPropertyValue('text', PVUtil.getString(pvs[0]))
+
+from org.csstudio.display.builder.runtime.script import ScriptUtil
+from java.lang import Runtime
+from javax.swing import JFileChooser
+import java.io.BufferedReader as BufferedReader
+import java.io.InputStreamReader as InputStreamReader
+#import pyepics
+import subprocess
+
+
+#TODO get wavelength from IOC with pyepics, feed into cif2hkl, for now
+wavelength=0.4
+
+cif2hkl_bin = '/usr/bin/cif2hkl'
+
+
+chooser = JFileChooser()
+chooser.setDialogTitle("Select a CIF file")
+result = chooser.showOpenDialog(None)
+
+if result == JFileChooser.APPROVE_OPTION:
+    file = chooser.getSelectedFile()
+    cif_path = file.getAbsolutePath()
+    hkl_path = cif_path.replace(".cif", ".hkl")
+
+    print(cif_path)
+    print(hkl_path)
+    #cmd = [cif2hkl_bin, '--mode', 'NUC', '--lambda', str(wavelength), '--xtal', cif_path, '--out', hkl_path]
+    cmd = [cif2hkl_bin, '--mode', 'NUC', '--out', hkl_path, '--lambda', str(wavelength), '--xtal', cif_path]
+    #cmd = [cif2hkl_bin, '--xtal', cif_path]
+    try:
+        proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        out, err = proc.communicate()
+        print("cif2hkl stdout:\n", out)
+        print("cif2hkl stderr:\n", err)
+    except Exception as e:
+        print("Exception running cif2hkl:", e)
+
+
+    try:
+        with open(hkl_path, "r") as f:
+            lines = f.readlines()
+
+        intensity_lines = []
+        found_data_start = False
+
+        for line in lines:
+            line = line.strip()
+
+            if not line:
+                continue
+
+            # Wait until we hit the reflection header
+            if line.startswith("# H") and "|Fc|^2" in line:
+                found_data_start = True
+                continue
+
+            # Skip all lines before the reflection table
+            if not found_data_start or line.startswith("#"):
+                continue
+
+            parts = line.split()
+            if len(parts) >= 6:
+                h, k, l, mult, d, intensity = parts[:6]
+                intensity_lines.append("%3s %3s %3s   %12s" % (h, k, l, intensity))
+
+            if len(intensity_lines) >= 10:
+                break
+
+    except Exception as e:
+        intensity_lines = ["Error: " + str(e)]
+        
+    output = "\n".join(intensity_lines)
+    print("Parsed reflections:\n", output)
+
+    # Push to local PV for display
+    #ScriptUtil.getPV("loc://hkl_peaks").write(output)
+
+
+]]></text>
+        </script>
+      </action>
+    </actions>
+    <text>Import sample .cif</text>
+    <x>89</x>
+    <y>304</y>
+    <width>150</width>
+    <height>40</height>
+    <tooltip>$(actions)</tooltip>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+  </widget>
+  <widget type="fileselector" version="2.0.0">
+    <name>File Selector</name>
+    <x>15</x>
+    <y>304</y>
+    <width>56</width>
+    <height>40</height>
   </widget>
 </display>

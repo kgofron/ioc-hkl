@@ -39,10 +39,10 @@
   <widget type="textentry" version="3.0.0">
     <name>Text Input_1</name>
     <pv_name>$(Sys)errors</pv_name>
-    <x>40</x>
+    <x>20</x>
     <y>780</y>
-    <width>560</width>
-    <height>60</height>
+    <width>362</width>
+    <height>112</height>
     <background_color>
       <color red="255" green="255" blue="255">
       </color>
@@ -57,5 +57,13 @@
       <color red="0" green="128" blue="255">
       </color>
     </border_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_12</name>
+    <text>Error status</text>
+    <x>151</x>
+    <y>760</y>
+    <width>90</width>
+    <height>26</height>
   </widget>
 </display>

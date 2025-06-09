@@ -11,11 +11,11 @@
     <Ax7Name>refl_refine_input_list_tth</Ax7Name>
   </macros>
   <width>1150</width>
-  <height>870</height>
+  <height>820</height>
   <widget type="rectangle" version="2.0.0">
     <name>Rectangle</name>
     <x>90</x>
-    <y>640</y>
+    <y>580</y>
     <width>550</width>
     <height>210</height>
     <line_color>
@@ -28,14 +28,14 @@
     <name>Label_9</name>
     <text>UB Matrix</text>
     <x>442</x>
-    <y>680</y>
+    <y>620</y>
     <width>74</width>
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>Text Input_16</name>
     <pv_name>$(Sys)UBa11si</pv_name>
     <x>340</x>
-    <y>700</y>
+    <y>640</y>
     <width>78</width>
     <height>22</height>
     <background_color>
@@ -57,7 +57,7 @@
     <name>Text Input_17</name>
     <pv_name>$(Sys)UBa12si</pv_name>
     <x>430</x>
-    <y>700</y>
+    <y>640</y>
     <width>78</width>
     <height>22</height>
     <background_color>
@@ -79,7 +79,7 @@
     <name>Text Input_18</name>
     <pv_name>$(Sys)UBa13si</pv_name>
     <x>520</x>
-    <y>700</y>
+    <y>640</y>
     <width>78</width>
     <height>22</height>
     <background_color>
@@ -101,7 +101,7 @@
     <name>Text Input_19</name>
     <pv_name>$(Sys)UBa21si</pv_name>
     <x>340</x>
-    <y>722</y>
+    <y>662</y>
     <width>78</width>
     <height>22</height>
     <background_color>
@@ -123,7 +123,7 @@
     <name>Text Input_20</name>
     <pv_name>$(Sys)UBa22si</pv_name>
     <x>430</x>
-    <y>722</y>
+    <y>662</y>
     <width>78</width>
     <height>22</height>
     <background_color>
@@ -145,7 +145,7 @@
     <name>Text Input_21</name>
     <pv_name>$(Sys)UBa23si</pv_name>
     <x>520</x>
-    <y>722</y>
+    <y>662</y>
     <width>78</width>
     <height>22</height>
     <background_color>
@@ -167,7 +167,7 @@
     <name>Text Input_22</name>
     <pv_name>$(Sys)UBa31si</pv_name>
     <x>340</x>
-    <y>744</y>
+    <y>684</y>
     <width>78</width>
     <height>22</height>
     <background_color>
@@ -189,7 +189,7 @@
     <name>Text Input_23</name>
     <pv_name>$(Sys)UBa32si</pv_name>
     <x>430</x>
-    <y>744</y>
+    <y>684</y>
     <width>78</width>
     <height>22</height>
     <background_color>
@@ -211,7 +211,7 @@
     <name>Text Input_24</name>
     <pv_name>$(Sys)UBa33si</pv_name>
     <x>520</x>
-    <y>744</y>
+    <y>684</y>
     <width>78</width>
     <height>22</height>
     <background_color>
@@ -241,7 +241,7 @@
     <pv_name>$(Sys)affine_set</pv_name>
     <text>Set Lattice and UB to Sample</text>
     <x>390</x>
-    <y>782</y>
+    <y>722</y>
     <width>141</width>
     <height>40</height>
     <tooltip>$(actions)</tooltip>
@@ -312,21 +312,21 @@
     <name>Label_12</name>
     <text>Refined lattice and UB matrix</text>
     <x>280</x>
-    <y>610</y>
+    <y>550</y>
     <width>187</width>
   </widget>
   <widget type="label" version="2.0.0">
     <name>Label_13</name>
     <text>Lattice</text>
     <x>180</x>
-    <y>650</y>
+    <y>590</y>
     <width>50</width>
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>Text Input_41</name>
     <pv_name>$(Sys)latt_a_si</pv_name>
     <x>150</x>
-    <y>670</y>
+    <y>610</y>
     <height>22</height>
     <background_color>
       <color red="255" green="255" blue="255">
@@ -347,7 +347,7 @@
     <name>Text Input_42</name>
     <pv_name>$(Sys)latt_b_si</pv_name>
     <x>150</x>
-    <y>700</y>
+    <y>640</y>
     <height>22</height>
     <background_color>
       <color red="255" green="255" blue="255">
@@ -368,7 +368,7 @@
     <name>Text Input_43</name>
     <pv_name>$(Sys)latt_c_si</pv_name>
     <x>150</x>
-    <y>730</y>
+    <y>670</y>
     <height>22</height>
     <background_color>
       <color red="255" green="255" blue="255">
@@ -389,7 +389,7 @@
     <name>Text Input_44</name>
     <pv_name>$(Sys)latt_alpha_si</pv_name>
     <x>150</x>
-    <y>760</y>
+    <y>700</y>
     <width>101</width>
     <height>22</height>
     <background_color>
@@ -411,7 +411,7 @@
     <name>Text Input_45</name>
     <pv_name>$(Sys)latt_gamma_si</pv_name>
     <x>150</x>
-    <y>820</y>
+    <y>760</y>
     <height>22</height>
     <background_color>
       <color red="255" green="255" blue="255">
@@ -432,7 +432,7 @@
     <name>Text Input_46</name>
     <pv_name>$(Sys)latt_beta_si</pv_name>
     <x>150</x>
-    <y>790</y>
+    <y>730</y>
     <height>22</height>
     <background_color>
       <color red="255" green="255" blue="255">
@@ -453,42 +453,42 @@
     <name>Label_38</name>
     <text>a</text>
     <x>130</x>
-    <y>670</y>
+    <y>610</y>
     <width>20</width>
   </widget>
   <widget type="label" version="2.0.0">
     <name>Label_46</name>
     <text>b</text>
     <x>130</x>
-    <y>700</y>
+    <y>640</y>
     <width>20</width>
   </widget>
   <widget type="label" version="2.0.0">
     <name>Label_47</name>
     <text>c</text>
     <x>130</x>
-    <y>730</y>
+    <y>670</y>
     <width>20</width>
   </widget>
   <widget type="label" version="2.0.0">
     <name>Label_48</name>
     <text>alpha</text>
     <x>110</x>
-    <y>760</y>
+    <y>700</y>
     <width>40</width>
   </widget>
   <widget type="label" version="2.0.0">
     <name>Label_49</name>
     <text>beta</text>
     <x>110</x>
-    <y>790</y>
+    <y>730</y>
     <width>40</width>
   </widget>
   <widget type="label" version="2.0.0">
     <name>Label_50</name>
     <text>gamma</text>
     <x>100</x>
-    <y>820</y>
+    <y>760</y>
     <width>51</width>
   </widget>
   <widget type="embedded" version="2.0.0">

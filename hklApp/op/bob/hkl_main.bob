@@ -5,7 +5,7 @@
     <Sys>abtest:ioc-hkl:</Sys>
   </macros>
   <width>1850</width>
-  <height>1170</height>
+  <height>1020</height>
   <widget type="navtabs" version="2.0.0">
     <name>Navigation Tabs</name>
     <tabs>
@@ -46,6 +46,6 @@
       </tab>
     </tabs>
     <width>1850</width>
-    <height>1170</height>
+    <height>1010</height>
   </widget>
 </display>

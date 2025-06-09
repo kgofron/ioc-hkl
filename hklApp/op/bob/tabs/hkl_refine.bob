@@ -2,7 +2,7 @@
 <display version="2.0.0">
   <name>HKL_refine</name>
   <width>1350</width>
-  <height>1000</height>
+  <height>960</height>
   <widget type="arc" version="2.0.0">
     <name>Arc</name>
     <x>140</x>
@@ -14,7 +14,7 @@
     <name>Embedded Display_1</name>
     <file>../windows/reflections_refine.bob</file>
     <width>1310</width>
-    <height>850</height>
+    <height>810</height>
   </widget>
   <widget type="polyline" version="2.0.0">
     <name>Polyline_1</name>
@@ -30,10 +30,9 @@
   <widget type="textentry" version="3.0.0">
     <name>Text Input_1</name>
     <pv_name>$(Sys)errors</pv_name>
-    <x>60</x>
-    <y>890</y>
-    <width>620</width>
-    <height>70</height>
+    <y>837</y>
+    <width>362</width>
+    <height>112</height>
     <background_color>
       <color red="255" green="255" blue="255">
       </color>
@@ -48,5 +47,13 @@
       <color red="0" green="128" blue="255">
       </color>
     </border_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_12</name>
+    <text>Error status</text>
+    <x>136</x>
+    <y>817</y>
+    <width>90</width>
+    <height>26</height>
   </widget>
 </display>
