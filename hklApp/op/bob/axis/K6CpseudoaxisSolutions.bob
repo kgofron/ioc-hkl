@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2024-07-31 09:50:42 by l3b-->
 <display version="2.0.0">
   <name>K6C_PseudoAxSol</name>
   <width>320</width>
@@ -43,7 +42,7 @@
       <Ax16Name>sol:pseudoaxes_emergence</Ax16Name>
       <Ax17Name>sol:pseudoaxes_azimuthE</Ax17Name>
     </macros>
-    <file>_multi_pseudoaxis_solutions.bob</file>
+    <file>_multi_pseudoaxis_solutions_k6c.bob</file>
     <y>31</y>
     <width>320</width>
     <height>410</height>
