@@ -810,12 +810,7 @@
       <action type="execute">
         <description>Execute Script</description>
         <script file="EmbeddedPy">
-          <text><![CDATA[# Embedded python script
-#from org.csstudio.display.builder.runtime.script import PVUtil, ScriptUtil
-#print 'Hello'
-# widget.setPropertyValue('text', PVUtil.getString(pvs[0]))
-
-from org.csstudio.display.builder.runtime.script import ScriptUtil
+          <text><![CDATA[from org.csstudio.display.builder.runtime.script import ScriptUtil
 from java.lang import Runtime
 from javax.swing import JFileChooser
 import java.io.BufferedReader as BufferedReader
@@ -824,6 +819,11 @@ import java.io.InputStreamReader as InputStreamReader
 import subprocess
 from org.csstudio.display.builder.runtime.script import PVUtil
 
+
+# Embedded python script
+#from org.csstudio.display.builder.runtime.script import PVUtil, ScriptUtil
+#print 'Hello'
+# widget.setPropertyValue('text', PVUtil.getString(pvs[0]))
 
 
 #print(dir(ScriptUtil))
@@ -901,7 +901,9 @@ if result == JFileChooser.APPROVE_OPTION:
 
     # Push to local PV for display
     #ScriptUtil.getPVByName(widget, "loc://abtest:ioc-hkl:intensities").write(output)
-    PVUtil.writePV("loc://abtest:ioc-hkl:intensities", output, 1000)
+    #PVUtil.writePV("loc://abtest:ioc-hkl:intensities", output, 1000)
+    PVUtil.writePV("abtest:ioc-hkl:intensities", output, 1000)
+
 
 ]]></text>
         </script>
@@ -932,7 +934,7 @@ if result == JFileChooser.APPROVE_OPTION:
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>Text Input_2</name>
-    <pv_name>loc://$(Sys)intensities</pv_name>
+    <pv_name>$(Sys)intensities</pv_name>
     <x>590</x>
     <y>379</y>
     <width>300</width>

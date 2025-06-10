@@ -8,6 +8,11 @@ import subprocess
 from org.csstudio.display.builder.runtime.script import PVUtil
 
 
+# Embedded python script
+#from org.csstudio.display.builder.runtime.script import PVUtil, ScriptUtil
+#print 'Hello'
+# widget.setPropertyValue('text', PVUtil.getString(pvs[0]))
+
 
 #print(dir(ScriptUtil))
 
@@ -84,5 +89,6 @@ if result == JFileChooser.APPROVE_OPTION:
 
     # Push to local PV for display
     #ScriptUtil.getPVByName(widget, "loc://abtest:ioc-hkl:intensities").write(output)
-    PVUtil.writePV("loc://abtest:ioc-hkl:intensities", output, 1000)
+    #PVUtil.writePV("loc://abtest:ioc-hkl:intensities", output, 1000)
+    PVUtil.writePV("abtest:ioc-hkl:intensities", output, 1000)
 

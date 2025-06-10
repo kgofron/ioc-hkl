@@ -331,4 +331,14 @@ record(ai, "$(P)$(R)wavelength_result") {
     field(SCAN, "1 second")
 }
 
+record(waveform, "$(P)$(R)intensities") {
+    field(PINI, "YES")
+    field(DESC, "reflection intensities")
+    field(DTYP, "pydev")
+    #field(INP, "@hkl_calc.errors")
+    field(NELM, "131072")
+    field(FTVL, "CHAR")
+    #field(SCAN, "1 second")
+}
+
 

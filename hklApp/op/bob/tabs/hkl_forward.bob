@@ -85,7 +85,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>Text Input_2</name>
-    <pv_name>loc://$(Sys)intensities</pv_name>
+    <pv_name>$(Sys)intensities</pv_name>
     <x>610</x>
     <y>310</y>
     <width>232</width>
