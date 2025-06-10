@@ -23,7 +23,13 @@ from org.csstudio.display.builder.runtime.script import PVUtil
 #TODO For now, I'm pasting this script into the "import sample .cif" action script in CSS
 
 #TODO get wavelength from IOC with pyepics, feed into cif2hkl, for now
-wavelength=0.4
+#wavelength=0.4
+wlenpv = PVUtil.createPV("abtest:ioc-hkl:wlen_RBV", 1000)
+#wlenpv_info = wlenpv.read()
+#wavelength = PVUtil.getDouble(wlenpv_info)
+wavelength = PVUtil.getDouble(wlenpv)
+
+#TODO if wavelength value is entered in box but "Set Wavelength & Sample Lattice" isn't pressed and assigned to the underlying hkl smaple, the resulting intensities from cif2hkl will not be correct
 
 cif2hkl_bin = '/usr/bin/cif2hkl'
 
@@ -42,6 +48,7 @@ if result == JFileChooser.APPROVE_OPTION:
     #cmd = [cif2hkl_bin, '--mode', 'NUC', '--lambda', str(wavelength), '--xtal', cif_path, '--out', hkl_path]
     cmd = [cif2hkl_bin, '--mode', 'NUC', '--out', hkl_path, '--lambda', str(wavelength), '--xtal', cif_path]
     #cmd = [cif2hkl_bin, '--xtal', cif_path]
+    print("cmd:", cmd)
     try:
         proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         out, err = proc.communicate()
