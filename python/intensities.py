@@ -7,25 +7,6 @@ import subprocess
 from org.csstudio.display.builder.runtime.script import PVUtil
 import re
 
-#def parse_cif_lattice_params(cif_path):
-#    lattice = {}
-#    with open(cif_path, 'r') as f:
-#        for line in f:
-#            line = line.strip()
-#            if line.startswith('_cell_length_a'):
-#                lattice['a'] = float(line.split()[1])
-#            elif line.startswith('_cell_length_b'):
-#                lattice['b'] = float(line.split()[1])
-#            elif line.startswith('_cell_length_c'):
-#                lattice['c'] = float(line.split()[1])
-#            elif line.startswith('_cell_angle_alpha'):
-#                lattice['alpha'] = float(line.split()[1])
-#            elif line.startswith('_cell_angle_beta'):
-#                lattice['beta'] = float(line.split()[1])
-#            elif line.startswith('_cell_angle_gamma'):
-#                lattice['gamma'] = float(line.split()[1])
-#    return lattice
-
 def parse_cif_lattice_params(cif_path):
     lattice = {}
     pattern = re.compile(r"([-+]?[0-9]*\.?[0-9]+(?:[eE][-+]?[0-9]+)?)(?:\(\d+\))?")
@@ -57,7 +38,6 @@ def parse_cif_lattice_params(cif_path):
                 if match:
                     lattice['gamma'] = float(match.group(1))
     return lattice
-
 
 # Embedded python script
 #from org.csstudio.display.builder.runtime.script import PVUtil, ScriptUtil

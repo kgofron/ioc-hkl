@@ -60,7 +60,7 @@ record(ao, "$(P)$(R)latt_a") {
     field(PINI, "YES")
     field(DTYP, "pydev")
     field(DRVL, "0")
-    field(DRVH, "11.54")
+    field(DRVH, "100.0")
     field(OUT, "@hkl_calc.latt[0]=VAL")
     field(FLNK, "$(P)$(R)latt_a_RBV")
 }
@@ -76,7 +76,7 @@ record(ao, "$(P)$(R)latt_b") {
     field(PINI, "YES")
     field(DTYP, "pydev")
     field(DRVL, "0")
-    field(DRVH, "11.54")
+    field(DRVH, "100.0")
     field(OUT, "@hkl_calc.latt[1]=VAL")
     field(FLNK, "$(P)$(R)latt_b_RBV")
 }
@@ -92,7 +92,7 @@ record(ao, "$(P)$(R)latt_c") {
     field(PINI, "YES")
     field(DTYP, "pydev")
     field(DRVL, "0")
-    field(DRVH, "11.54")
+    field(DRVH, "100.0")
     field(OUT, "@hkl_calc.latt[2]=VAL")
     field(FLNK, "$(P)$(R)latt_c_RBV")
 }
