@@ -694,18 +694,18 @@
   <widget type="label" version="2.0.0">
     <name>Label_12</name>
     <text>Error status</text>
-    <x>622</x>
-    <y>379</y>
+    <x>388</x>
+    <y>470</y>
     <width>90</width>
     <height>26</height>
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>Text Input_1</name>
     <pv_name>$(Sys)errors</pv_name>
-    <x>488</x>
-    <y>400</y>
-    <width>362</width>
-    <height>112</height>
+    <x>300</x>
+    <y>488</y>
+    <width>260</width>
+    <height>101</height>
     <background_color>
       <color red="255" green="255" blue="255">
       </color>
@@ -822,7 +822,17 @@ import java.io.BufferedReader as BufferedReader
 import java.io.InputStreamReader as InputStreamReader
 #import pyepics
 import subprocess
+from org.csstudio.display.builder.runtime.script import PVUtil
 
+
+
+#print(dir(ScriptUtil))
+
+#pv = ScriptUtil.getPV("loc://abtest:ioc-hkl:intensities")
+#pv.write("Waiting for intensities...")
+
+
+#TODO For now, I'm pasting this script into the "import sample .cif" action script in CSS
 
 #TODO get wavelength from IOC with pyepics, feed into cif2hkl, for now
 wavelength=0.4
@@ -880,7 +890,7 @@ if result == JFileChooser.APPROVE_OPTION:
                 h, k, l, mult, d, intensity = parts[:6]
                 intensity_lines.append("%3s %3s %3s   %12s" % (h, k, l, intensity))
 
-            if len(intensity_lines) >= 10:
+            if len(intensity_lines) >= 50:
                 break
 
     except Exception as e:
@@ -890,8 +900,8 @@ if result == JFileChooser.APPROVE_OPTION:
     print("Parsed reflections:\n", output)
 
     # Push to local PV for display
-    #ScriptUtil.getPV("loc://hkl_peaks").write(output)
-
+    #ScriptUtil.getPVByName(widget, "loc://abtest:ioc-hkl:intensities").write(output)
+    PVUtil.writePV("loc://abtest:ioc-hkl:intensities", output, 1000)
 
 ]]></text>
         </script>
@@ -911,5 +921,35 @@ if result == JFileChooser.APPROVE_OPTION:
     <y>304</y>
     <width>56</width>
     <height>40</height>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_16</name>
+    <text>hkl intensities</text>
+    <x>690</x>
+    <y>360</y>
+    <width>90</width>
+    <height>26</height>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>Text Input_2</name>
+    <pv_name>loc://$(Sys)intensities</pv_name>
+    <x>590</x>
+    <y>379</y>
+    <width>300</width>
+    <height>210</height>
+    <background_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </background_color>
+    <format>6</format>
+    <wrap_words>true</wrap_words>
+    <multi_line>true</multi_line>
+    <actions>
+    </actions>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </border_color>
   </widget>
 </display>

@@ -1,5 +1,3 @@
-# For now, I'm pasting this script into the "import sample .cif" action script in CSS
-
 from org.csstudio.display.builder.runtime.script import ScriptUtil
 from java.lang import Runtime
 from javax.swing import JFileChooser
@@ -7,7 +5,17 @@ import java.io.BufferedReader as BufferedReader
 import java.io.InputStreamReader as InputStreamReader
 #import pyepics
 import subprocess
+from org.csstudio.display.builder.runtime.script import PVUtil
 
+
+
+#print(dir(ScriptUtil))
+
+#pv = ScriptUtil.getPV("loc://abtest:ioc-hkl:intensities")
+#pv.write("Waiting for intensities...")
+
+
+#TODO For now, I'm pasting this script into the "import sample .cif" action script in CSS
 
 #TODO get wavelength from IOC with pyepics, feed into cif2hkl, for now
 wavelength=0.4
@@ -65,7 +73,7 @@ if result == JFileChooser.APPROVE_OPTION:
                 h, k, l, mult, d, intensity = parts[:6]
                 intensity_lines.append("%3s %3s %3s   %12s" % (h, k, l, intensity))
 
-            if len(intensity_lines) >= 10:
+            if len(intensity_lines) >= 50:
                 break
 
     except Exception as e:
@@ -75,6 +83,6 @@ if result == JFileChooser.APPROVE_OPTION:
     print("Parsed reflections:\n", output)
 
     # Push to local PV for display
-    #ScriptUtil.getPV("loc://hkl_peaks").write(output)
-
+    #ScriptUtil.getPVByName(widget, "loc://abtest:ioc-hkl:intensities").write(output)
+    PVUtil.writePV("loc://abtest:ioc-hkl:intensities", output, 1000)
 
