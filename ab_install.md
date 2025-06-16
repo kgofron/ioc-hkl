@@ -154,11 +154,28 @@ make -sj
 cd ~/epics/iocs/motorMotorSim
 make -sj
 ```
+
+### external package for elastic peak intensities
+```bash
+cd /epics/support
+git clone https://gitlab.com/soleil-data-treatment/soleil-software-projects/cif2hkl.git
+make
+make test
+sudo make install
+```
+
+or with apt
+```bash
+sudo apt install cif2hkl
+```
+then move executable to /usr... #TODO
+
+
+
 ### run motorSim
 run with ./st.cmd in ~/epics/iocs/motorMotorSim/iocs/motorSimIOC/iocBoot/iocMotorSim
 can find .bob files in ~/epics/modules/motor/motorApp/op/bob/autoconvert
 for example, motor8x.bob
-
 
 ### couple PVs between motorsim and hkl-ioc
 copy motor/.../op/.../bob/.../motor8x.bob into op dir of hkl-ioc
@@ -174,25 +191,10 @@ pattern
 {IOC:motorsimtest_ab:,  1,  "m$(N)",  "asynMotor",  motorSim1,  0,     "motor $(N)",  degrees,  Pos,  1,     .1,    .2,    0,     1,     .2,    0.01,  5,     100,   -100,  "", "HB3:ioc-hkl:omega_e4c.PROC"}
 {IOC:motorsimtest_ab:,  2,  "m$(N)",  "asynMotor",  motorSim1,  1,     "motor $(N)",  degrees,  Pos,  1,     .1,    .2,    0,     1,     .2,    0.01,  5,     100,   -100,  "", "HB3:ioc-hkl:chi_e4c.PROC"}
 {IOC:motorsimtest_ab:,  3,  "m$(N)",  "asynMotor",  motorSim1,  2,     "motor $(N)",  degrees,  Pos,  1,     .1,    .2,    0,     1,     .2,    0.01,  5,     100,   -100,  "", "HB3:ioc-hkl:phi_e4c.PROC"}
-{IOC:motorsimtest_ab:,  4,  "m$(N)",  "asynMotor",  motorSim1,  3,     "motor $(N)",  degrees,  Pos,  1,     .1,    .2,    0,     1,     .2,    0.01,  5,     100,   -100,  "",  "HB3:ioc-hkl:tth_e4c.PROC"}
-{IOC:motorsimtest_ab:,  5,  "m$(N)",  "asynMotor",  motorSim1,  4,     "motor $(N)",  degrees,  Pos,  1,     .1,    .2,    0,     1,     .2,    0.01,  5,     100,   -100,  "", "HB3:ioc-hkl:none1"}
-{IOC:motorsimtest_ab:,  6,  "m$(N)",  "asynMotor",  motorSim1,  5,     "motor $(N)",  degrees,  Pos,  1,     .1,    .2,    0,     1,     .2,    0.01,  5,     100,   -100,  "", "HB3:ioc-hkl:none2"}
-{IOC:motorsimtest_ab:,  7,  "m$(N)",  "asynMotor",  motorSim1,  6,     "motor $(N)",  degrees,  Pos,  1,     .1,    .2,    0,     1,     .2,    0.01,  5,     100,   -100,  "", "HB3:ioc-hkl:none3"}
-{IOC:motorsimtest_ab:,  8,  "m$(N)",  "asynMotor",  motorSim1,  7,     "motor $(N)",  degrees,  Pos,  1,     .1,    .2,    0,     1,     .2,    0.01,  5,     100,   -100,  "", "HB3:ioc-hkl:none4"}
-{IOC:motorsimtest_ab:,  9,  "m$(N)",  "asynMotor",  motorSim1,  8,     "motor $(N)",  degrees,  Pos,  1,     .1,    .2,    0,     1,     .2,    0.01,  5,     100,   -100,  "", "HB3:ioc-hkl:none5"}
-{IOC:motorsimtest_ab:,  10,  "m$(N)",  "asynMotor",  motorSim1,  9,     "motor $(N)",  degrees,  Pos,  1,     .1,    .2,    0,     1,     .2,    0.01,  5,     100,   -100,  "", "HB3:ioc-hkl:none6"}
-{IOC:motorsimtest_ab:,  11,  "m$(N)",  "asynMotor",  motorSim1,  10,     "motor $(N)",  degrees,  Pos,  1,     .1,    .2,    0,     1,     .2,    0.01,  5,     100,   -100,  "", "HB3:ioc-hkl:none7"}
-{IOC:motorsimtest_ab:,  12,  "m$(N)",  "asynMotor",  motorSim1,  11,     "motor $(N)",  degrees,  Pos,  1,     .1,    .2,    0,     1,     .2,    0.01,  5,     100,   -100,  "", "HB3:ioc-hkl:none8"}
-{IOC:motorsimtest_ab:,  13,  "m$(N)",  "asynMotor",  motorSim1,  12,     "motor $(N)",  degrees,  Pos,  1,     .1,    .2,    0,     1,     .2,    0.01,  5,     100,   -100,  "", "HB3:ioc-hkl:none9"}
-{IOC:motorsimtest_ab:,  14,  "m$(N)",  "asynMotor",  motorSim1,  13,     "motor $(N)",  degrees,  Pos,  1,     .1,    .2,    0,     1,     .2,    0.01,  5,     100,   -100,  "", "HB3:ioc-hkl:none10"}
-{IOC:motorsimtest_ab:,  15,  "m$(N)",  "asynMotor",  motorSim1,  14,     "motor $(N)",  degrees,  Pos,  1,     .1,    .2,    0,     1,     .2,    0.01,  5,     100,   -100,  "", "HB3:ioc-hkl:none11"}
-{IOC:motorsimtest_ab:,  16,  "m$(N)",  "asynMotor",  motorSim1,  15,     "motor $(N)",  degrees,  Pos,  1,     .1,    .2,    0,     1,     .2,    0.01,  5,     100,   -100,  "", "HB3:ioc-hkl:none12"}
-}
-
+...
 ```
 
-
-then in:
+then add FLNK field in:
 
 /epics/modules/motor/db/basic_asyn_motor.db
 ```
@@ -219,42 +221,8 @@ record(motor,"$(P)$(M)")
 	field(TWV,"1")
 }
 
-# These records make the motor resolution, offset and direction available to the driver
-# which is needed for profile moves and other applications
-
-# Motor direction for this axis
-record(longout,"$(P)$(M)Direction") {
-    field(DESC, "$(M) direction")
-    field(DOL,  "$(P)$(M).DIR CP MS")
-    field(OMSL, "closed_loop")
-    field(DTYP, "asynInt32")
-    field(OUT,  "@asyn($(PORT),$(ADDR))MOTOR_REC_DIRECTION")
-}
-
-
-# Motor offset for this axis
-record(ao,"$(P)$(M)Offset") {
-    field(DESC, "$(M) offset")
-    field(DOL,  "$(P)$(M).OFF CP MS")
-    field(OMSL, "closed_loop")
-    field(DTYP, "asynFloat64")
-    field(OUT,  "@asyn($(PORT),$(ADDR))MOTOR_REC_OFFSET")
-    field(PREC, "$(PREC)")
-}
-
-
-# Motor resolution for this axis
-record(ao,"$(P)$(M)Resolution") {
-    field(DESC, "$(M) resolution")
-    field(DOL,  "$(P)$(M).MRES CP MS")
-    field(OMSL, "closed_loop")
-    field(DTYP, "asynFloat64")
-    field(OUT,  "@asyn($(PORT),$(ADDR))MOTOR_REC_RESOLUTION")
-    field(PREC, "$(PREC)")
-}
 ```
 
-adding the one line for FLNK substitutions
 
 get this warning if exclude .PROC in motor_substitution (I guess this is needed when forward linking across iocs)
 
@@ -280,63 +248,4 @@ camonitor also helps to check if a PV changes, like
 camonitor HB3:ioc-hkl:omega_e4c
 ```
 
-FLNK not working might be an issue with channel access/port accessibilitiy with two IOCs running, getting these warnings
 
-```
-cas WARNING: Configured TCP port was unavailable.
-cas WARNING: Using dynamically assigned TCP port 46859,
-cas WARNING: but now two or more servers share the same UDP port.
-cas WARNING: Depending on your IP kernel this server may not be
-cas WARNING: reachable with UDP unicast (a host's IP in EPICS_CA_ADDR_LIST)
-iocRun: All initialization complete
-## motorUtil (allstop & alldone)
-motorUtilInit("motorSim:")
-# Boot complete
-epics> CA.Client.Exception...............................................
-    Warning: "User specified timeout on IO operation expired"
-    Context: "ca_search_and_connect"
-    Source File: ../motorUtil.cc line 210
-    Current Time: Thu May 29 2025 09:38:17.303131670
-..................................................................
-motorUtil.cc: getChID(motorSim:moving.VAL) error: 80
-CA.Client.Exception...............................................
-    Warning: "User specified timeout on IO operation expired"
-    Context: "ca_search_and_connect"
-    Source File: ../motorUtil.cc line 210
-    Current Time: Thu May 29 2025 09:39:17.303778029
-..................................................................
-motorUtil.cc: getChID(motorSim:alldone.VAL) error: 80
-
-epics> 
-```
-
-
-
-can try 
-```
-sudo lsof -i :5064
-```
-to see which iocs are on that port, need to look up difference between UDP and TCP ports
-
-
-
-The FLNK is working but the value isn't updating, when I run
-camonitor HB3:ioc-hkl:omega_e4c.PROC
-
-changing an m1 value in phoebus does update the PV as below:
-                        
-HB3:ioc-hkl:omega_e4c.PROC     2025-05-29 10:01:20.121099 0  
-HB3:ioc-hkl:omega_e4c.PROC     2025-05-29 10:01:20.121099 1  
-HB3:ioc-hkl:omega_e4c.PROC     2025-05-29 10:02:10.117501 1  
-HB3:ioc-hkl:omega_e4c.PROC     2025-05-29 10:07:44.227275 1  
-HB3:ioc-hkl:omega_e4c.PROC     2025-05-29 10:07:54.456788 1  
-HB3:ioc-hkl:omega_e4c.PROC     2025-05-29 10:11:25.876751 1  
-
-but the PV for omega doesnt change. Also the update from one IOC to the other is very slow/inconsistent
-
-now seems like I need to add
-field(DOL, "IOC1:source CP")
-field(OMSL, "closed_loop")
-to the target PV in ioc-hkl
-
-works perfectly now, but I need a condition that includes these fields when coupling is on, and doesn't include them when coupling is off

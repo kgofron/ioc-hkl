@@ -102,15 +102,12 @@ if result == JFileChooser.APPROVE_OPTION:
             parts = line.split()
             if len(parts) >= 6:
                 h, k, l, mult, d, intensity = parts[:6]
-                intensity_lines.append("%3s %3s %3s   %12s" % (h, k, l, intensity))
+                intensity_lines.append("%3s %3s %3s %8s %12s" % (h, k, l, d, intensity)) 
+                #intensity_lines.append("%3s %3s %3s   %12s" % (h, k, l, intensity))
             if len(intensity_lines) >= 50:
                 break
     except Exception as e:
         intensity_lines = ["Error: " + str(e)]
     output = "\n".join(intensity_lines)
-    print("Parsed reflections:\n", output)
-    # local PV does not remain when switching tabs
-    #ScriptUtil.getPVByName(widget, "loc://abtest:ioc-hkl:intensities").write(output)
-    #PVUtil.writePV("loc://abtest:ioc-hkl:intensities", output, 1000)
+    #print("Parsed reflections:\n", output)
     PVUtil.writePV("abtest:ioc-hkl:intensities", output, 1000)
-

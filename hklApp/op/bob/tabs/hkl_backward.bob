@@ -27,6 +27,7 @@
     <x>20</x>
     <y>20</y>
     <width>1230</width>
+    <height>310</height>
   </widget>
   <widget type="embedded" version="2.0.0">
     <name>Embedded Display_7</name>

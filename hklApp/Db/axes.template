@@ -486,6 +486,15 @@ record(ao, "$(P)$(R)delta_e6c_min") {
     field(OUT, "@hkl_calc.axes_e6c_min[5]=VAL")
 }
 
+record(ao, "$(P)$(R)delta_e6c_max") {
+    field(DESC, "delta max")
+    field(DTYP, "pydev")
+    field(PINI, "YES")
+    field(DRVL, "-180")
+    field(DRVH, "180")
+    field(OUT, "@hkl_calc.axes_e6c_max[5]=VAL")
+}
+
 # Kappa 6-circle
 record(ao, "$(P)$(R)mu_k6c") {
     field(DESC, "mu")

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2024-08-02 13:33:16 by l3b-->
 <display version="2.0.0">
   <name>K6C_PseudoAxInput</name>
+  <width>475</width>
+  <height>300</height>
   <widget type="label" version="2.0.0">
     <name>Label</name>
     <class>TITLE</class>
@@ -42,8 +43,57 @@
       <Ax17Name>pseudoaxes_azimuthE</Ax17Name>
     </macros>
     <file>_pseudoAxes_simple.bob</file>
-    <y>30</y>
-    <width>460</width>
+    <y>220</y>
+    <width>470</width>
     <height>80</height>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>Embedded Display_1</name>
+    <macros>
+      <Ax1Name>mu_k6c</Ax1Name>
+      <Ax2Name>komega_k6c</Ax2Name>
+      <Ax3Name>kappa_k6c</Ax3Name>
+      <Ax4Name>kphi_k6c</Ax4Name>
+      <Ax5Name>gamma_k6c</Ax5Name>
+      <Ax6Name>delta_k6c</Ax6Name>
+    </macros>
+    <file>_6axes_limits.bob</file>
+    <y>50</y>
+    <width>470</width>
+    <height>150</height>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_1</name>
+    <text>min</text>
+    <x>150</x>
+    <y>31</y>
+    <width>40</width>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_2</name>
+    <text>max</text>
+    <x>310</x>
+    <y>31</y>
+    <width>40</width>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_3</name>
+    <text>input</text>
+    <x>150</x>
+    <y>200</y>
+    <width>50</width>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_4</name>
+    <text>RBV</text>
+    <x>310</x>
+    <y>200</y>
+    <width>50</width>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_5</name>
+    <text>axis limits</text>
+    <y>31</y>
+    <width>80</width>
   </widget>
 </display>

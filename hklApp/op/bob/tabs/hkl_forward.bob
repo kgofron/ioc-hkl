@@ -31,7 +31,6 @@
     <file>../windows/forward_output.bob</file>
     <x>40</x>
     <y>280</y>
-    <width>550</width>
     <height>520</height>
   </widget>
   <widget type="polyline" version="2.0.0">
@@ -48,9 +47,9 @@
   <widget type="textentry" version="3.0.0">
     <name>Text Input_1</name>
     <pv_name>$(Sys)errors</pv_name>
-    <x>610</x>
+    <x>460</x>
     <y>650</y>
-    <width>232</width>
+    <width>382</width>
     <height>150</height>
     <background_color>
       <color red="255" green="255" blue="255">
@@ -70,7 +69,7 @@
   <widget type="label" version="2.0.0">
     <name>Label_12</name>
     <text>Error status</text>
-    <x>684</x>
+    <x>600</x>
     <y>630</y>
     <width>90</width>
     <height>26</height>
@@ -78,7 +77,7 @@
   <widget type="label" version="2.0.0">
     <name>Label_13</name>
     <text>hkl intensities</text>
-    <x>684</x>
+    <x>600</x>
     <y>290</y>
     <width>90</width>
     <height>26</height>
@@ -86,9 +85,9 @@
   <widget type="textentry" version="3.0.0">
     <name>Text Input_2</name>
     <pv_name>$(Sys)intensities</pv_name>
-    <x>610</x>
+    <x>460</x>
     <y>310</y>
-    <width>232</width>
+    <width>382</width>
     <height>310</height>
     <background_color>
       <color red="255" green="255" blue="255">

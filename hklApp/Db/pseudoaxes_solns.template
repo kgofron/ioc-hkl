@@ -22,6 +22,22 @@ record(ai, "$(P)$(R)sol:pseudoaxes_l") {
     field(SCAN, "1 second")
 }
 
+record(ai, "$(P)$(R)sol:pseudoaxes_dspacing") {
+    field(DESC, "l")
+    field(PINI, "YES")
+    field(DTYP, "pydev")
+    field(INP, "@hkl_calc.pseudoaxes_solns_l")
+    field(SCAN, "1 second")
+}
+
+record(ai, "$(P)$(R)sol:pseudoaxes_fc2") {
+    field(DESC, "l")
+    field(PINI, "YES")
+    field(DTYP, "pydev")
+    field(INP, "@hkl_calc.pseudoaxes_solns_l")
+    field(SCAN, "1 second")
+}
+
 record(ai, "$(P)$(R)sol:pseudoaxes_psi") {
     field(DESC, "psi")
     field(PINI, "YES")

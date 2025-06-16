@@ -278,7 +278,7 @@
     <visible>false</visible>
     <rules>
       <rule name="Visible" prop_id="visible" out_exp="false">
-        <exp bool_exp="pv0==2">
+        <exp bool_exp="pv0==1">
           <value>true</value>
         </exp>
         <pv_name>$(Sys)geom</pv_name>
@@ -294,7 +294,7 @@
     <visible>false</visible>
     <rules>
       <rule name="Visible" prop_id="visible" out_exp="false">
-        <exp bool_exp="pv0==1">
+        <exp bool_exp="pv0==0">
           <value>true</value>
         </exp>
         <pv_name>$(Sys)geom</pv_name>
@@ -310,7 +310,7 @@
     <visible>false</visible>
     <rules>
       <rule name="Visible" prop_id="visible" out_exp="false">
-        <exp bool_exp="pv0==3">
+        <exp bool_exp="pv0==2">
           <value>true</value>
         </exp>
         <pv_name>$(Sys)geom</pv_name>
@@ -326,7 +326,7 @@
     <visible>false</visible>
     <rules>
       <rule name="Visible" prop_id="visible" out_exp="false">
-        <exp bool_exp="pv0==4">
+        <exp bool_exp="pv0==3">
           <value>true</value>
         </exp>
         <pv_name>$(Sys)geom</pv_name>
@@ -342,7 +342,7 @@
     <visible>false</visible>
     <rules>
       <rule name="Visible" prop_id="visible" out_exp="false">
-        <exp bool_exp="pv0==5">
+        <exp bool_exp="pv0==4">
           <value>true</value>
         </exp>
         <pv_name>$(Sys)geom</pv_name>

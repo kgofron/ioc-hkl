@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2024-08-02 13:32:34 by l3b-->
 <display version="2.0.0">
   <name>K4CV_PseudoAxInput</name>
+  <width>475</width>
+  <height>300</height>
   <widget type="label" version="2.0.0">
     <name>Label</name>
     <class>TITLE</class>
@@ -34,8 +35,41 @@
       <Ax9Name>pseudoaxes_azimuthE</Ax9Name>
     </macros>
     <file>_pseudoAxes_simple.bob</file>
-    <y>30</y>
-    <width>460</width>
+    <y>160</y>
+    <width>470</width>
     <height>80</height>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>Embedded Display_1</name>
+    <macros>
+      <Ax1Name>komega_k4c</Ax1Name>
+      <Ax2Name>kappa_k4c</Ax2Name>
+      <Ax3Name>kphi_k4c</Ax3Name>
+      <Ax4Name>tth_k4c</Ax4Name>
+    </macros>
+    <file>_4axes_limits.bob</file>
+    <y>50</y>
+    <width>470</width>
+    <height>99</height>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_2</name>
+    <text>max</text>
+    <x>310</x>
+    <y>31</y>
+    <width>40</width>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_3</name>
+    <text>min</text>
+    <x>150</x>
+    <y>31</y>
+    <width>40</width>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_5</name>
+    <text>axis limits</text>
+    <y>31</y>
+    <width>80</width>
   </widget>
 </display>

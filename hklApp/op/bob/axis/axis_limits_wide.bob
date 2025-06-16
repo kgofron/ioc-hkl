@@ -10,27 +10,6 @@
   </actions>
   <grid_step_x>6</grid_step_x>
   <grid_step_y>6</grid_step_y>
-  <widget type="textentry" version="3.0.0">
-    <name>Text Input</name>
-    <pv_name>$(Sys)$(Dev)</pv_name>
-    <x>150</x>
-    <width>150</width>
-    <height>22</height>
-    <background_color>
-      <color red="255" green="255" blue="255">
-      </color>
-    </background_color>
-    <format>1</format>
-    <precision>4</precision>
-    <horizontal_alignment>1</horizontal_alignment>
-    <actions>
-    </actions>
-    <border_alarm_sensitive>false</border_alarm_sensitive>
-    <border_color>
-      <color red="0" green="128" blue="255">
-      </color>
-    </border_color>
-  </widget>
   <widget type="textupdate" version="2.0.0">
     <name>Text Update_1</name>
     <pv_name>$(Sys)$(Dev).DESC</pv_name>
@@ -55,11 +34,12 @@
       </color>
     </border_color>
   </widget>
-  <widget type="textupdate" version="2.0.0">
-    <name>Text Update_1</name>
-    <pv_name>$(Sys)$(Dev)_RBV</pv_name>
-    <x>306</x>
+  <widget type="textentry" version="3.0.0">
+    <name>Text Input_1</name>
+    <pv_name>$(Sys)$(Dev)_min</pv_name>
+    <x>150</x>
     <width>150</width>
+    <height>22</height>
     <background_color>
       <color red="255" green="255" blue="255">
       </color>
@@ -67,14 +47,32 @@
     <format>1</format>
     <precision>4</precision>
     <horizontal_alignment>1</horizontal_alignment>
-    <vertical_alignment>1</vertical_alignment>
-    <wrap_words>false</wrap_words>
     <actions>
     </actions>
     <border_alarm_sensitive>false</border_alarm_sensitive>
-    <border_width>2</border_width>
     <border_color>
-      <color name="green-18" red="0" green="160" blue="0">
+      <color red="0" green="128" blue="255">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>Text Input_2</name>
+    <pv_name>$(Sys)$(Dev)_max</pv_name>
+    <x>310</x>
+    <width>150</width>
+    <height>22</height>
+    <background_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </background_color>
+    <format>1</format>
+    <precision>4</precision>
+    <horizontal_alignment>1</horizontal_alignment>
+    <actions>
+    </actions>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255">
       </color>
     </border_color>
   </widget>

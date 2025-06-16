@@ -39,6 +39,8 @@ abtest:ioc-hkl:pseudoaxes_azimuthE_RBV
 abtest:ioc-hkl:sol:pseudoaxes_h
 abtest:ioc-hkl:sol:pseudoaxes_k
 abtest:ioc-hkl:sol:pseudoaxes_l
+abtest:ioc-hkl:sol:pseudoaxes_dspacing
+abtest:ioc-hkl:sol:pseudoaxes_fc2
 abtest:ioc-hkl:sol:pseudoaxes_psi
 abtest:ioc-hkl:sol:pseudoaxes_q
 abtest:ioc-hkl:sol:pseudoaxes_alpha
@@ -1124,6 +1126,7 @@ abtest:ioc-hkl:gamma_e6c_min
 abtest:ioc-hkl:gamma_e6c_max
 abtest:ioc-hkl:delta_e6c
 abtest:ioc-hkl:delta_e6c_min
+abtest:ioc-hkl:delta_e6c_max
 abtest:ioc-hkl:mu_k6c
 abtest:ioc-hkl:mu_k6c_min
 abtest:ioc-hkl:mu_k6c_max
