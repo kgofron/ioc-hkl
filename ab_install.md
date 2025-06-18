@@ -168,9 +168,49 @@ or with apt
 ```bash
 sudo apt install cif2hkl
 ```
-then move executable to /usr... #TODO
 
+check location of executable, should be 
+```
+/usr/bin/cif2hkl
+```
 
+### python environment #TODO move to st_base.cmd?
+```
+python3 -m venv iochkl && source iochkl/bin/activate && pip install -r requirements.txt
+```
+
+### gi within a python environment (Ubuntu 24.04, venv environment)
+
+can test env with
+python -c "import gi; from gi.repository import GLib; gi.require_version('Hkl', '5.0'); from gi.repository import Hkl"
+
+outside new venv environment:
+python3 -c "import gi; print(gi.__file__)"
+/usr/lib/python3/dist-packages/gi/__init__.py
+
+inside:
+python3 -c "import gi; print(gi.__file__)"
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+ModuleNotFoundError: No module named 'gi'
+
+"
+the venv's site-packages is at:
+/usr/local/lib/python3.12/dist-packages
+…but the system-wide gi module is located in:
+/usr/lib/python3/dist-packages/gi/
+"
+
+in the env:
+python3 -c "import sys; print(sys.path)"
+['', '/usr/lib/python312.zip', '/usr/lib/python3.12', '/usr/lib/python3.12/lib-dynload', '/epics/iocs/ioc-hkl/iochkl/lib/python3.12/site-packages']
+python -c "import sys; print(sys.path)"
+['', '/usr/lib/python312.zip', '/usr/lib/python3.12', '/usr/lib/python3.12/lib-dynload', '/usr/local/lib/python3.12/dist-packages', '/usr/lib/python3/dist-packages']
+
+fixed by adding this to st.cmd
+```
+echo "import sys; sys.path.append('/usr/lib/python3/dist-packages')" > /epics/iocs/ioc-hkl/iochkl/lib/python3.12/site-packages/_gi_patch.pth
+```
 
 ### run motorSim
 run with ./st.cmd in ~/epics/iocs/motorMotorSim/iocs/motorSimIOC/iocBoot/iocMotorSim

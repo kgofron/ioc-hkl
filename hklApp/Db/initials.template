@@ -341,4 +341,10 @@ record(waveform, "$(P)$(R)intensities") {
     field(SCAN, "1 second")
 }
 
-
+record(waveform, "$(P)$(R)cif_path") {
+    field(PINI, "YES")
+    field(DESC, "cif file path")
+    field(DTYP, "pydev")
+    field(NELM, "64")
+    field(FTVL, "CHAR")
+}

@@ -1,3 +1,4 @@
+#TODO move from CSS PV updater to python (pyepics)
 from org.csstudio.display.builder.runtime.script import ScriptUtil
 from java.lang import Runtime
 from javax.swing import JFileChooser
@@ -6,6 +7,8 @@ import java.io.InputStreamReader as InputStreamReader
 import subprocess
 from org.csstudio.display.builder.runtime.script import PVUtil
 import re
+
+prefix = "abtest:ioc-hkl:"
 
 def parse_cif_lattice_params(cif_path):
     lattice = {}
@@ -63,16 +66,16 @@ if result == JFileChooser.APPROVE_OPTION:
 
     ##### parse .cif and set lattice parameters to IOC #####
     lattice = parse_cif_lattice_params(cif_path)
-    PVUtil.writePV("abtest:ioc-hkl:latt_a", lattice['a'], 1000)
-    PVUtil.writePV("abtest:ioc-hkl:latt_b", lattice['b'], 1000)
-    PVUtil.writePV("abtest:ioc-hkl:latt_c", lattice['c'], 1000)
-    PVUtil.writePV("abtest:ioc-hkl:latt_alpha", lattice['alpha'], 1000)
-    PVUtil.writePV("abtest:ioc-hkl:latt_beta", lattice['beta'], 1000)
-    PVUtil.writePV("abtest:ioc-hkl:latt_gamma", lattice['gamma'], 1000)
+    PVUtil.writePV(f"{prefix}latt_a", lattice['a'], 1000)
+    PVUtil.writePV(f"{prefix}latt_b", lattice['b'], 1000)
+    PVUtil.writePV(f"{prefix}latt_c", lattice['c'], 1000)
+    PVUtil.writePV(f"{prefix}latt_alpha", lattice['alpha'], 1000)
+    PVUtil.writePV(f"{prefix}latt_beta", lattice['beta'], 1000)
+    PVUtil.writePV(f"{prefix}latt_gamma", lattice['gamma'], 1000)
 
     ##### scattering intensities calculation #####
     cif2hkl_bin = '/usr/bin/cif2hkl'
-    wlenpv = PVUtil.createPV("abtest:ioc-hkl:wlen_RBV", 1000)
+    wlenpv = PVUtil.createPV(f"{prefix}wlen_RBV", 1000)
     wavelength = PVUtil.getDouble(wlenpv)
     #TODO if wavelength value is entered in box but "Set Wavelength & Sample Lattice" isn't pressed and assigned to the underlying hkl smaple, the resulting intensities from cif2hkl will not be correct
     cmd = [cif2hkl_bin, '--mode', 'NUC', '--out', hkl_path, '--lambda', str(wavelength), '--xtal', cif_path]
@@ -110,4 +113,4 @@ if result == JFileChooser.APPROVE_OPTION:
         intensity_lines = ["Error: " + str(e)]
     output = "\n".join(intensity_lines)
     #print("Parsed reflections:\n", output)
-    PVUtil.writePV("abtest:ioc-hkl:intensities", output, 1000)
+    PVUtil.writePV(f"{prefix}intensities", output, 1000)

@@ -677,54 +677,33 @@ class hklCalculator():
 
     def reset_axes_solns(self):
         if self.geom == 0 or 1:
-            self.axes_solns_omega_e4c = []
-            self.axes_solns_chi_e4c = []
-            self.axes_solns_phi_e4c = []
-            self.axes_solns_tth_e4c = []
-            for _ in range(self.num_axes_solns):
-                self.axes_solns_omega_e4c.append(0)
-                self.axes_solns_chi_e4c.append(0)
-                self.axes_solns_phi_e4c.append(0)
-                self.axes_solns_tth_e4c.append(0)
+            for lst in [self.axes_solns_omega_e4c, \
+                        self.axes_solns_chi_e4c, \
+                        self.axes_solns_phi_e4c, \
+                        self.axes_solns_tth_e4c]:
+                lst[:] = [0 for _ in lst]
         elif self.geom == 2:
-            self.axes_solns_komega_k4c = []
-            self.axes_solns_kappa_k4c = []
-            self.axes_solns_kphi_k4c = []
-            self.axes_solns_tth_k4c = []
-            for _ in range(self.num_axes_solns):
-                self.axes_solns_komega_k4c.append(0)
-                self.axes_solns_kappa_k4c.append(0)
-                self.axes_solns_kphi_k4c.append(0)
-                self.axes_solns_tth_k4c.append(0)
+            for lst in [self.axes_solns_komega_k4c, \
+                        self.axes_solns_kappa_k4c, \
+                        self.axes_solns_kphi_k4c, \
+                        self.axes_solns_tth_k4c ]:
+                lst[:] = [0 for _ in lst]
         elif self.geom == 3:
-            self.axes_solns_mu_e6c = []
-            self.axes_solns_omega_e6c = []
-            self.axes_solns_chi_e6c = []
-            self.axes_solns_phi_e6c = []
-            self.axes_solns_gamma_e6c = []
-            self.axes_solns_delta_e6c = []
-            for _ in range(self.num_axes_solns):
-                self.axes_solns_mu_e6c.append(0)
-                self.axes_solns_omega_e6c.append(0)
-                self.axes_solns_chi_e6c.append(0)
-                self.axes_solns_phi_e6c.append(0)
-                self.axes_solns_gamma_e6c.append(0)
-                self.axes_solns_delta_e6c.append(0)
+            for lst in [self.axes_solns_mu_e6c, \
+                        self.axes_solns_omega_e6c, \
+                        self.axes_solns_chi_e6c, \
+                        self.axes_solns_phi_e6c, \
+                        self.axes_solns_gamma_e6c, \
+                        self.axes_solns_delta_e6c]:
+                lst[:] = [0 for _ in lst]
         elif self.geom == 4:
-            self.axes_solns_mu_k6c = []
-            self.axes_solns_komega_k6c = []
-            self.axes_solns_kappa_k6c = []
-            self.axes_solns_kphi_k6c = []
-            self.axes_solns_gamma_k6c = []
-            self.axes_solns_delta_k6c = []
-            for _ in range(self.num_axes_solns):
-                self.axes_solns_mu_k6c.append(0)
-                self.axes_solns_komega_k6c.append(0)
-                self.axes_solns_kappa_k6c.append(0)
-                self.axes_solns_kphi_k6c.append(0)
-                self.axes_solns_gamma_k6c.append(0)
-                self.axes_solns_delta_k6c.append(0)
-
+            for lst in [self.axes_solns_mu_k6c, \
+                        self.axes_solns_komega_k6c, \
+                        self.axes_solns_kappa_k6c, \
+                        self.axes_solns_kphi_k6c, \
+                        self.axes_solns_gamma_k6c, \
+                        self.axes_solns_delta_k6c]:
+                lst[:] = [0 for _ in lst]
 
     def add_reflection1(self):
         '''
