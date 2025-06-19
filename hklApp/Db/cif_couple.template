@@ -1,0 +1,12 @@
+record(pycalc, "$(P)$(R)cif_path_copy") {
+    field(PINI, "NO")
+    field(INPA, "$(P)$(R)cif_path CP")
+    #field(INPA, "$(P)$(R)cif_path CA")
+    field(FTA,  "CHAR")
+    field(MEA, 256)
+    #field(CALC, "print(''.join([chr(x) for x in A if x != 0]))")
+    field(CALC, "hkl_calc.read_cif(''.join([chr(x) for x in A if x != 0]))")
+    field(TPRO, "1")
+}
+
+

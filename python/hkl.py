@@ -1,14 +1,13 @@
 import math
 import numpy as np
-#import pandas as pd
-#from epics import caget
-#import traceback
 import datetime
 import gi
 from gi.repository import GLib
 gi.require_version('Hkl', '5.0')
 from gi.repository import Hkl
 import sys
+import intensities
+
 
 class hklCalculator():
     def __init__(self, num_axes_solns=30, num_reflections = 10, geom=1, geom_name = 'E4CV'):
@@ -41,7 +40,8 @@ class hklCalculator():
         ct = datetime.datetime.now().isoformat()
         self.errors = [ord(c) for c in str(ct)]
         self.intensities = ''
-        
+        self.cif_path=''        
+
         self.energy = 0.
         self.wavelength_result = 0.
         self.particle_type = 1 # 0 photon, 1 neutron, ...
@@ -971,6 +971,22 @@ class hklCalculator():
                 self.refl_refine_input_k6c[1], self.refl_refine_input_k6c[2])   
             self.refl_refine_input_list_k6c[self.curr_num_refls] = self.refl_refine_input_k6c.copy()
         self.curr_num_refls += 1
+
+    def read_cif(self, givenpath):
+        print(f'TESTESTESTESTEST: {givenpath}')
+        self.cif_path = givenpath
+
+    def run_cif(self):
+        print(f'HERE IS THE CIF PATH {self.cif_path}')
+        temp_intensities, templatt = intensities.intensity_calc(self.wavelength, self.cif_path)
+        self.intensities = [ord(c) for c in str(temp_intensities)]
+        self.latt[0] = templatt['a']
+        self.latt[1] = templatt['b']
+        self.latt[2] = templatt['c']
+        self.latt[3] = templatt['alpha']
+        self.latt[4] = templatt['beta']
+        self.latt[5] = templatt['gamma']
+        self.start()
 
     def del_refl_refine(self):
         #self.selected_refl = 0 #TODO

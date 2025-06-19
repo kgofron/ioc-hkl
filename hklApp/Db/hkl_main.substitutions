@@ -63,6 +63,12 @@ pattern {P, R}
 { abtest:ioc-hkl, : }
 }
 
+file cif_couple.template 
+{
+pattern {P, R}
+{ abtest:ioc-hkl, : }
+}
+
 file UB_calc.template 
 {
 pattern {P, R}

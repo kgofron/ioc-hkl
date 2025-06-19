@@ -69,6 +69,7 @@ record(ai, "$(P)$(R)latt_a_RBV") {
     field(PINI, "YES")
     field(DTYP, "pydev")
     field(INP, "@hkl_calc.latt[0]")
+    field(FLNK, "$(P)$(R)latt_b_RBV")
 }
 
 record(ao, "$(P)$(R)latt_b") {
@@ -85,6 +86,7 @@ record(ai, "$(P)$(R)latt_b_RBV") {
     field(PINI, "YES")
     field(DTYP, "pydev")
     field(INP, "@hkl_calc.latt[1]")
+    field(FLNK, "$(P)$(R)latt_c_RBV")
 }
 
 record(ao, "$(P)$(R)latt_c") {
@@ -101,6 +103,7 @@ record(ai, "$(P)$(R)latt_c_RBV") {
     field(PINI, "YES")
     field(DTYP, "pydev")
     field(INP, "@hkl_calc.latt[2]")
+    field(FLNK, "$(P)$(R)latt_alpha_RBV")
 }
 
 record(ao, "$(P)$(R)latt_alpha") {
@@ -117,6 +120,7 @@ record(ai, "$(P)$(R)latt_alpha_RBV") {
     field(PINI, "YES")
     field(DTYP, "pydev")
     field(INP, "@hkl_calc.latt[3]")
+    field(FLNK, "$(P)$(R)latt_beta_RBV")
 }
 
 record(ao, "$(P)$(R)latt_beta") {
@@ -133,6 +137,7 @@ record(ai, "$(P)$(R)latt_beta_RBV") {
     field(PINI, "YES")
     field(DTYP, "pydev")
     field(INP, "@hkl_calc.latt[4]")
+    field(FLNK, "$(P)$(R)latt_gamma_RBV")
 }
 
 record(ao, "$(P)$(R)latt_gamma") {
@@ -149,6 +154,7 @@ record(ai, "$(P)$(R)latt_gamma_RBV") {
     field(PINI, "YES")
     field(DTYP, "pydev")
     field(INP, "@hkl_calc.latt[5]")
+    field(FLNK, "$(P)$(R)intensities")
 }
 
 record(ai, "$(P)$(R)latt_vol_RBV") {
@@ -342,9 +348,22 @@ record(waveform, "$(P)$(R)intensities") {
 }
 
 record(waveform, "$(P)$(R)cif_path") {
-    field(PINI, "YES")
+    field(PINI, "NO")
     field(DESC, "cif file path")
-    field(DTYP, "pydev")
-    field(NELM, "64")
+    #field(DTYP, "pydev")
+    #field(INP, "@hkl_calc.cif_path")
+    field(NELM, "256")
     field(FTVL, "CHAR")
+    #field(FLNK, "$(P)$(R)cif_path_copy.PROC")
 }
+
+#record(lso, "$(P)$(R)cif_path") {
+#    field(PINI, "YES")
+#    field(DESC, "cif file path")
+#    field(DTYP, "pydev")
+#    field(OUT, "@hkl_calc.cif_path")
+#    field(NELM, "256")
+#    field(FTVL, "CHAR")
+#}
+
+

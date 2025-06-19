@@ -81,4 +81,11 @@ record(ao, "$(P)$(R)convert") {
     field(FLNK, "$(P)$(R)wavelength_result")
 }
 
+record(ao, "$(P)$(R)run_cif") {
+    field(PINI, "NO")
+    field(DTYP, "pydev")
+    field(OUT, "@hkl_calc.run_cif()")
+    field(TPRO, "1")
+    field(FLNK, "$(P)$(R)latt_a_RBV")
+}
 
