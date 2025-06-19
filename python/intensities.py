@@ -1,5 +1,6 @@
 import subprocess
 import re
+from util import sci2dec
 
 def parse_cif_lattice_params(cif_path):
     lattice = {}
@@ -36,22 +37,20 @@ def parse_cif_lattice_params(cif_path):
 
 def intensity_calc(wavelength, cif_path):
     hkl_path = cif_path.replace(".cif", ".hkl")
-    print(cif_path)
-    print(hkl_path)
-    lattice = parse_cif_lattice_params(cif_path)
-    print(lattice)
+    try:
+        lattice = parse_cif_lattice_params(cif_path)
+    except Exception as e:
+        lattice = {}
+        output = f'error: {e}'
+        return output, lattice
     ##### scattering intensities calculation #####
     cif2hkl_bin = '/usr/bin/cif2hkl'
     cmd = [cif2hkl_bin, '--mode', 'NUC', '--out', hkl_path, '--lambda', str(wavelength), '--xtal', cif_path]
-    print(cmd)
     try:
         proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         out, err = proc.communicate()
-        #TODO propogate error/success text
-        print(out)
-        print(err)
     except Exception as e:
-        print("Exception running cif2hkl:", e)
+        print("run_cif (cif2hkl) error:", e)
         output = e
         return output, lattice
     try:
@@ -70,13 +69,13 @@ def intensity_calc(wavelength, cif_path):
                 continue
             parts = line.split()
             if len(parts) >= 6:
-                h, k, l, mult, d, intensity = parts[:6]
-                intensity_lines.append("%3s %3s %3s %8s %12s" % (h, k, l, d, intensity)) 
-            if len(intensity_lines) >= 50:
+                h, k, l, mult, d, intensity_sci = parts[:6]
+                intensity_dec = sci2dec(intensity_sci)
+                intensity_lines.append("%3s %3s %3s %12s %8s" % (h, k, l, d, intensity_dec)) 
+            if len(intensity_lines) >= 100:
+                intensity_lines.append("Truncated, check generated .hkl file")
                 break
     except Exception as e:
         intensity_lines = ["Error: " + str(e)]
     output = "\n".join(intensity_lines)
-    print(output)
-    print(lattice)
     return output, lattice

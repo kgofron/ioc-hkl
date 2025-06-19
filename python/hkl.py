@@ -5,9 +5,8 @@ import gi
 from gi.repository import GLib
 gi.require_version('Hkl', '5.0')
 from gi.repository import Hkl
-import sys
 import intensities
-
+from util import energy2wavelength_neutron
 
 class hklCalculator():
     def __init__(self, num_axes_solns=30, num_reflections = 10, geom=1, geom_name = 'E4CV'):
@@ -44,7 +43,7 @@ class hklCalculator():
 
         self.energy = 0.
         self.wavelength_result = 0.
-        self.particle_type = 1 # 0 photon, 1 neutron, ...
+        #self.particle_type = 1 # 0 photon, 1 neutron, ... #TODO
         self.neutron = 0.
         self.velocity = 0. # sqrt(2E/m) 
         self.e = 1.6021766300e-19 # [C]
@@ -111,7 +110,7 @@ class hklCalculator():
         self.uy = 0.
         self.uz = 0.
 
-        # UB busing levy
+        # UB Busing-Levy
         self.UB_matrix_bl = np.zeros((3,3), dtype=float)
 
         # UB simplex
@@ -122,26 +121,21 @@ class hklCalculator():
 
         # Eulerian 4-circle (omega, chi, phi, tth)
         self.axes_e4c = [0.,0.,0.,0.]
-
-        #self.axes_e4c_min = [caget(<PV_name>.DRVL), caget(<PV_name>.DRVL), caget(<PV_name>.DRVL),caget(<PV_name>.DRVL)]
         self.axes_e4c_min = [-180.,-180.,-180.,-180.]
         self.axes_e4c_max = [180.,180.,180.,180.]
 
         # Kappa 4-circle (komega, kappa, kphi, tth)
         self.axes_k4c = [0.,0.,0.,0.]
-
         self.axes_k4c_min = [-180.,-180.,-180.,-180.]
         self.axes_k4c_max = [180.,180.,180.,180.]
         
         # Eulerian 6-circle (mu, omega, chi, phi, gamma, delta)
         self.axes_e6c = [0.,0.,0.,0.,0.,0.]
-
         self.axes_e6c_min = [-180.,-180.,-180.,-180.,-180.,-180.]
         self.axes_e6c_max = [180.,180.,180.,180.,180.,180.]
 
         # Kappa 6-circle (mu, komega, kappa, kphi, gamma, delta)
         self.axes_k6c = [0.,0.,0.,0.,0.,0.]
-
         self.axes_k6c_min = [-180.,-180.,-180.,-180.,-180.,-180.] 
         self.axes_k6c_max = [180.,180.,180.,180.,180.,180.] 
 
@@ -172,6 +166,7 @@ class hklCalculator():
         self.pseudoaxes_chi = 0.
         self.pseudoaxes_phi = 0.
         self.pseudoaxes_tth = 0.
+
         ### axes solutions 
         # Eulerian 4-circle
         self.axes_solns_omega_e4c = []
@@ -307,19 +302,8 @@ class hklCalculator():
         status_string = f'initialized geometry {status}'
         self.errors = [ord(c) for c in str(ct + '\n' + status_string)]
 
-
     def energy_to_wavelength_neutron(self):
-        # Xrays
-        # from milli_ev to Angstrom
-        #if (self.particle_type == 0) and (self.energy > 0): # Xray
-        #    # E [kev] = hc/lambda [m^2kgs^-2]
-        #    coeff = 12.39841987 # hc [kev*A]
-        #    self.wavelength = coeff/self.energy # hc/energy
-            
-        if (self.particle_type == 1) and (self.energy > 0): # neutron
-            # E [mev] = p^2/2m = h^2/(2m*lambda^2) [...]
-            coeff = 81.804211883 # h^2/2m_neutron [mevA^2] for neutrons
-            self.wavelength_result = math.sqrt(coeff/self.energy)
+        self.wavelength_result = energy2wavelength_neutron(self.energy)
 
     def switch_geom(self):
         if self.geom == 0:
@@ -347,26 +331,9 @@ class hklCalculator():
             self.geom_name = "K6C"
             self.start()
 
-        #if self.geom == 5:
-        #    print("switching to ZAXIS")
-        #    self.geom_name = "ZAXIS"
-        #    self.start()
-
     def forward(self):
         print("Forward function start")
         self.reset_pseudoaxes_solns()
-        print(f"geom: {self.geom}")
-        print(f"geom name: {self.geom_name}")
-        #if (self.geom_name == 'TwoC'):
-        #     values_w = [float(self.axes_2c[0]), \
-        #                float(self.axes_2c[1])] 
-        #    print(values_w)
-        #    limits_min =   [math.radians(float(self.axes_2c_min[0])), \
-        #                    math.radians(float(self.axes_2c_min[1]))] 
-        #    limits_max =   [math.radians(float(self.axes_2c_max[0])), \
-        #                    math.radians(float(self.axes_2c_max[1]))] 
-        #    print(limits_min)
-        #    print(limits_max)
         if (self.geom_name == 'E4CH') or (self.geom_name == 'E4CV'):
             values_w = [float(self.axes_e4c[0]), \
                         float(self.axes_e4c[1]), \
@@ -594,73 +561,73 @@ class hklCalculator():
                                 Hkl.UnitEnum.USER)
                 self.geometry.axis_set(axis, tmp)
 
-    def get_axes(self):
-        if self.geom == 0 or 1:
-            axes = (self.axes_e4c[0], \
-                    self.axes_e4c[1], \
-                    self.axes_e4c[2], \
-                    self.axes_e4c[3])
-        if self.geom == 2:
-            axes = (self.axes_k4c[0], \
-                    self.axes_k4c[1], \
-                    self.axes_k4c[2], \
-                    self.axes_k4c[3])
-        if self.geom == 3:
-            axes = (self.axes_e6c[0], \
-                    self.axes_e6c[1], \
-                    self.axes_e6c[2], \
-                    self.axes_e6c[3], \
-                    self.axes_e6c[4], \
-                    self.axes_e6c[5])
-        if self.geom == 4:
-            axes = (self.axes_k6c[0], \
-                    self.axes_k6c[1], \
-                    self.axes_k6c[2], \
-                    self.axes_k6c[3], \
-                    self.axes_k6c[4], \
-                    self.axes_k6c[5])
-        print(axes)
-        return axes 
+#    def get_axes(self):
+#        if self.geom == 0 or 1:
+#            axes = (self.axes_e4c[0], \
+#                    self.axes_e4c[1], \
+#                    self.axes_e4c[2], \
+#                    self.axes_e4c[3])
+#        if self.geom == 2:
+#            axes = (self.axes_k4c[0], \
+#                    self.axes_k4c[1], \
+#                    self.axes_k4c[2], \
+#                    self.axes_k4c[3])
+#        if self.geom == 3:
+#            axes = (self.axes_e6c[0], \
+#                    self.axes_e6c[1], \
+#                    self.axes_e6c[2], \
+#                    self.axes_e6c[3], \
+#                    self.axes_e6c[4], \
+#                    self.axes_e6c[5])
+#        if self.geom == 4:
+#            axes = (self.axes_k6c[0], \
+#                    self.axes_k6c[1], \
+#                    self.axes_k6c[2], \
+#                    self.axes_k6c[3], \
+#                    self.axes_k6c[4], \
+#                    self.axes_k6c[5])
+#        print(axes)
+#        return axes 
 
-    def get_pseudoaxes(self):
-        pseudoaxes = (self.pseudoaxes_h, \
-                      self.pseudoaxes_k, \
-                      self.pseudoaxes_l)
-        return pseudoaxes
+#    def get_pseudoaxes(self):
+#        pseudoaxes = (self.pseudoaxes_h, \
+#                      self.pseudoaxes_k, \
+#                      self.pseudoaxes_l)
+#        return pseudoaxes
 
-    def get_axes_solns(self):
-        axes = {}
-        if self.geom == 0 or 1:
-            axes['omega'] = self.axes_solns_omega_e4c
-            axes['chi']   = self.axes_solns_chi_e4c
-            axes['phi']   = self.axes_solns_phi_e4c
-            axes['tth']   = self.axes_solns_tth_e4c
-        elif self.geom == 2:
-            axes['komega'] = self.axes_solns_komega_k4c
-            axes['kappa']  = self.axes_solns_kappa_k4c
-            axes['kphi']   = self.axes_solns_kphi_k4c
-            axes['tth']    = self.axes_solns_tth_k4c
-        elif self.geom == 3:
-            axes['mu']     = self.axes_solns_mu_e6c
-            axes['omega']  = self.axes_solns_omega_e6c
-            axes['chi']    = self.axes_solns_chi_e6c
-            axes['phi']    = self.axes_solns_phi_e6c
-            axes['gamma']  = self.axes_solns_gamma_e6c
-            axes['delta']  = self.axes_solns_delta_e6c
-        elif self.geom == 4:
-            axes['mu']     = self.axes_solns_mu_k6c
-            axes['komega'] = self.axes_solns_komega_k6c
-            axes['kappa']  = self.axes_solns_kappa_k6c
-            axes['kphi']   = self.axes_solns_kphi_k6c
-            axes['gamma']  = self.axes_solns_gamma_k6c
-            axes['delta']  = self.axes_solns_delta_k6c
-        return axes
+#    def get_axes_solns(self):
+#        axes = {}
+#        if self.geom == 0 or 1:
+#            axes['omega'] = self.axes_solns_omega_e4c
+#            axes['chi']   = self.axes_solns_chi_e4c
+#            axes['phi']   = self.axes_solns_phi_e4c
+#            axes['tth']   = self.axes_solns_tth_e4c
+#        elif self.geom == 2:
+#            axes['komega'] = self.axes_solns_komega_k4c
+#            axes['kappa']  = self.axes_solns_kappa_k4c
+#            axes['kphi']   = self.axes_solns_kphi_k4c
+#            axes['tth']    = self.axes_solns_tth_k4c
+#        elif self.geom == 3:
+#            axes['mu']     = self.axes_solns_mu_e6c
+#            axes['omega']  = self.axes_solns_omega_e6c
+#            axes['chi']    = self.axes_solns_chi_e6c
+#            axes['phi']    = self.axes_solns_phi_e6c
+#            axes['gamma']  = self.axes_solns_gamma_e6c
+#            axes['delta']  = self.axes_solns_delta_e6c
+#        elif self.geom == 4:
+#            axes['mu']     = self.axes_solns_mu_k6c
+#            axes['komega'] = self.axes_solns_komega_k6c
+#            axes['kappa']  = self.axes_solns_kappa_k6c
+#            axes['kphi']   = self.axes_solns_kphi_k6c
+#            axes['gamma']  = self.axes_solns_gamma_k6c
+#            axes['delta']  = self.axes_solns_delta_k6c
+#        return axes
 
-    def get_pseudoaxes_solns(self):
-        pseudoaxes_solns = (self.pseudoaxes_solns_h, \
-                      self.pseudoaxes_solns_k, \
-                      self.pseudoaxes_solns_l)
-        return pseudoaxes_solns
+#    def get_pseudoaxes_solns(self):
+#        pseudoaxes_solns = (self.pseudoaxes_solns_h, \
+#                      self.pseudoaxes_solns_k, \
+#                      self.pseudoaxes_solns_l)
+#        return pseudoaxes_solns
 
     def reset_pseudoaxes_solns(self):
         self.pseudoaxes_solns_h = 0
@@ -858,7 +825,7 @@ class hklCalculator():
             self.errors = [ord(c) for c in str(ct + '\n' + str(e))] # failure
             print(f'compute_set_UB_matrix() error: {e}')
 
-    def get_UB_matrix(self): #TODO not really a "get" function, writes from hkl sample to python
+    def get_UB_matrix(self):
         UB = self.sample.UB_get()
         for i in range(3):
             for j in range(3):
@@ -883,7 +850,6 @@ class hklCalculator():
             self.errors = [ord(c) for c in str(ct + '\n' + str(e))] # failure
             print(f'set_input_UB() error: {e}')
         self.get_UB_matrix()
-        #self.get_info() # why?   
 
     def affine(self):
         '''
@@ -973,20 +939,27 @@ class hklCalculator():
         self.curr_num_refls += 1
 
     def read_cif(self, givenpath):
-        print(f'TESTESTESTESTEST: {givenpath}')
         self.cif_path = givenpath
 
     def run_cif(self):
-        print(f'HERE IS THE CIF PATH {self.cif_path}')
-        temp_intensities, templatt = intensities.intensity_calc(self.wavelength, self.cif_path)
+        #TODO better error handling within intensities function
+        try:
+            temp_intensities, templatt = intensities.intensity_calc(self.wavelength, self.cif_path)
+        except Exception as e:
+            self.errors = f'run_cif error (input file): {e}'
+            return
         self.intensities = [ord(c) for c in str(temp_intensities)]
-        self.latt[0] = templatt['a']
-        self.latt[1] = templatt['b']
-        self.latt[2] = templatt['c']
-        self.latt[3] = templatt['alpha']
-        self.latt[4] = templatt['beta']
-        self.latt[5] = templatt['gamma']
-        self.start()
+        try:
+            self.latt[0] = templatt['a']
+            self.latt[1] = templatt['b']
+            self.latt[2] = templatt['c']
+            self.latt[3] = templatt['alpha']
+            self.latt[4] = templatt['beta']
+            self.latt[5] = templatt['gamma']
+            self.start()
+        except Exception as e:
+            self.errors = f'run_cif error (lattice parameters): {e}'
+            return
 
     def del_refl_refine(self):
         #self.selected_refl = 0 #TODO
@@ -1017,10 +990,6 @@ class hklCalculator():
     def set_wavelength(self, wlen):
         self.wavelength = wlen
 
-    def set_limits(self):
-        #TODO
-        pass
-
     def get_latt_vol(self):
         self.lattice_vol = self.lattice.volume_get().value_get(0)
         print(self.lattice_vol)
@@ -1038,4 +1007,3 @@ class hklCalculator():
         lines.append(f'UB: {self.UB_matrix}')
         lines.append(f'latt vol: {self.lattice_vol}')
         return '\n'.join(lines)
-     
