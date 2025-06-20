@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2024-07-26 11:53:09 by l3b-->
 <display version="2.0.0">
-  <width>740</width>
+  <width>695</width>
   <height>22</height>
   <background_color>
     <color red="240" green="240" blue="240">
@@ -158,7 +157,7 @@
   <widget type="textupdate" version="2.0.0">
     <name>Text Update_7</name>
     <pv_name>$(Sys)$(Ax6Name)$(Solution)</pv_name>
-    <x>528</x>
+    <x>522</x>
     <width>78</width>
     <height>18</height>
     <background_color>
@@ -182,7 +181,7 @@
   <widget type="textupdate" version="2.0.0">
     <name>Text Update_8</name>
     <pv_name>$(Sys)$(Ax7Name)$(Solution)</pv_name>
-    <x>618</x>
+    <x>612</x>
     <width>78</width>
     <height>18</height>
     <background_color>
@@ -202,13 +201,5 @@
       <color name="green-18" red="0" green="160" blue="0">
       </color>
     </border_color>
-  </widget>
-  <widget type="checkbox" version="2.0.0">
-    <name>Check Box</name>
-    <label></label>
-    <x>708</x>
-    <width>30</width>
-    <height>18</height>
-    <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
 </display>

@@ -1259,6 +1259,10 @@ abtest:ioc-hkl:geom_RBV
 abtest:ioc-hkl:geom
 abtest:ioc-hkl:mode_4c
 abtest:ioc-hkl:mode_6c
+abtest:ioc-hkl:reflection_index_e4c
+abtest:ioc-hkl:reflection_index_k4c
+abtest:ioc-hkl:reflection_index_e6c
+abtest:ioc-hkl:reflection_index_k6c
 abtest:ioc-hkl:cif_path_copy
 abtest:ioc-hkl:errors
 abtest:ioc-hkl:intensities

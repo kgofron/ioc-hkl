@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2024-07-29 18:52:58 by l3b-->
 <display version="2.0.0">
   <name>refls e6c</name>
-  <width>1200</width>
-  <height>280</height>
+  <macros>
+    <geo>e6c</geo>
+  </macros>
+  <width>905</width>
+  <height>270</height>
   <background_color>
     <color red="240" green="240" blue="240">
     </color>
@@ -19,7 +21,7 @@
     </macros>
     <file>refls_1h_wide_center_6c.bob</file>
     <y>24</y>
-    <width>920</width>
+    <width>875</width>
     <height>22</height>
     <resize>2</resize>
     <transparent>true</transparent>
@@ -44,8 +46,8 @@
       <Solution>1</Solution>
     </macros>
     <file>refls_1h_wide_center_6c.bob</file>
-    <y>49</y>
-    <width>920</width>
+    <y>48</y>
+    <width>875</width>
     <height>22</height>
     <resize>2</resize>
     <transparent>true</transparent>
@@ -70,8 +72,8 @@
       <Solution>2</Solution>
     </macros>
     <file>refls_1h_wide_center_6c.bob</file>
-    <y>74</y>
-    <width>920</width>
+    <y>72</y>
+    <width>875</width>
     <height>22</height>
     <resize>2</resize>
     <transparent>true</transparent>
@@ -96,8 +98,8 @@
       <Solution>3</Solution>
     </macros>
     <file>refls_1h_wide_center_6c.bob</file>
-    <y>99</y>
-    <width>920</width>
+    <y>96</y>
+    <width>875</width>
     <height>22</height>
     <resize>2</resize>
     <transparent>true</transparent>
@@ -122,8 +124,8 @@
       <Solution>4</Solution>
     </macros>
     <file>refls_1h_wide_center_6c.bob</file>
-    <y>124</y>
-    <width>920</width>
+    <y>120</y>
+    <width>875</width>
     <height>22</height>
     <resize>2</resize>
     <transparent>true</transparent>
@@ -148,8 +150,8 @@
       <Solution>5</Solution>
     </macros>
     <file>refls_1h_wide_center_6c.bob</file>
-    <y>149</y>
-    <width>920</width>
+    <y>144</y>
+    <width>875</width>
     <height>22</height>
     <resize>2</resize>
     <transparent>true</transparent>
@@ -174,8 +176,8 @@
       <Solution>6</Solution>
     </macros>
     <file>refls_1h_wide_center_6c.bob</file>
-    <y>171</y>
-    <width>920</width>
+    <y>168</y>
+    <width>875</width>
     <height>22</height>
     <resize>2</resize>
     <transparent>true</transparent>
@@ -200,8 +202,8 @@
       <Solution>7</Solution>
     </macros>
     <file>refls_1h_wide_center_6c.bob</file>
-    <y>196</y>
-    <width>920</width>
+    <y>192</y>
+    <width>875</width>
     <height>22</height>
     <resize>2</resize>
     <transparent>true</transparent>
@@ -226,8 +228,8 @@
       <Solution>8</Solution>
     </macros>
     <file>refls_1h_wide_center_6c.bob</file>
-    <y>221</y>
-    <width>920</width>
+    <y>216</y>
+    <width>875</width>
     <height>22</height>
     <resize>2</resize>
     <transparent>true</transparent>
@@ -252,8 +254,8 @@
       <Solution>9</Solution>
     </macros>
     <file>refls_1h_wide_center_6c.bob</file>
-    <y>246</y>
-    <width>920</width>
+    <y>240</y>
+    <width>875</width>
     <height>22</height>
     <resize>2</resize>
     <transparent>true</transparent>
@@ -351,5 +353,25 @@
     <y>6</y>
     <width>54</width>
     <height>18</height>
+  </widget>
+  <widget type="radio" version="2.0.0">
+    <name>Radio Button</name>
+    <pv_name>$(Sys)reflection_index_e6c</pv_name>
+    <x>875</x>
+    <y>24</y>
+    <width>25</width>
+    <height>244</height>
+    <items>
+      <item></item>
+      <item></item>
+      <item></item>
+      <item></item>
+      <item></item>
+      <item></item>
+      <item></item>
+      <item></item>
+      <item></item>
+      <item></item>
+    </items>
   </widget>
 </display>

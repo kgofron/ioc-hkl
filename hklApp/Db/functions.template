@@ -22,13 +22,6 @@ record(ao, "$(P)$(R)set_sample") {
     field(TPRO, "1")
 }
 
-record(ao, "$(P)$(R)compute_UB") {
-    field(DTYP, "pydev")
-    field(OUT, "@hkl_calc.compute_UB_matrix()")
-    field(TPRO, "1")
-    field(FLNK, "$(P)$(R)UBa11")
-}
-
 record(ao, "$(P)$(R)compute_set_UB") {
     field(DTYP, "pydev")
     field(OUT, "@hkl_calc.compute_set_UB_matrix()")
@@ -52,13 +45,6 @@ record(ao, "$(P)$(R)switch_geom") {
     field(DTYP, "pydev")
     field(OUT, "@hkl_calc.switch_geom()")
     field(TPRO, "1")
-}
-
-record(ao, "$(P)$(R)affine") {
-    field(DTYP, "pydev")
-    field(OUT, "@hkl_calc.affine()")
-    field(TPRO, "1")
-#    field(FLNK, "$(P)$(R)UBa11si")
 }
 
 record(ao, "$(P)$(R)affine_set") {
