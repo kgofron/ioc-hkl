@@ -783,7 +783,11 @@ class hklCalculator():
                 self.axes_UB_k6c[i] = self.refl_refine_input_k6c[(i+3)]
         self.forward_UB()
         if (self.geom == 0) or (self.geom==1):
+            #TODO issue with self.refl_refine
             self.refl_refine = self.sample.add_reflection(self.geometry, \
+                self.detector, self.refl_refine_input_e4c[0], \
+                self.refl_refine_input_e4c[1], self.refl_refine_input_e4c[2])
+            self.sample.add_reflection(self.geometry, \
                 self.detector, self.refl_refine_input_e4c[0], \
                 self.refl_refine_input_e4c[1], self.refl_refine_input_e4c[2])
             self.refl_refine_input_list_e4c[self.curr_refl_index_e4c] = self.refl_refine_input_e4c.copy()
@@ -813,39 +817,43 @@ class hklCalculator():
 
     def del_refl_refine(self):
         i = self.selected_refl_index
+        the_refl_list = self.sample.reflections_get()
+        print(f'\nindex: {i}\n')
+        #print(the_refl_list)
+        #print(the_refl_list[i]) #todo
         if (self.geom==0) or (self.geom==1):
-            self.sample.del_reflection(self.relf_list_e4c[i])
+            print(self.refl_list_e4c[i])
+            #self.sample.del_reflection(self.refl_list_e4c[i])
+            self.sample.del_reflection(the_refl_list[i])
             self.refl_refine_input_list_e4c[i] = [0.,0.,0.,0.,0.,0.,0.]
             for j in range(i, 9):
-                self.refl_refine_list_e4c[j] = self.refl_refine_list_e4c[j+1]
-            self.refl_refine_list_e4c[9] = [0.,0.,0.,0.,0.,0.,0.]
+                self.refl_refine_input_list_e4c[j] = self.refl_refine_input_list_e4c[j+1]
+            self.refl_refine_input_list_e4c[9] = [0.,0.,0.,0.,0.,0.,0.]
             self.curr_refl_index_e4c -= 1
 
         elif self.geom==2:
-            self.sample.del_reflection(self.relf_list_k4c[i])
+            self.sample.del_reflection(self.refl_list_k4c[i])
             self.refl_refine_input_list_k4c[i] = [0.,0.,0.,0.,0.,0.,0.]
             for j in range(i, 9):
-                self.refl_refine_list_k4c[j] = self.refl_refine_list_k4c[j+1]
-            self.refl_refine_list_k4c[9] = [0.,0.,0.,0.,0.,0.,0.]
+                self.refl_refine_input_list_k4c[j] = self.refl_refine_input_list_k4c[j+1]
+            self.refl_refine_input_list_k4c[9] = [0.,0.,0.,0.,0.,0.,0.]
             self.curr_refl_index_k4c -= 1
 
         elif self.geom==3:
-            self.sample.del_reflection(self.relf_list_e6c[i])
+            self.sample.del_reflection(self.refl_list_e6c[i])
             self.refl_refine_input_list_e6c[i] = [0.,0.,0.,0.,0.,0.,0.,0.,0.]
             for j in range(i, 9):
-                self.refl_refine_list_e6c[j] = self.refl_refine_list_e6c[j+1]
-            self.refl_refine_list_e6c[9] = [0.,0.,0.,0.,0.,0.,0.,0.,0.]
+                self.refl_refine_input_list_e6c[j] = self.refl_refine_input_list_e6c[j+1]
+            self.refl_refine_input_list_e6c[9] = [0.,0.,0.,0.,0.,0.,0.,0.,0.]
             self.curr_refl_index_e6c -= 1
 
         elif self.geom==4:
-            self.sample.del_reflection(self.relf_list_k6c[i])
+            self.sample.del_reflection(self.refl_list_k6c[i])
             self.refl_refine_input_list_k6c[i] = [0.,0.,0.,0.,0.,0.,0.,0.,0.]
             for j in range(i, 9):
-                self.refl_refine_list_k6c[j] = self.refl_refine_list_k6c[j+1]
-            self.refl_refine_list_k6c[9] = [0.,0.,0.,0.,0.,0.,0.,0.,0.]
+                self.refl_refine_input_list_k6c[j] = self.refl_refine_input_list_k6c[j+1]
+            self.refl_refine_input_list_k6c[9] = [0.,0.,0.,0.,0.,0.,0.,0.,0.]
             self.curr_refl_index_k6c -= 1
-
-        self.selected_refl_index=0
 
     def reset_reflections(self):
         self.refl_refine_input_e4c = [0., 0., 0., 0., 0., 0., 0.]
