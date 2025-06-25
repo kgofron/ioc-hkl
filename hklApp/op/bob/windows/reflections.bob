@@ -2,13 +2,116 @@
 <display version="2.0.0">
   <name>Reflections</name>
   <width>1250</width>
-  <height>330</height>
+  <widget type="label" version="2.0.0">
+    <name>Label_10</name>
+    <text>Busing-Levy - add 2 reflections</text>
+    <x>22</x>
+    <width>216</width>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button_6</name>
+    <actions>
+      <action type="write_pv">
+        <description>WritePV</description>
+        <pv_name>$(Sys)compute_set_UB</pv_name>
+        <value>1</value>
+      </action>
+    </actions>
+    <pv_name>$(Sys)compute_set_UB</pv_name>
+    <text>compute and set UB matrix</text>
+    <x>20</x>
+    <y>110</y>
+    <width>222</width>
+    <height>20</height>
+    <tooltip>$(actions)</tooltip>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>Embedded Display_4</name>
+    <file>../reflections/reflections_input_e4c.bob</file>
+    <y>20</y>
+    <width>905</width>
+    <height>90</height>
+    <visible>false</visible>
+    <rules>
+      <rule name="Visible" prop_id="visible" out_exp="false">
+        <exp bool_exp="pv0==0">
+          <value>true</value>
+        </exp>
+        <pv_name>$(Sys)geom</pv_name>
+      </rule>
+    </rules>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>Embedded Display_0</name>
+    <file>../reflections/reflections_input_e4c.bob</file>
+    <y>20</y>
+    <width>905</width>
+    <height>90</height>
+    <visible>false</visible>
+    <rules>
+      <rule name="Visible" prop_id="visible" out_exp="false">
+        <exp bool_exp="pv0==1">
+          <value>true</value>
+        </exp>
+        <pv_name>$(Sys)geom</pv_name>
+      </rule>
+    </rules>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>Embedded Display_1</name>
+    <file>../reflections/reflections_input_k4c.bob</file>
+    <y>20</y>
+    <width>905</width>
+    <height>90</height>
+    <visible>false</visible>
+    <rules>
+      <rule name="Visible" prop_id="visible" out_exp="false">
+        <exp bool_exp="pv0==2">
+          <value>true</value>
+        </exp>
+        <pv_name>$(Sys)geom</pv_name>
+      </rule>
+    </rules>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>Embedded Display_2</name>
+    <file>../reflections/reflections_input_e6c.bob</file>
+    <y>20</y>
+    <width>905</width>
+    <height>90</height>
+    <visible>false</visible>
+    <rules>
+      <rule name="Visible" prop_id="visible" out_exp="false">
+        <exp bool_exp="pv0==3">
+          <value>true</value>
+        </exp>
+        <pv_name>$(Sys)geom</pv_name>
+      </rule>
+    </rules>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>Embedded Display_3</name>
+    <file>../reflections/reflections_input_k6c.bob</file>
+    <y>20</y>
+    <width>905</width>
+    <height>90</height>
+    <visible>false</visible>
+    <rules>
+      <rule name="Visible" prop_id="visible" out_exp="false">
+        <exp bool_exp="pv0==4">
+          <value>true</value>
+        </exp>
+        <pv_name>$(Sys)geom</pv_name>
+      </rule>
+    </rules>
+  </widget>
   <widget type="rectangle" version="2.0.0">
-    <name>Rectangle</name>
-    <x>227</x>
-    <y>170</y>
-    <width>315</width>
-    <height>130</height>
+    <name>Rectangle_2</name>
+    <x>940</x>
+    <y>10</y>
+    <width>290</width>
+    <height>318</height>
     <line_color>
       <color name="Header_Background" red="77" green="77" blue="77">
       </color>
@@ -16,30 +119,17 @@
     <transparent>true</transparent>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>Label_9</name>
+    <name>Label_52</name>
     <text>sample UB Matrix</text>
-    <x>329</x>
-    <y>190</y>
+    <x>1017</x>
+    <y>228</y>
     <width>150</width>
   </widget>
-  <widget type="label" version="2.0.0">
-    <name>Label_10</name>
-    <text>Busing-Levy - add 2 reflections</text>
-    <x>297</x>
-    <width>216</width>
-  </widget>
-  <widget type="arc" version="2.0.0">
-    <name>Arc</name>
-    <x>368</x>
-    <y>270</y>
-    <width>1</width>
-    <height>1</height>
-  </widget>
   <widget type="textentry" version="3.0.0">
-    <name>Text Input_16</name>
+    <name>Text Input_47</name>
     <pv_name>$(Sys)UBa11</pv_name>
-    <x>253</x>
-    <y>210</y>
+    <x>956</x>
+    <y>248</y>
     <width>78</width>
     <height>22</height>
     <background_color>
@@ -58,10 +148,10 @@
     </border_color>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>Text Input_17</name>
+    <name>Text Input_48</name>
     <pv_name>$(Sys)UBa12</pv_name>
-    <x>343</x>
-    <y>210</y>
+    <x>1046</x>
+    <y>248</y>
     <width>78</width>
     <height>22</height>
     <background_color>
@@ -80,10 +170,10 @@
     </border_color>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>Text Input_18</name>
+    <name>Text Input_49</name>
     <pv_name>$(Sys)UBa13</pv_name>
-    <x>433</x>
-    <y>210</y>
+    <x>1136</x>
+    <y>248</y>
     <width>78</width>
     <height>22</height>
     <background_color>
@@ -102,10 +192,10 @@
     </border_color>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>Text Input_19</name>
+    <name>Text Input_50</name>
     <pv_name>$(Sys)UBa21</pv_name>
-    <x>253</x>
-    <y>232</y>
+    <x>956</x>
+    <y>270</y>
     <width>78</width>
     <height>22</height>
     <background_color>
@@ -124,10 +214,10 @@
     </border_color>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>Text Input_20</name>
+    <name>Text Input_51</name>
     <pv_name>$(Sys)UBa22</pv_name>
-    <x>343</x>
-    <y>232</y>
+    <x>1046</x>
+    <y>270</y>
     <width>78</width>
     <height>22</height>
     <background_color>
@@ -146,10 +236,10 @@
     </border_color>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>Text Input_21</name>
+    <name>Text Input_52</name>
     <pv_name>$(Sys)UBa23</pv_name>
-    <x>433</x>
-    <y>232</y>
+    <x>1136</x>
+    <y>270</y>
     <width>78</width>
     <height>22</height>
     <background_color>
@@ -168,10 +258,10 @@
     </border_color>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>Text Input_22</name>
+    <name>Text Input_53</name>
     <pv_name>$(Sys)UBa31</pv_name>
-    <x>253</x>
-    <y>254</y>
+    <x>956</x>
+    <y>292</y>
     <width>78</width>
     <height>22</height>
     <background_color>
@@ -190,10 +280,10 @@
     </border_color>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>Text Input_23</name>
+    <name>Text Input_54</name>
     <pv_name>$(Sys)UBa32</pv_name>
-    <x>343</x>
-    <y>254</y>
+    <x>1046</x>
+    <y>292</y>
     <width>78</width>
     <height>22</height>
     <background_color>
@@ -212,10 +302,10 @@
     </border_color>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>Text Input_24</name>
+    <name>Text Input_55</name>
     <pv_name>$(Sys)UBa33</pv_name>
-    <x>433</x>
-    <y>254</y>
+    <x>1136</x>
+    <y>292</y>
     <width>78</width>
     <height>22</height>
     <background_color>
@@ -234,48 +324,260 @@
     </border_color>
   </widget>
   <widget type="action_button" version="3.0.0">
-    <name>Action Button_6</name>
+    <name>Action Button_10</name>
     <actions>
       <action type="write_pv">
         <description>WritePV</description>
-        <pv_name>$(Sys)compute_set_UB</pv_name>
+        <pv_name>$(Sys)affine_set</pv_name>
         <value>1</value>
       </action>
     </actions>
-    <pv_name>$(Sys)compute_set_UB</pv_name>
-    <text>compute and set UB matrix</text>
-    <x>298</x>
-    <y>110</y>
-    <width>183</width>
-    <height>40</height>
+    <pv_name>$(Sys)affine_set</pv_name>
+    <text>compute and set lattice/UB matrix</text>
+    <x>504</x>
+    <y>240</y>
+    <width>222</width>
+    <height>20</height>
     <tooltip>$(actions)</tooltip>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
-  <widget type="embedded" version="2.0.0">
-    <name>Embedded Display</name>
-    <file>../reflections/reflections_input_e4c.bob</file>
-    <y>20</y>
-    <width>1220</width>
-    <height>90</height>
-    <visible>false</visible>
-    <rules>
-      <rule name="Visible" prop_id="visible" out_exp="false">
-        <exp bool_exp="pv0==1">
-          <value>true</value>
-        </exp>
-        <pv_name>$(Sys)geom</pv_name>
-      </rule>
-    </rules>
+  <widget type="label" version="2.0.0">
+    <name>Label_53</name>
+    <text>Simplex - Refine lattice and UB with additional reflections</text>
+    <x>22</x>
+    <y>160</y>
+    <width>392</width>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button_11</name>
+    <actions>
+      <action type="write_pv">
+        <description>WritePV</description>
+        <pv_name>$(Sys)add_refl_refine</pv_name>
+        <value>1</value>
+      </action>
+    </actions>
+    <pv_name>$(Sys)add_refl_refine</pv_name>
+    <text>Add Reflection</text>
+    <x>20</x>
+    <y>240</y>
+    <width>222</width>
+    <height>20</height>
+    <tooltip>$(actions)</tooltip>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button_12</name>
+    <actions>
+      <action type="write_pv">
+        <description>WritePV</description>
+        <pv_name>$(Sys)del_refl_refine</pv_name>
+        <value>1</value>
+      </action>
+    </actions>
+    <text>Remove Reflection</text>
+    <x>260</x>
+    <y>240</y>
+    <width>222</width>
+    <height>20</height>
+    <tooltip>$(actions)</tooltip>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_54</name>
+    <text>sample lattice</text>
+    <x>1050</x>
+    <y>18</y>
+    <width>118</width>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>Text Input_56</name>
+    <pv_name>$(Sys)latt_a_RBV</pv_name>
+    <x>1044</x>
+    <y>38</y>
+    <height>22</height>
+    <background_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </background_color>
+    <format>1</format>
+    <precision>4</precision>
+    <horizontal_alignment>1</horizontal_alignment>
+    <actions>
+    </actions>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>Text Input_57</name>
+    <pv_name>$(Sys)latt_b_RBV</pv_name>
+    <x>1044</x>
+    <y>68</y>
+    <height>22</height>
+    <background_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </background_color>
+    <format>1</format>
+    <precision>4</precision>
+    <horizontal_alignment>1</horizontal_alignment>
+    <actions>
+    </actions>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>Text Input_58</name>
+    <pv_name>$(Sys)latt_c_RBV</pv_name>
+    <x>1044</x>
+    <y>98</y>
+    <height>22</height>
+    <background_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </background_color>
+    <format>1</format>
+    <precision>4</precision>
+    <horizontal_alignment>1</horizontal_alignment>
+    <actions>
+    </actions>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>Text Input_59</name>
+    <pv_name>$(Sys)latt_alpha_RBV</pv_name>
+    <x>1044</x>
+    <y>128</y>
+    <width>101</width>
+    <height>22</height>
+    <background_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </background_color>
+    <format>1</format>
+    <precision>4</precision>
+    <horizontal_alignment>1</horizontal_alignment>
+    <actions>
+    </actions>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>Text Input_60</name>
+    <pv_name>$(Sys)latt_gamma_RBV</pv_name>
+    <x>1044</x>
+    <y>188</y>
+    <height>22</height>
+    <background_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </background_color>
+    <format>1</format>
+    <precision>4</precision>
+    <horizontal_alignment>1</horizontal_alignment>
+    <actions>
+    </actions>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>Text Input_61</name>
+    <pv_name>$(Sys)latt_beta_RBV</pv_name>
+    <x>1044</x>
+    <y>158</y>
+    <height>22</height>
+    <background_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </background_color>
+    <format>1</format>
+    <precision>4</precision>
+    <horizontal_alignment>1</horizontal_alignment>
+    <actions>
+    </actions>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_55</name>
+    <text>a</text>
+    <x>1024</x>
+    <y>38</y>
+    <width>20</width>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_56</name>
+    <text>b</text>
+    <x>1024</x>
+    <y>68</y>
+    <width>20</width>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_57</name>
+    <text>c</text>
+    <x>1024</x>
+    <y>98</y>
+    <width>20</width>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_58</name>
+    <text>alpha</text>
+    <x>1004</x>
+    <y>128</y>
+    <width>40</width>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_59</name>
+    <text>beta</text>
+    <x>1004</x>
+    <y>158</y>
+    <width>40</width>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_60</name>
+    <text>gamma</text>
+    <x>994</x>
+    <y>188</y>
+    <width>51</width>
   </widget>
   <widget type="embedded" version="2.0.0">
-    <name>Embedded Display_0</name>
-    <file>../reflections/reflections_input_e4c.bob</file>
-    <y>20</y>
-    <width>1220</width>
-    <height>90</height>
+    <name>Embedded Display_10</name>
+    <macros>
+      <Ax1Name>refl_refine_input_list_h_e4c</Ax1Name>
+      <Ax2Name>refl_refine_input_list_k_e4c</Ax2Name>
+      <Ax3Name>refl_refine_input_list_l_e4c</Ax3Name>
+      <Ax4Name>refl_refine_input_list_omega_e4c</Ax4Name>
+      <Ax5Name>refl_refine_input_list_chi_e4c</Ax5Name>
+      <Ax6Name>refl_refine_input_list_phi_e4c</Ax6Name>
+      <Ax7Name>refl_refine_input_list_tth_e4c</Ax7Name>
+    </macros>
+    <file>../reflections/_multi_refls_e4c.bob</file>
+    <x>10</x>
+    <y>290</y>
+    <width>770</width>
+    <height>290</height>
     <visible>false</visible>
     <rules>
-      <rule name="Visible" prop_id="visible" out_exp="false">
+      <rule name="Visibility" prop_id="visible" out_exp="false">
         <exp bool_exp="pv0==0">
           <value>true</value>
         </exp>
@@ -284,14 +586,50 @@
     </rules>
   </widget>
   <widget type="embedded" version="2.0.0">
-    <name>Embedded Display_1</name>
-    <file>../reflections/reflections_input_k4c.bob</file>
-    <y>20</y>
-    <width>1220</width>
-    <height>90</height>
+    <name>Embedded Display_a_1</name>
+    <macros>
+      <Ax1Name>refl_refine_input_list_h_e4c</Ax1Name>
+      <Ax2Name>refl_refine_input_list_k_e4c</Ax2Name>
+      <Ax3Name>refl_refine_input_list_l_e4c</Ax3Name>
+      <Ax4Name>refl_refine_input_list_omega_e4c</Ax4Name>
+      <Ax5Name>refl_refine_input_list_chi_e4c</Ax5Name>
+      <Ax6Name>refl_refine_input_list_phi_e4c</Ax6Name>
+      <Ax7Name>refl_refine_input_list_tth_e4c</Ax7Name>
+    </macros>
+    <file>../reflections/_multi_refls_e4c.bob</file>
+    <x>10</x>
+    <y>290</y>
+    <width>770</width>
+    <height>290</height>
     <visible>false</visible>
     <rules>
-      <rule name="Visible" prop_id="visible" out_exp="false">
+      <rule name="Visibility" prop_id="visible" out_exp="false">
+        <exp bool_exp="pv0==1">
+          <value>true</value>
+        </exp>
+        <pv_name>$(Sys)geom</pv_name>
+      </rule>
+    </rules>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>Embedded Display_b_1</name>
+    <macros>
+      <Ax1Name>refl_refine_input_list_h_k4c</Ax1Name>
+      <Ax2Name>refl_refine_input_list_k_k4c</Ax2Name>
+      <Ax3Name>refl_refine_input_list_l_k4c</Ax3Name>
+      <Ax4Name>refl_refine_input_list_komega_k4c</Ax4Name>
+      <Ax5Name>refl_refine_input_list_kappa_k4c</Ax5Name>
+      <Ax6Name>refl_refine_input_list_kphi_k4c</Ax6Name>
+      <Ax7Name>refl_refine_input_list_tth_k4c</Ax7Name>
+    </macros>
+    <file>../reflections/_multi_refls_k4c.bob</file>
+    <x>10</x>
+    <y>290</y>
+    <width>770</width>
+    <height>290</height>
+    <visible>false</visible>
+    <rules>
+      <rule name="Visibility" prop_id="visible" out_exp="false">
         <exp bool_exp="pv0==2">
           <value>true</value>
         </exp>
@@ -300,14 +638,26 @@
     </rules>
   </widget>
   <widget type="embedded" version="2.0.0">
-    <name>Embedded Display_2</name>
-    <file>../reflections/reflections_input_e6c.bob</file>
-    <y>20</y>
-    <width>1220</width>
-    <height>90</height>
+    <name>Embedded Display_c_1</name>
+    <macros>
+      <Ax1Name>refl_refine_input_list_h_e6c</Ax1Name>
+      <Ax2Name>refl_refine_input_list_k_e6c</Ax2Name>
+      <Ax3Name>refl_refine_input_list_l_e6c</Ax3Name>
+      <Ax4Name>refl_refine_input_list_mu_e6c</Ax4Name>
+      <Ax5Name>refl_refine_input_list_omega_e6c</Ax5Name>
+      <Ax6Name>refl_refine_input_list_chi_e6c</Ax6Name>
+      <Ax7Name>refl_refine_input_list_phi_e6c</Ax7Name>
+      <Ax8Name>refl_refine_input_list_gamma_e6c</Ax8Name>
+      <Ax9Name>refl_refine_input_list_delta_e6c</Ax9Name>
+    </macros>
+    <file>../reflections/_multi_refls_e6c.bob</file>
+    <x>10</x>
+    <y>290</y>
+    <width>910</width>
+    <height>290</height>
     <visible>false</visible>
     <rules>
-      <rule name="Visible" prop_id="visible" out_exp="false">
+      <rule name="Visibility" prop_id="visible" out_exp="false">
         <exp bool_exp="pv0==3">
           <value>true</value>
         </exp>
@@ -316,19 +666,141 @@
     </rules>
   </widget>
   <widget type="embedded" version="2.0.0">
-    <name>Embedded Display_3</name>
-    <file>../reflections/reflections_input_k6c.bob</file>
-    <y>20</y>
-    <width>1220</width>
-    <height>90</height>
+    <name>Embedded Display_d_1</name>
+    <macros>
+      <Ax1Name>refl_refine_input_list_h_k6c</Ax1Name>
+      <Ax2Name>refl_refine_input_list_k_k6c</Ax2Name>
+      <Ax3Name>refl_refine_input_list_l_k6c</Ax3Name>
+      <Ax4Name>refl_refine_input_list_mu_k6c</Ax4Name>
+      <Ax5Name>refl_refine_input_list_komega_k6c</Ax5Name>
+      <Ax6Name>refl_refine_input_list_kappa_k6c</Ax6Name>
+      <Ax7Name>refl_refine_input_list_kphi_k6c</Ax7Name>
+      <Ax8Name>refl_refine_input_list_gamma_k6c</Ax8Name>
+      <Ax9Name>refl_refine_input_list_delta_k6c</Ax9Name>
+    </macros>
+    <file>../reflections/_multi_refls_k6c.bob</file>
+    <x>10</x>
+    <y>290</y>
+    <width>910</width>
+    <height>290</height>
     <visible>false</visible>
     <rules>
-      <rule name="Visible" prop_id="visible" out_exp="false">
+      <rule name="Visibility" prop_id="visible" out_exp="false">
         <exp bool_exp="pv0==4">
           <value>true</value>
         </exp>
         <pv_name>$(Sys)geom</pv_name>
       </rule>
     </rules>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>Embedded Display_11</name>
+    <file>../reflections/refine_input_e4c.bob</file>
+    <y>180</y>
+    <width>905</width>
+    <height>50</height>
+    <visible>false</visible>
+    <rules>
+      <rule name="Visibility" prop_id="visible" out_exp="false">
+        <exp bool_exp="pv0==0">
+          <value>true</value>
+        </exp>
+        <pv_name>$(Sys)geom</pv_name>
+      </rule>
+    </rules>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>Embedded Display_12</name>
+    <file>../reflections/refine_input_e4c.bob</file>
+    <y>180</y>
+    <width>905</width>
+    <height>50</height>
+    <visible>false</visible>
+    <rules>
+      <rule name="Visibility" prop_id="visible" out_exp="false">
+        <exp bool_exp="pv0==1">
+          <value>true</value>
+        </exp>
+        <pv_name>$(Sys)geom</pv_name>
+      </rule>
+    </rules>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>Embedded Display_13</name>
+    <file>../reflections/refine_input_k4c.bob</file>
+    <y>180</y>
+    <width>905</width>
+    <height>50</height>
+    <visible>false</visible>
+    <rules>
+      <rule name="Visibility" prop_id="visible" out_exp="false">
+        <exp bool_exp="pv0==2">
+          <value>true</value>
+        </exp>
+        <pv_name>$(Sys)geom</pv_name>
+      </rule>
+    </rules>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>Embedded Display_14</name>
+    <file>../reflections/refine_input_e6c.bob</file>
+    <y>180</y>
+    <width>905</width>
+    <height>50</height>
+    <visible>false</visible>
+    <rules>
+      <rule name="Visibility" prop_id="visible" out_exp="false">
+        <exp bool_exp="pv0==3">
+          <value>true</value>
+        </exp>
+        <pv_name>$(Sys)geom</pv_name>
+      </rule>
+    </rules>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>Embedded Display_15</name>
+    <file>../reflections/refine_input_k6c.bob</file>
+    <y>180</y>
+    <width>905</width>
+    <height>50</height>
+    <visible>false</visible>
+    <rules>
+      <rule name="Visibility" prop_id="visible" out_exp="false">
+        <exp bool_exp="pv0==4">
+          <value>true</value>
+        </exp>
+        <pv_name>$(Sys)geom</pv_name>
+      </rule>
+    </rules>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>Text Input_1</name>
+    <pv_name>$(Sys)errors</pv_name>
+    <x>940</x>
+    <y>369</y>
+    <width>290</width>
+    <height>211</height>
+    <background_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </background_color>
+    <format>6</format>
+    <wrap_words>true</wrap_words>
+    <multi_line>true</multi_line>
+    <actions>
+    </actions>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_12</name>
+    <text>Error status</text>
+    <x>1046</x>
+    <y>350</y>
+    <width>90</width>
+    <height>19</height>
   </widget>
 </display>

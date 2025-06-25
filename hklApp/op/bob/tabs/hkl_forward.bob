@@ -33,17 +33,6 @@
     <y>280</y>
     <height>520</height>
   </widget>
-  <widget type="polyline" version="2.0.0">
-    <name>Polyline_1</name>
-    <x>1640</x>
-    <y>120</y>
-    <width>1</width>
-    <height>1</height>
-    <points>
-      <point x="0.0" y="0.0">
-      </point>
-    </points>
-  </widget>
   <widget type="textentry" version="3.0.0">
     <name>Text Input_1</name>
     <pv_name>$(Sys)errors</pv_name>

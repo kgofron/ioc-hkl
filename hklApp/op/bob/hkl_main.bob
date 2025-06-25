@@ -5,7 +5,7 @@
     <Sys>abtest:ioc-hkl:</Sys>
   </macros>
   <width>1550</width>
-  <height>1020</height>
+  <height>940</height>
   <widget type="navtabs" version="2.0.0">
     <name>Navigation Tabs</name>
     <tabs>
@@ -19,13 +19,6 @@
       <tab>
         <name>Reflections</name>
         <file>tabs/hkl_reflections.bob</file>
-        <macros>
-        </macros>
-        <group_name></group_name>
-      </tab>
-      <tab>
-        <name>Refine</name>
-        <file>tabs/hkl_refine.bob</file>
         <macros>
         </macros>
         <group_name></group_name>
@@ -45,7 +38,7 @@
         <group_name></group_name>
       </tab>
     </tabs>
-    <width>1850</width>
-    <height>1010</height>
+    <width>1450</width>
+    <height>920</height>
   </widget>
 </display>

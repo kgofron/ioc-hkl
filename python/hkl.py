@@ -56,6 +56,7 @@ class hklCalculator():
         # sample orientation
         # initial 2 reflections
         self.num_reflections = num_reflections
+        self.businglevyflag = 0
         self.refl1_input_e4c = [0., 0., 0., 0., 0., 0., 0.]
         self.refl2_input_e4c = [0., 0., 0., 0., 0., 0., 0.]
         self.refl1_input_k4c = [0., 0., 0., 0., 0., 0., 0.]
@@ -84,10 +85,10 @@ class hklCalculator():
             self.refl_refine_input_list_e6c.append([0., 0., 0., 0., 0., 0., 0., 0., 0.])
             self.refl_refine_input_list_k6c.append([0., 0., 0., 0., 0., 0., 0., 0., 0.])
 
-        self.refl_list_e4c = [] # store reflection objects, for deleting
-        self.refl_list_k4c = [] # store reflection objects, for deleting
-        self.refl_list_e6c = [] # store reflection objects, for deleting
-        self.refl_list_k6c = [] # store reflection objects, for deleting
+        self.refl_list_e4c = [] #TODO maybe delete - depends if the list returned and stored in the_refl_list is in the correct order everytime it is received - store reflection objects, for deleting
+        self.refl_list_k4c = [] #TODO maybe delete store reflection objects, for deleting
+        self.refl_list_e6c = [] #TODO maybe delete store reflection objects, for deleting
+        self.refl_list_k6c = [] #TODO maybe delete store reflection objects, for deleting
         self.curr_refl_index_e4c = 0
         self.curr_refl_index_k4c = 0
         self.curr_refl_index_e6c = 0
@@ -234,6 +235,7 @@ class hklCalculator():
         self.pseudoaxes_solns_qpar = 0.
  
     def start(self):
+        print("START")
         self.reset_pseudoaxes_solns()
         self.detector = Hkl.Detector.factory_new(Hkl.DetectorType(0))
         self.factory  = Hkl.factories()[self.geom_name]
@@ -282,6 +284,8 @@ class hklCalculator():
             self.engine_incidence = self.engines.engine_get_by_name("incidence")
             self.engine_tth2 = self.engines.engine_get_by_name("tth2")
             self.engine_emergence = self.engines.engine_get_by_name("emergence")
+        self.clear_all_reflections()
+        self.businglevyflag=0
         self.get_UB_matrix()    
         self.get_latt_vol()
         status = self.get_info()
@@ -408,28 +412,27 @@ class hklCalculator():
                 values_eulerians
         self.get_UB_matrix()
 
-    def forward_UB(self):
-        #TODO rename? adds a reflection, kind of confusing.
-        #TODO runs twice when  pressing "calculate UB
+    def set_axes_to_sample(self):
+        #TODO rename? sets diffractometer to ready adding a reflection
         print("Forward UB function start")
-        if self.geom == 0 or 1:
+        if (self.geom==0) or (self.geom==1):
             values_w = [float(self.axes_UB_e4c[0]), \
                         float(self.axes_UB_e4c[1]), \
                         float(self.axes_UB_e4c[2]), \
                         float(self.axes_UB_e4c[3])] 
-        elif self.geom == 2:
+        elif (self.geom == 2):
             values_w = [float(self.axes_UB_k4c[0]), \
                         float(self.axes_UB_k4c[1]), \
                         float(self.axes_UB_k4c[2]), \
                         float(self.axes_UB_k4c[3])] 
-        elif self.geom == 3:
+        elif (self.geom == 3):
             values_w = [float(self.axes_UB_e6c[0]), \
                         float(self.axes_UB_e6c[1]), \
                         float(self.axes_UB_e6c[2]), \
                         float(self.axes_UB_e6c[3]), \
                         float(self.axes_UB_e6c[4]), \
                         float(self.axes_UB_e6c[5])] 
-        elif self.geom == 4:
+        elif (self.geom == 4):
             values_w = [float(self.axes_UB_k6c[0]), \
                         float(self.axes_UB_k6c[1]), \
                         float(self.axes_UB_k6c[2]), \
@@ -439,11 +442,13 @@ class hklCalculator():
         try:
             #TODO check if this is how UB calculation is done in hkl package
             # currently need to run this function when adding reflections for some reason
+            print(f'geom {self.geom}')
+            print(f'values {values_w}')
             self.geometry.axis_values_set(values_w, Hkl.UnitEnum.USER)
         except Exception as e:
             ct = datetime.datetime.now().isoformat()
             self.errors = [ord(c) for c in str(ct + '\n' + str(e))]
-            print(f'forward_UB() error: {e}')
+            print(f'set_axes_to_sample() error: {e}')
             return
 
     def backward(self):
@@ -562,19 +567,19 @@ class hklCalculator():
         self.pseudoaxes_solns_azimuth2 = 0
 
     def reset_axes_solns(self):
-        if self.geom == 0 or 1:
+        if (self.geom==0) or (self.geom==1):
             for lst in [self.axes_solns_omega_e4c, \
                         self.axes_solns_chi_e4c, \
                         self.axes_solns_phi_e4c, \
                         self.axes_solns_tth_e4c]:
                 lst[:] = [0 for _ in lst]
-        elif self.geom == 2:
+        elif (self.geom==2):
             for lst in [self.axes_solns_komega_k4c, \
                         self.axes_solns_kappa_k4c, \
                         self.axes_solns_kphi_k4c, \
                         self.axes_solns_tth_k4c ]:
                 lst[:] = [0 for _ in lst]
-        elif self.geom == 3:
+        elif (self.geom==3):
             for lst in [self.axes_solns_mu_e6c, \
                         self.axes_solns_omega_e6c, \
                         self.axes_solns_chi_e6c, \
@@ -582,7 +587,7 @@ class hklCalculator():
                         self.axes_solns_gamma_e6c, \
                         self.axes_solns_delta_e6c]:
                 lst[:] = [0 for _ in lst]
-        elif self.geom == 4:
+        elif (self.geom==4):
             for lst in [self.axes_solns_mu_k6c, \
                         self.axes_solns_komega_k6c, \
                         self.axes_solns_kappa_k6c, \
@@ -596,54 +601,54 @@ class hklCalculator():
         adds reflection #1 to sample for busing-levy calculation
         '''
         print("add BL reflection 1")
-        if self.geom == 0 or 1:
+        if (self.geom==0) or (self.geom==1):
             for i in range(4):
                 self.axes_UB_e4c[i] = self.refl1_input_e4c[(i+3)]
-        elif self.geom == 2:
+        elif (self.geom==2):
             for i in range(4):
                 self.axes_UB_k4c[i] = self.refl1_input_k4c[(i+3)]
-        elif self.geom == 3:
+        elif (self.geom==3):
             for i in range(6):
                 self.axes_UB_e6c[i] = self.refl1_input_e6c[(i+3)]
-        elif self.geom == 4:
+        elif (self.geom==4):
             for i in range(6):
                 self.axes_UB_k6c[i] = self.refl1_input_k6c[(i+3)]
-        self.forward_UB()
-        if self.geom == 0 or 1:
+        self.set_axes_to_sample()
+        if (self.geom==0) or (self.geom==1):
             self.refl1 = self.sample.add_reflection(self.geometry, \
                                                     self.detector, \
                                                     self.refl1_input_e4c[0], \
                                                     self.refl1_input_e4c[1], \
                                                     self.refl1_input_e4c[2])
             self.refl_refine_input_list_e4c[self.curr_refl_index_e4c] = self.refl1_input_e4c.copy()
-            self.refl_list_e4c.append(self.refl1)
+            #self.refl_list_e4c.append(self.refl1) #TODO maybe delete
             self.curr_refl_index_e4c += 1
-        elif self.geom == 2:
+        elif (self.geom==2):
             self.refl1 = self.sample.add_reflection(self.geometry, \
                                                     self.detector, \
                                                     self.refl1_input_k4c[0], \
                                                     self.refl1_input_k4c[1], \
                                                     self.refl1_input_k4c[2])
             self.refl_refine_input_list_k4c[self.curr_refl_index_k4c] = self.refl1_input_k4c.copy()
-            self.refl_list_k4c.append(self.refl1)
+            #self.refl_list_k4c.append(self.refl1) #TODO maybe delete
             self.curr_refl_index_k4c += 1
-        elif self.geom == 3:
+        elif (self.geom==3):
             self.refl1 = self.sample.add_reflection(self.geometry, \
                                                     self.detector, \
                                                     self.refl1_input_e6c[0], \
                                                     self.refl1_input_e6c[1], \
                                                     self.refl1_input_e6c[2])
             self.refl_refine_input_list_e6c[self.curr_refl_index_e6c] = self.refl1_input_e6c.copy()
-            self.refl_list_e6c.append(self.refl1)
+            #self.refl_list_e6c.append(self.refl1) #TODO maybe delete
             self.curr_refl_index_e6c += 1
-        elif self.geom == 4:
+        elif (self.geom==4):
             self.refl1 = self.sample.add_reflection(self.geometry, \
                                                     self.detector, \
                                                     self.refl1_input_k6c[0], \
                                                     self.refl1_input_k6c[1], \
                                                     self.refl1_input_k6c[2])
             self.refl_refine_input_list_k6c[self.curr_refl_index_k6c] = self.refl1_input_k6c.copy()
-            self.refl_list_k6c.append(self.refl1)
+            #self.refl_list_k6c.append(self.refl1) #TODO maybe delete
             self.curr_refl_index_k6c += 1
 
     def add_reflection2(self):
@@ -651,55 +656,55 @@ class hklCalculator():
         adds reflection #2 to sample for busing levy calculation
         '''
         print("add BL reflection 2")
-        if self.geom == 0 or 1:
+        if (self.geom==0) or (self.geom==1):
             for i in range(4):
                 self.axes_UB_e4c[i] = self.refl2_input_e4c[(i+3)]
-        elif self.geom == 2:
+        elif (self.geom==2):
             for i in range(4):
                 self.axes_UB_k4c[i] = self.refl2_input_k4c[(i+3)]
-        elif self.geom == 3:
+        elif (self.geom==3):
             for i in range(6):
                 self.axes_UB_e6c[i] = self.refl2_input_e6c[(i+3)]
-        elif self.geom == 4:
+        elif (self.geom==4):
             for i in range(6):
                 self.axes_UB_k6c[i] = self.refl2_input_k6c[(i+3)]
-        self.forward_UB()
+        self.set_axes_to_sample()
         # Hkl.SampleReflection(self.geometry, self.detector, h, k, l)
-        if self.geom == 0 or 1:
+        if (self.geom==0) or (self.geom==1):
             self.refl2 = self.sample.add_reflection(self.geometry, \
                                                     self.detector, \
                                                     self.refl2_input_e4c[0], \
                                                     self.refl2_input_e4c[1], \
                                                     self.refl2_input_e4c[2])
             self.refl_refine_input_list_e4c[self.curr_refl_index_e4c] = self.refl2_input_e4c.copy()
-            self.refl_list_e4c.append(self.refl2)
+            #self.refl_list_e4c.append(self.refl2) #TODO maybe delete
             self.curr_refl_index_e4c += 1
-        elif self.geom == 2:
+        elif (self.geom==2):
             self.refl2 = self.sample.add_reflection(self.geometry, \
                                                     self.detector, \
                                                     self.refl2_input_k4c[0], \
                                                     self.refl2_input_k4c[1], \
                                                     self.refl2_input_k4c[2])
             self.refl_refine_input_list_k4c[self.curr_refl_index_k4c] = self.refl2_input_k4c.copy()
-            self.refl_list_k4c.append(self.refl2)
+            #self.refl_list_k4c.append(self.refl2) #TODO maybe delete
             self.curr_refl_index_k4c += 1
-        elif self.geom == 3:
+        elif (self.geom==3):
             self.refl2 = self.sample.add_reflection(self.geometry, \
                                                     self.detector, \
                                                     self.refl2_input_e6c[0], \
                                                     self.refl2_input_e6c[1], \
                                                     self.refl2_input_e6c[2])
             self.refl_refine_input_list_e6c[self.curr_refl_index_e6c] = self.refl2_input_e6c.copy()
-            self.refl_list_e6c.append(self.refl2)
+            #self.refl_list_e6c.append(self.refl2) #TODO maybe delete
             self.curr_refl_index_e6c += 1
-        elif self.geom == 4:
+        elif (self.geom==4):
             self.refl2 = self.sample.add_reflection(self.geometry, \
                                                     self.detector, \
                                                     self.refl2_input_k6c[0], \
                                                     self.refl2_input_k6c[1], \
                                                     self.refl2_input_k6c[2])
             self.refl_refine_input_list_k6c[self.curr_refl_index_k6c] = self.refl2_input_k6c.copy()
-            self.refl_list_k6c.append(self.refl2)
+            #self.refl_list_k6c.append(self.refl2) #TODO maybe delete
             self.curr_refl_index_k6c += 1
  
     def compute_set_UB_matrix(self):
@@ -707,6 +712,10 @@ class hklCalculator():
         '''
         same thing as compute_UB_matrix, but without start()
         '''
+        if (self.businglevyflag==1):
+            # clear all reflections in lists and from sample, redo busing-levy
+            self.clear_all_reflections()
+            self.businglevyflag = 0
         self.add_reflection1()
         self.add_reflection2()
         try:
@@ -715,6 +724,7 @@ class hklCalculator():
             for i in range(3):
                 for j in range(3):
                     self.UB_matrix[i,j] = UB.get(i,j)
+            self.businglevyflag = 1
             ct = datetime.datetime.now().isoformat()
             self.errors = [ord(c) for c in str(ct)] # success
         except Exception as e:
@@ -769,61 +779,64 @@ class hklCalculator():
             print(f'affine_set() error: {e}')
                
     def add_refl_refine(self):
-        if self.geom == 0 or 1:
+        if (self.geom==0) or (self.geom==1):
+            print(f"E4CV add_refl_refine axes {self.refl_refine_input_e4c}")
             for i in range(4):
-                self.axes_UB_e4c[i] = self.refl_refine_input_e4c[(i+3)]
-        elif self.geom == 2:
+                self.axes_UB_e4c[i] = self.refl_refine_input_e4c[i+3]
+            print(self.axes_UB_e4c)
+        elif (self.geom==2):
             for i in range(4):
                 self.axes_UB_k4c[i] = self.refl_refine_input_k4c[(i+3)]
-        elif self.geom == 3:
+        elif (self.geom==3):
             for i in range(6):
                 self.axes_UB_e6c[i] = self.refl_refine_input_e6c[(i+3)]
-        elif self.geom == 4:
+        elif (self.geom==4):
             for i in range(6):
                 self.axes_UB_k6c[i] = self.refl_refine_input_k6c[(i+3)]
-        self.forward_UB()
-        if (self.geom == 0) or (self.geom==1):
-            #TODO issue with self.refl_refine
-            self.refl_refine = self.sample.add_reflection(self.geometry, \
-                self.detector, self.refl_refine_input_e4c[0], \
-                self.refl_refine_input_e4c[1], self.refl_refine_input_e4c[2])
+        self.set_axes_to_sample()
+        if (self.geom==0) or (self.geom==1) and (self.curr_refl_index_e4c<9):
+            print(f'curr index: {self.curr_refl_index_e4c}')
+            #self.refl_refine = self.sample.add_reflection(self.geometry, \
+            #    self.detector, self.refl_refine_input_e4c[0], \
+            #    self.refl_refine_input_e4c[1], self.refl_refine_input_e4c[2])
             self.sample.add_reflection(self.geometry, \
                 self.detector, self.refl_refine_input_e4c[0], \
                 self.refl_refine_input_e4c[1], self.refl_refine_input_e4c[2])
             self.refl_refine_input_list_e4c[self.curr_refl_index_e4c] = self.refl_refine_input_e4c.copy()
-            self.refl_list_e4c.append(self.refl_refine)
+            #self.refl_list_e4c.append(self.refl_refine) #TODO maybe delete
             self.curr_refl_index_e4c += 1
-        elif self.geom == 2:
-            self.refl_refine = self.sample.add_reflection(self.geometry, \
+        elif (self.geom==2) and (self.curr_refl_index_k4c<9):
+            #self.refl_refine = self.sample.add_reflection(self.geometry, \ #TODO
+            self.sample.add_reflection(self.geometry, \
                 self.detector, self.refl_refine_input_k4c[0], \
                 self.refl_refine_input_k4c[1], self.refl_refine_input_k4c[2]) 
             self.refl_refine_input_list_k4c[self.curr_refl_index_k4c] = self.refl_refine_input_k4c.copy()
-            self.refl_list_k4c.append(self.refl_refine)
+            #self.refl_list_k4c.append(self.refl_refine) #TODO maybe delete
             self.curr_refl_index_k4c += 1
-        elif self.geom == 3:
+        elif (self.geom==3) and (self.curr_refl_index_e6c<9):
+            #self.refl_refine = self.sample.add_reflection(self.geometry, \ #TODO
             self.refl_refine = self.sample.add_reflection(self.geometry, \
                 self.detector, self.refl_refine_input_e6c[0], \
                 self.refl_refine_input_e6c[1], self.refl_refine_input_e6c[2])
             self.refl_refine_input_list_e6c[self.curr_refl_index_e6c] = self.refl_refine_input_e6c.copy()
-            self.refl_list_e6c.append(self.refl_refine)
+            #self.refl_list_e6c.append(self.refl_refine) #TODO maybe delete
             self.curr_refl_index_e6c += 1
-        elif self.geom == 4:
-            self.refl_refine = self.sample.add_reflection(self.geometry, \
+        elif (self.geom==4) and (self.curr_refl_index_k6c<9):
+            #self.refl_refine = self.sample.add_reflection(self.geometry, \ #TODO
+            self.sample.add_reflection(self.geometry, \
                 self.detector, self.refl_refine_input_k6c[0], \
                 self.refl_refine_input_k6c[1], self.refl_refine_input_k6c[2])
             self.refl_refine_input_list_k6c[self.curr_refl_index_k6c] = self.refl_refine_input_k6c.copy()
-            self.refl_list_k6c.append(self.refl_refine)
+            #self.refl_list_k6c.append(self.refl_refine) #TODO maybe delete
             self.curr_refl_index_k6c += 1
 
-    def del_refl_refine(self):
+    def del_refl_refine(self): #TODO verify that the index selected matches the_refl_list
         i = self.selected_refl_index
         the_refl_list = self.sample.reflections_get()
         print(f'\nindex: {i}\n')
         #print(the_refl_list)
-        #print(the_refl_list[i]) #todo
-        if (self.geom==0) or (self.geom==1):
-            print(self.refl_list_e4c[i])
-            #self.sample.del_reflection(self.refl_list_e4c[i])
+        #print(the_refl_list[i]) #TODO check list is ordered by time entered
+        if (self.geom==0) or (self.geom==1) and (i<=self.curr_refl_index_e4c):
             self.sample.del_reflection(the_refl_list[i])
             self.refl_refine_input_list_e4c[i] = [0.,0.,0.,0.,0.,0.,0.]
             for j in range(i, 9):
@@ -831,35 +844,37 @@ class hklCalculator():
             self.refl_refine_input_list_e4c[9] = [0.,0.,0.,0.,0.,0.,0.]
             self.curr_refl_index_e4c -= 1
 
-        elif self.geom==2:
-            self.sample.del_reflection(self.refl_list_k4c[i])
+        elif (self.geom==2) and (i<=self.curr_refl_index_k4c):
+            #self.sample.del_reflection(self.refl_list_k4c[i])
+            self.sample.del_reflection(the_refl_list[i])
             self.refl_refine_input_list_k4c[i] = [0.,0.,0.,0.,0.,0.,0.]
             for j in range(i, 9):
                 self.refl_refine_input_list_k4c[j] = self.refl_refine_input_list_k4c[j+1]
             self.refl_refine_input_list_k4c[9] = [0.,0.,0.,0.,0.,0.,0.]
             self.curr_refl_index_k4c -= 1
 
-        elif self.geom==3:
-            self.sample.del_reflection(self.refl_list_e6c[i])
+        elif (self.geom==3) and (i<=self.curr_refl_index_e6c):
+            #self.sample.del_reflection(self.refl_list_e6c[i])
+            self.sample.del_reflection(the_refl_list[i])
             self.refl_refine_input_list_e6c[i] = [0.,0.,0.,0.,0.,0.,0.,0.,0.]
             for j in range(i, 9):
                 self.refl_refine_input_list_e6c[j] = self.refl_refine_input_list_e6c[j+1]
             self.refl_refine_input_list_e6c[9] = [0.,0.,0.,0.,0.,0.,0.,0.,0.]
             self.curr_refl_index_e6c -= 1
 
-        elif self.geom==4:
-            self.sample.del_reflection(self.refl_list_k6c[i])
+        elif (self.geom==4) and (i<=self.curr_refl_index_k6c):
+            #self.sample.del_reflection(self.refl_list_k6c[i])
+            self.sample.del_reflection(the_refl_list)
             self.refl_refine_input_list_k6c[i] = [0.,0.,0.,0.,0.,0.,0.,0.,0.]
             for j in range(i, 9):
                 self.refl_refine_input_list_k6c[j] = self.refl_refine_input_list_k6c[j+1]
             self.refl_refine_input_list_k6c[9] = [0.,0.,0.,0.,0.,0.,0.,0.,0.]
             self.curr_refl_index_k6c -= 1
 
-    def reset_reflections(self):
-        self.refl_refine_input_e4c = [0., 0., 0., 0., 0., 0., 0.]
-        self.refl_refine_input_k4c = [0., 0., 0., 0., 0., 0., 0.]
-        self.refl_refine_input_e6c = [0., 0., 0., 0., 0., 0., 0., 0., 0.]
-        self.refl_refine_input_k6c = [0., 0., 0., 0., 0., 0., 0., 0., 0.]
+    def clear_all_reflections(self):
+        '''
+        if need to redo busing-levy
+        '''
         self.refl_refine_input_list_e4c = []
         self.refl_refine_input_list_k4c = []
         self.refl_refine_input_list_e6c = []
@@ -869,6 +884,17 @@ class hklCalculator():
             self.refl_refine_input_list_k4c.append([0., 0., 0., 0., 0., 0., 0.])
             self.refl_refine_input_list_e6c.append([0., 0., 0., 0., 0., 0., 0., 0., 0.])
             self.refl_refine_input_list_k6c.append([0., 0., 0., 0., 0., 0., 0., 0., 0.])
+        the_refl_list = self.sample.reflections_get()
+        for item in the_refl_list:
+            self.sample.del_reflection(item)
+        if (self.geom==0) or (self.geom==1):    
+            self.curr_refl_index_e4c = 0
+        elif (self.geom==2):
+            self.curr_refl_index_k4c = 0
+        elif (self.geom==3):
+            self.curr_refl_index_e6c = 0
+        elif (self.geom==4):
+            self.curr_refl_index_k6c = 0
 
     def read_cif(self, givenpath):
         self.cif_path = givenpath

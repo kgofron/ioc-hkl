@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <display version="2.0.0">
   <name>Reflections_input_e4c</name>
-  <width>1200</width>
-  <height>110</height>
+  <width>700</width>
+  <height>80</height>
   <widget type="textentry" version="3.0.0">
     <name>Text Input_2</name>
     <pv_name>$(Sys)refl1_h_e4c</pv_name>
-    <x>31</x>
     <y>20</y>
-    <width>108</width>
+    <width>90</width>
     <height>22</height>
     <background_color>
       <color red="255" green="255" blue="255">
@@ -28,9 +27,9 @@
   <widget type="textentry" version="3.0.0">
     <name>Text Input_3</name>
     <pv_name>$(Sys)refl1_k_e4c</pv_name>
-    <x>150</x>
+    <x>101</x>
     <y>20</y>
-    <width>108</width>
+    <width>90</width>
     <height>22</height>
     <background_color>
       <color red="255" green="255" blue="255">
@@ -50,9 +49,9 @@
   <widget type="textentry" version="3.0.0">
     <name>Text Input_4</name>
     <pv_name>$(Sys)refl1_l_e4c</pv_name>
-    <x>268</x>
+    <x>201</x>
     <y>20</y>
-    <width>108</width>
+    <width>90</width>
     <height>22</height>
     <background_color>
       <color red="255" green="255" blue="255">
@@ -72,9 +71,9 @@
   <widget type="textentry" version="3.0.0">
     <name>Text Input_5</name>
     <pv_name>$(Sys)refl1_omega_e4c</pv_name>
-    <x>391</x>
+    <x>301</x>
     <y>20</y>
-    <width>108</width>
+    <width>90</width>
     <height>22</height>
     <background_color>
       <color red="255" green="255" blue="255">
@@ -94,9 +93,9 @@
   <widget type="textentry" version="3.0.0">
     <name>Text Input_6</name>
     <pv_name>$(Sys)refl1_chi_e4c</pv_name>
-    <x>511</x>
+    <x>401</x>
     <y>20</y>
-    <width>108</width>
+    <width>90</width>
     <height>22</height>
     <background_color>
       <color red="255" green="255" blue="255">
@@ -116,9 +115,9 @@
   <widget type="textentry" version="3.0.0">
     <name>Text Input_7</name>
     <pv_name>$(Sys)refl1_phi_e4c</pv_name>
-    <x>631</x>
+    <x>501</x>
     <y>20</y>
-    <width>108</width>
+    <width>90</width>
     <height>22</height>
     <background_color>
       <color red="255" green="255" blue="255">
@@ -138,9 +137,9 @@
   <widget type="textentry" version="3.0.0">
     <name>Text Input_8</name>
     <pv_name>$(Sys)refl1_tth_e4c</pv_name>
-    <x>751</x>
+    <x>601</x>
     <y>20</y>
-    <width>108</width>
+    <width>90</width>
     <height>22</height>
     <background_color>
       <color red="255" green="255" blue="255">
@@ -160,9 +159,8 @@
   <widget type="textentry" version="3.0.0">
     <name>Text Input_9</name>
     <pv_name>$(Sys)refl2_h_e4c</pv_name>
-    <x>31</x>
-    <y>60</y>
-    <width>108</width>
+    <y>50</y>
+    <width>90</width>
     <height>22</height>
     <background_color>
       <color red="255" green="255" blue="255">
@@ -182,9 +180,9 @@
   <widget type="textentry" version="3.0.0">
     <name>Text Input_10</name>
     <pv_name>$(Sys)refl2_k_e4c</pv_name>
-    <x>150</x>
-    <y>60</y>
-    <width>108</width>
+    <x>101</x>
+    <y>50</y>
+    <width>90</width>
     <height>22</height>
     <background_color>
       <color red="255" green="255" blue="255">
@@ -204,9 +202,9 @@
   <widget type="textentry" version="3.0.0">
     <name>Text Input_11</name>
     <pv_name>$(Sys)refl2_l_e4c</pv_name>
-    <x>268</x>
-    <y>60</y>
-    <width>108</width>
+    <x>201</x>
+    <y>50</y>
+    <width>90</width>
     <height>22</height>
     <background_color>
       <color red="255" green="255" blue="255">
@@ -226,9 +224,9 @@
   <widget type="textentry" version="3.0.0">
     <name>Text Input_12</name>
     <pv_name>$(Sys)refl2_omega_e4c</pv_name>
-    <x>391</x>
-    <y>60</y>
-    <width>108</width>
+    <x>301</x>
+    <y>50</y>
+    <width>90</width>
     <height>22</height>
     <background_color>
       <color red="255" green="255" blue="255">
@@ -248,9 +246,9 @@
   <widget type="textentry" version="3.0.0">
     <name>Text Input_13</name>
     <pv_name>$(Sys)refl2_chi_e4c</pv_name>
-    <x>511</x>
-    <y>60</y>
-    <width>108</width>
+    <x>401</x>
+    <y>50</y>
+    <width>90</width>
     <height>22</height>
     <background_color>
       <color red="255" green="255" blue="255">
@@ -270,9 +268,9 @@
   <widget type="textentry" version="3.0.0">
     <name>Text Input_14</name>
     <pv_name>$(Sys)refl2_phi_e4c</pv_name>
-    <x>631</x>
-    <y>60</y>
-    <width>108</width>
+    <x>501</x>
+    <y>50</y>
+    <width>90</width>
     <height>22</height>
     <background_color>
       <color red="255" green="255" blue="255">
@@ -292,9 +290,9 @@
   <widget type="textentry" version="3.0.0">
     <name>Text Input_15</name>
     <pv_name>$(Sys)refl2_tth_e4c</pv_name>
-    <x>751</x>
-    <y>60</y>
-    <width>108</width>
+    <x>601</x>
+    <y>50</y>
+    <width>90</width>
     <height>22</height>
     <background_color>
       <color red="255" green="255" blue="255">
@@ -312,57 +310,44 @@
     </border_color>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>Label_28</name>
-    <text>refl1</text>
-    <y>20</y>
-    <width>51</width>
-  </widget>
-  <widget type="label" version="2.0.0">
-    <name>Label_29</name>
-    <text>refl2</text>
-    <y>60</y>
-    <width>31</width>
-  </widget>
-  <widget type="label" version="2.0.0">
     <name>Label_30</name>
     <text>h</text>
-    <x>31</x>
     <width>51</width>
   </widget>
   <widget type="label" version="2.0.0">
     <name>Label_31</name>
     <text>k</text>
-    <x>155</x>
+    <x>101</x>
     <width>51</width>
   </widget>
   <widget type="label" version="2.0.0">
     <name>Label_32</name>
     <text>l</text>
-    <x>268</x>
+    <x>203</x>
     <width>51</width>
   </widget>
   <widget type="label" version="2.0.0">
     <name>Label_33</name>
     <text>omega</text>
-    <x>391</x>
+    <x>302</x>
     <width>51</width>
   </widget>
   <widget type="label" version="2.0.0">
     <name>Label_34</name>
     <text>chi</text>
-    <x>521</x>
+    <x>401</x>
     <width>51</width>
   </widget>
   <widget type="label" version="2.0.0">
     <name>Label_35</name>
     <text>phi</text>
-    <x>631</x>
+    <x>500</x>
     <width>51</width>
   </widget>
   <widget type="label" version="2.0.0">
     <name>Label_36</name>
     <text>tth</text>
-    <x>751</x>
+    <x>602</x>
     <width>51</width>
   </widget>
 </display>

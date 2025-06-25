@@ -98,7 +98,7 @@ dbpf("$(PREFIX)delta_k6c_max","180")
 dbpf("$(PREFIX)refl_h_si_e4c","4.")
 dbpf("$(PREFIX)refl_omega_si_e4c","-145.")
 dbpf("$(PREFIX)refl_phi_si_e4c","90.")
-dbpf("$(PREFIX)refl_phi_tth_e4c","65.")
+dbpf("$(PREFIX)refl_tth_si_e4c","65.")
 
 
 dbl > pvlist.dbl

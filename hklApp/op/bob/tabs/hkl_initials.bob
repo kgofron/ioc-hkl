@@ -3,28 +3,10 @@
   <name>HKL_initials</name>
   <width>1000</width>
   <height>700</height>
-  <widget type="arc" version="2.0.0">
-    <name>Arc</name>
-    <x>980</x>
-    <y>300</y>
-    <width>1</width>
-    <height>1</height>
-  </widget>
   <widget type="embedded" version="2.0.0">
     <name>Embedded Display_3</name>
     <file>../windows/initials.bob</file>
     <width>980</width>
     <height>600</height>
-  </widget>
-  <widget type="polyline" version="2.0.0">
-    <name>Polyline_1</name>
-    <x>1640</x>
-    <y>120</y>
-    <width>1</width>
-    <height>1</height>
-    <points>
-      <point x="0.0" y="0.0">
-      </point>
-    </points>
   </widget>
 </display>
