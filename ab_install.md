@@ -288,4 +288,39 @@ camonitor also helps to check if a PV changes, like
 camonitor HB3:ioc-hkl:omega_e4c
 ```
 
+## Scan server
 
+https://github.com/ControlSystemStudio/phoebus
+build phoebus from source, snapshot doesn't contain scanserver
+
+```
+git clone https://github.com/ControlSystemStudio/phoebus
+cd /epics/gui/phoebus
+mvn clean install
+cd phoebus-product/target
+java -jar product-*-SNAPSHOT.jar
+cd /epics/gui/phoebus/services/scan-server
+./scan-server.sh
+```
+
+go into phoebus > applications > scans > scan editor
+write a command and right click > > Submit scan
+
+check terminal running scan-server, check info with 
+```
+scans
+```
+
+ > scans
+Scans:
+Scan 1 '<not saved to file>': Finished - OK
+
+```
+info 1
+commands 1
+devices 1
+data 1
+```
+
+etc for scan 1
+```

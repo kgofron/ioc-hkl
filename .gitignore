@@ -8,6 +8,8 @@ iochkl
 python/plot_crystal.py
 python/plot_crystal_widget.py
 python/plot_crystal_widget_simple.py
+python/twocircle.py
+python/TAS.py
 
 # Files generated during build
 configure/CONFIG.PyDevice
