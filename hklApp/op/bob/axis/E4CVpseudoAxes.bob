@@ -9,7 +9,7 @@
     <text>E4CV PseudoAxes Input</text>
     <x use_class="true">0</x>
     <y use_class="true">0</y>
-    <width>550</width>
+    <width>460</width>
     <height>31</height>
     <font use_class="true">
       <font name="Header 1" family="Liberation Sans" style="BOLD" size="22.0">
@@ -35,54 +35,26 @@
       <Ax9Name>pseudoaxes_azimuthE</Ax9Name>
     </macros>
     <file>_pseudoAxes_simple.bob</file>
-    <y>170</y>
-    <width>470</width>
-    <height>80</height>
-  </widget>
-  <widget type="embedded" version="2.0.0">
-    <name>Embedded Display_1</name>
-    <macros>
-      <Ax1Name>omega_e4c</Ax1Name>
-      <Ax2Name>chi_e4c</Ax2Name>
-      <Ax3Name>phi_e4c</Ax3Name>
-      <Ax4Name>tth_e4c</Ax4Name>
-    </macros>
-    <file>_4axes_limits.bob</file>
     <y>51</y>
     <width>470</width>
-    <height>99</height>
+    <height>239</height>
   </widget>
   <widget type="label" version="2.0.0">
     <name>Label_1</name>
-    <text>min</text>
+    <text>input</text>
     <x>150</x>
     <y>31</y>
     <width>40</width>
   </widget>
   <widget type="label" version="2.0.0">
     <name>Label_2</name>
-    <text>max</text>
+    <text>readback</text>
     <x>310</x>
     <y>31</y>
-    <width>40</width>
-  </widget>
-  <widget type="label" version="2.0.0">
-    <name>Label_3</name>
-    <text>RBV</text>
-    <x>310</x>
-    <y>150</y>
-    <width>40</width>
-  </widget>
-  <widget type="label" version="2.0.0">
-    <name>Label_4</name>
-    <text>input</text>
-    <x>150</x>
-    <y>150</y>
-    <width>40</width>
   </widget>
   <widget type="label" version="2.0.0">
     <name>Label_5</name>
-    <text>axis limits</text>
+    <text>pseudoaxes</text>
     <y>31</y>
     <width>80</width>
   </widget>

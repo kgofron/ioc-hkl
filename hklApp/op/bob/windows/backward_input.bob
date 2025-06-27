@@ -96,7 +96,7 @@
   <widget type="embedded" version="2.0.0">
     <name>Embedded Display_11</name>
     <file>../axis/ZAXISpseudoAxes.bob</file>
-    <width>550</width>
+    <width>480</width>
     <height>310</height>
     <visible>false</visible>
     <rules>
@@ -108,136 +108,84 @@
       </rule>
     </rules>
   </widget>
-  <widget type="choice" version="2.0.0">
-    <name>Choice Button</name>
-    <pv_name>$(Sys)mode_4c</pv_name>
-    <x>540</x>
-    <y>70</y>
-    <width>610</width>
-    <height>50</height>
+  <widget type="embedded" version="2.0.0">
+    <name>Embedded Display_12</name>
+    <file>../axis/E4CH_mode_limits.bob</file>
+    <x>510</x>
+    <width>660</width>
+    <height>310</height>
     <visible>false</visible>
-    <selected_color>
-      <color name="On" red="0" green="255" blue="0">
-      </color>
-    </selected_color>
     <rules>
-      <rule name="Visibility" prop_id="visible" out_exp="false">
+      <rule name="Visible" prop_id="visible" out_exp="false">
         <exp bool_exp="pv0==0">
           <value>true</value>
         </exp>
         <pv_name>$(Sys)geom</pv_name>
       </rule>
     </rules>
-    <border_alarm_sensitive>false</border_alarm_sensitive>
-    <items>
-      <item></item>
-    </items>
   </widget>
-  <widget type="choice" version="2.0.0">
-    <name>Choice Button_1</name>
-    <pv_name>$(Sys)mode_4c</pv_name>
-    <x>540</x>
-    <y>70</y>
-    <width>610</width>
-    <height>50</height>
+  <widget type="embedded" version="2.0.0">
+    <name>Embedded Display_13</name>
+    <file>../axis/E4CV_mode_limits.bob</file>
+    <x>510</x>
+    <width>660</width>
+    <height>310</height>
     <visible>false</visible>
-    <selected_color>
-      <color name="On" red="0" green="255" blue="0">
-      </color>
-    </selected_color>
     <rules>
-      <rule name="Visibility" prop_id="visible" out_exp="false">
+      <rule name="Visible" prop_id="visible" out_exp="false">
         <exp bool_exp="pv0==1">
           <value>true</value>
         </exp>
         <pv_name>$(Sys)geom</pv_name>
       </rule>
     </rules>
-    <border_alarm_sensitive>false</border_alarm_sensitive>
-    <items>
-      <item></item>
-    </items>
   </widget>
-  <widget type="choice" version="2.0.0">
-    <name>Choice Button_2</name>
-    <pv_name>$(Sys)mode_4c</pv_name>
-    <x>540</x>
-    <y>70</y>
-    <width>610</width>
-    <height>50</height>
+  <widget type="embedded" version="2.0.0">
+    <name>Embedded Display_14</name>
+    <file>../axis/K4CV_mode_limits.bob</file>
+    <x>510</x>
+    <width>660</width>
+    <height>310</height>
     <visible>false</visible>
-    <selected_color>
-      <color name="On" red="0" green="255" blue="0">
-      </color>
-    </selected_color>
     <rules>
-      <rule name="Visibility" prop_id="visible" out_exp="false">
+      <rule name="Visible" prop_id="visible" out_exp="false">
         <exp bool_exp="pv0==2">
           <value>true</value>
         </exp>
         <pv_name>$(Sys)geom</pv_name>
       </rule>
     </rules>
-    <border_alarm_sensitive>false</border_alarm_sensitive>
-    <items>
-      <item></item>
-    </items>
   </widget>
-  <widget type="choice" version="2.0.0">
-    <name>Choice Button_3</name>
-    <pv_name>$(Sys)mode_6c</pv_name>
-    <x>540</x>
-    <y>70</y>
-    <width>610</width>
-    <height>90</height>
+  <widget type="embedded" version="2.0.0">
+    <name>Embedded Display_15</name>
+    <file>../axis/E6C_mode_limits.bob</file>
+    <x>510</x>
+    <width>660</width>
+    <height>310</height>
     <visible>false</visible>
-    <selected_color>
-      <color name="On" red="0" green="255" blue="0">
-      </color>
-    </selected_color>
     <rules>
-      <rule name="Visibility" prop_id="visible" out_exp="false">
+      <rule name="Visible" prop_id="visible" out_exp="false">
         <exp bool_exp="pv0==3">
           <value>true</value>
         </exp>
         <pv_name>$(Sys)geom</pv_name>
       </rule>
     </rules>
-    <border_alarm_sensitive>false</border_alarm_sensitive>
-    <items>
-      <item></item>
-    </items>
   </widget>
-  <widget type="choice" version="2.0.0">
-    <name>Choice Button_4</name>
-    <pv_name>$(Sys)mode_6c</pv_name>
-    <x>540</x>
-    <y>70</y>
-    <width>610</width>
-    <height>90</height>
+  <widget type="embedded" version="2.0.0">
+    <name>Embedded Display_16</name>
+    <file>../axis/K6C_mode_limits.bob</file>
+    <x>510</x>
+    <width>660</width>
+    <height>310</height>
     <visible>false</visible>
-    <selected_color>
-      <color name="On" red="0" green="255" blue="0">
-      </color>
-    </selected_color>
     <rules>
-      <rule name="Visibility" prop_id="visible" out_exp="false">
+      <rule name="Visible" prop_id="visible" out_exp="false">
         <exp bool_exp="pv0==4">
           <value>true</value>
         </exp>
         <pv_name>$(Sys)geom</pv_name>
       </rule>
     </rules>
-    <border_alarm_sensitive>false</border_alarm_sensitive>
-    <items>
-      <item></item>
-    </items>
-  </widget>
-  <widget type="label" version="2.0.0">
-    <name>Label_2</name>
-    <text>Mode: (constant to the rotation value set in "forward")</text>
-    <x>650</x>
-    <y>50</y>
-    <width>450</width>
   </widget>
 </display>

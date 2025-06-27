@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<display version="2.0.0">
+  <name>E6C_mode_limits</name>
+  <width>650</width>
+  <height>300</height>
+  <widget type="embedded" version="2.0.0">
+    <name>Embedded Display_1</name>
+    <macros>
+      <Ax1Name>mu_e6c</Ax1Name>
+      <Ax2Name>omega_e6c</Ax2Name>
+      <Ax3Name>chi_e6c</Ax3Name>
+      <Ax4Name>phi_e6c</Ax4Name>
+      <Ax5Name>gamma_e6c</Ax5Name>
+      <Ax6Name>delta_e6c</Ax6Name>
+    </macros>
+    <file>_6axes_limits.bob</file>
+    <y>19</y>
+    <width>470</width>
+    <height>150</height>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_1</name>
+    <text>min</text>
+    <x>150</x>
+    <width>40</width>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_2</name>
+    <text>max</text>
+    <x>310</x>
+    <width>40</width>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_5</name>
+    <text>axis limits</text>
+    <width>80</width>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_4</name>
+    <text>Mode: (constant to the rotation value set in "forward")</text>
+    <y>180</y>
+    <width>460</width>
+  </widget>
+  <widget type="choice" version="2.0.0">
+    <name>Choice Button_3</name>
+    <pv_name>$(Sys)mode_6c</pv_name>
+    <y>200</y>
+    <width>610</width>
+    <height>90</height>
+    <visible>false</visible>
+    <selected_color>
+      <color name="On" red="0" green="255" blue="0">
+      </color>
+    </selected_color>
+    <rules>
+      <rule name="Visibility" prop_id="visible" out_exp="false">
+        <exp bool_exp="pv0==3">
+          <value>true</value>
+        </exp>
+        <pv_name>$(Sys)geom</pv_name>
+      </rule>
+    </rules>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+    <items>
+      <item></item>
+    </items>
+  </widget>
+</display>
