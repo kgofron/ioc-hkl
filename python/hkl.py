@@ -588,7 +588,7 @@ class hklCalculator():
                                                   self.pseudoaxes_psi_k2, \
                                                   self.pseudoaxes_psi_l2], \
                                                   Hkl.UnitEnum.USER)
-            self.engine_qperqpar.parameters_values_set([self.pseudoaxes_qperqpar_x, \
+            self.engine_qper_qpar.parameters_values_set([self.pseudoaxes_qperqpar_x, \
                                                         self.pseudoaxes_qperqpar_y, \
                                                         self.pseudoaxes_qperqpar_z], \
                                                         Hkl.UnitEnum.USER)
@@ -607,7 +607,7 @@ class hklCalculator():
                                                   self.pseudoaxes_psi_k2, \
                                                   self.pseudoaxes_psi_l2], \
                                                   Hkl.UnitEnum.USER)
-            self.engine_qperqpar.parameters_values_set([self.pseudoaxes_qperqpar_x, \
+            self.engine_qper_qpar.parameters_values_set([self.pseudoaxes_qperqpar_x, \
                                                         self.pseudoaxes_qperqpar_y, \
                                                         self.pseudoaxes_qperqpar_z], \
                                                         Hkl.UnitEnum.USER)
@@ -742,7 +742,7 @@ class hklCalculator():
         values_qperqpar = [float(self.pseudoaxes_qper), float(self.pseudoaxes_qpar)]
         try:
             self.set_axis_limits()
-            solutions = self.engine_qperqpar.pseudo_axis_values_set(values_qperqpar, Hkl.UnitEnum.USER)
+            solutions = self.engine_qper_qpar.pseudo_axis_values_set(values_qperqpar, Hkl.UnitEnum.USER)
             self.apply_axes_solns(solutions)
             #TODO does running this calculation change other pseudoaxes values?
             # if so, I need to update all other pseudoaxes here (with self.update_pseudoaxes)     
@@ -757,10 +757,10 @@ class hklCalculator():
         print("Backward tth function start")
         self.reset_axes_solns()
         self.set_engine_parameters()
-        values_tth = [float(self.pseudoaxes_tth), float(self.pseudoaxes_tth_alpha)]
+        values_tth = [float(self.pseudoaxes_tth), float(self.pseudoaxes_alpha2)]
         try:
             self.set_axis_limits()
-            solutions = self.engine_tth.pseudo_axis_values_set(values_tth, Hkl.UnitEnum.USER)
+            solutions = self.engine_tth2.pseudo_axis_values_set(values_tth, Hkl.UnitEnum.USER)
             self.apply_axes_solns(solutions)
             #TODO does running this calculation change other pseudoaxes values?
             # if so, I need to update all other pseudoaxes here (with self.update_pseudoaxes)     
@@ -772,7 +772,7 @@ class hklCalculator():
             print(f'backward_tth() error: {e}')
 
     def backward_eulerians(self):
-        print("Backward tth function start")
+        print("Backward eulerians function start")
         self.reset_axes_solns()
         self.set_engine_parameters()
         values_eulerians = [float(self.pseudoaxes_omega), \

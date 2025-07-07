@@ -452,11 +452,11 @@
     <actions>
       <action type="write_pv">
         <description>WritePV</description>
-        <pv_name>$(Sys)backward_psi</pv_name>
+        <pv_name>$(Sys)backward_eulerians</pv_name>
         <value>1</value>
       </action>
     </actions>
-    <pv_name>$(Sys)backward_psi</pv_name>
+    <pv_name>$(Sys)backward_eulerians</pv_name>
     <text>eulerians -&gt; axes</text>
     <x>911</x>
     <y>208</y>
