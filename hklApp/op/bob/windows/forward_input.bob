@@ -1,41 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <display version="2.0.0">
   <name>Forward_input</name>
-  <width>820</width>
-  <height>250</height>
-  <widget type="label" version="2.0.0">
-    <name>Label_12</name>
-    <text>Real space input</text>
-    <x>330</x>
-    <y>10</y>
-    <width>169</width>
-    <font>
-      <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
-      </font>
-    </font>
-  </widget>
-  <widget type="embedded" version="2.0.0">
-    <name>Embedded Display_2</name>
-    <macros>
-      <Ax1Name>omega</Ax1Name>
-      <Ax2Name>chi</Ax2Name>
-      <Ax3Name>phi</Ax3Name>
-      <Ax4Name>tth</Ax4Name>
-    </macros>
-    <file>../axis/TwoC.bob</file>
-    <y>50</y>
-    <width>780</width>
-    <height>80</height>
-    <visible>false</visible>
-    <rules>
-      <rule name="Visible" prop_id="visible" out_exp="false">
-        <exp bool_exp="pv0==6">
-          <value>true</value>
-        </exp>
-        <pv_name>$(Sys)geom</pv_name>
-      </rule>
-    </rules>
-  </widget>
+  <width>785</width>
+  <height>185</height>
   <widget type="embedded" version="2.0.0">
     <name>Embedded Display_3</name>
     <macros>
@@ -45,7 +12,6 @@
       <Ax4Name>tth_e4c</Ax4Name>
     </macros>
     <file>../axis/E4CH.bob</file>
-    <y>50</y>
     <width>780</width>
     <height>130</height>
     <visible>false</visible>
@@ -67,7 +33,6 @@
       <Ax4Name>tth_e4c</Ax4Name>
     </macros>
     <file>../axis/E4CV.bob</file>
-    <y>50</y>
     <width>780</width>
     <height>130</height>
     <visible>false</visible>
@@ -89,7 +54,6 @@
       <Ax4Name>tth_k4c</Ax4Name>
     </macros>
     <file>../axis/K4CV.bob</file>
-    <y>50</y>
     <width>780</width>
     <height>130</height>
     <visible>false</visible>
@@ -113,7 +77,6 @@
       <Ax6Name>delta_e6c</Ax6Name>
     </macros>
     <file>../axis/E6C.bob</file>
-    <y>50</y>
     <width>780</width>
     <height>180</height>
     <visible>false</visible>
@@ -137,35 +100,12 @@
       <Ax6Name>delta_k6c</Ax6Name>
     </macros>
     <file>../axis/K6C.bob</file>
-    <y>50</y>
     <width>780</width>
     <height>180</height>
     <visible>false</visible>
     <rules>
       <rule name="E4CV" prop_id="visible" out_exp="false">
         <exp bool_exp="pv0==4">
-          <value>true</value>
-        </exp>
-        <pv_name>$(Sys)geom</pv_name>
-      </rule>
-    </rules>
-  </widget>
-  <widget type="embedded" version="2.0.0">
-    <name>Embedded Display_8</name>
-    <macros>
-      <Ax1Name>omega</Ax1Name>
-      <Ax2Name>chi</Ax2Name>
-      <Ax3Name>phi</Ax3Name>
-      <Ax4Name>tth</Ax4Name>
-    </macros>
-    <file>../axis/ZAXIS.bob</file>
-    <y>50</y>
-    <width>780</width>
-    <height>130</height>
-    <visible>false</visible>
-    <rules>
-      <rule name="E4CV" prop_id="visible" out_exp="false">
-        <exp bool_exp="pv0==5">
           <value>true</value>
         </exp>
         <pv_name>$(Sys)geom</pv_name>

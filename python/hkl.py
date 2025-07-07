@@ -30,7 +30,8 @@ class hklCalculator():
         self.engine_qper_qpar = np.nan # hkl object placeholder
         self.engine_tth2 = np.nan # hkl object placeholder
         self.mode_4c = 0 # bissector, constant omega...
-        self.mode_6c = 0 # bissector_vertical, constant_omega_vertical
+        self.mode_e6c = 0 # bissector_vertical, constant_omega_vertical
+        self.mode_k6c = 0 # bissector_vertical, constant_omega_vertical
         self.latt = [0., 0., 0., 0., 0., 0.] 
         # ^ [a1, a2, a3, alpha, beta, gamma], angstroms and radians
         self.lattice = np.nan 
@@ -144,11 +145,10 @@ class hklCalculator():
         self.pseudoaxes_fc2 = 0. #TODO set from cif2hkl waveform PV
         self.pseudoaxes_psi = 0.
         self.pseudoaxes_q = 0.
+        self.pseudoaxes_q2 = 0.
         self.pseudoaxes_alpha = 0.
         self.pseudoaxes_qper = 0.
         self.pseudoaxes_qpar = 0.
-        self.pseudoaxes_alpha = 0.
-        self.pseudoaxes_alpha2 = 0.
         self.pseudoaxes_incidence = 0.
         self.pseudoaxes_azimuth1 = 0.
         self.pseudoaxes_emergence = 0.
@@ -157,6 +157,26 @@ class hklCalculator():
         self.pseudoaxes_chi = 0.
         self.pseudoaxes_phi = 0.
         self.pseudoaxes_tth = 0.
+        self.pseudoaxes_alpha2 = 0.
+
+        ### pseudoaxes options
+        self.pseudoaxes_psi_h2 = 0.
+        self.pseudoaxes_psi_k2 = 0.
+        self.pseudoaxes_psi_l2 = 0.
+
+        self.pseudoaxes_qperqpar_x = 0.
+        self.pseudoaxes_qperqpar_y = 0.
+        self.pseudoaxes_qperqpar_z = 0.
+        
+        self.pseudoaxes_eulerians_solns = 0.
+
+        self.pseudoaxes_incidence_x = 0.
+        self.pseudoaxes_incidence_y = 0.
+        self.pseudoaxes_incidence_z = 0.
+
+        self.pseudoaxes_emergence_x = 0.
+        self.pseudoaxes_emergence_y = 0.
+        self.pseudoaxes_emergence_z = 0.
 
         ### axes solutions 
         # Eulerian 4-circle
@@ -325,42 +345,9 @@ class hklCalculator():
     def forward(self):
         print("Forward function start")
         self.reset_pseudoaxes_solns()
-        if (self.geom_name == 'E4CH') or (self.geom_name == 'E4CV'):
-            values_w = [float(self.axes_e4c[0]), \
-                        float(self.axes_e4c[1]), \
-                        float(self.axes_e4c[2]), \
-                        float(self.axes_e4c[3])] 
-        elif self.geom_name == "K4CV":
-            values_w = [float(self.axes_k4c[0]), \
-                        float(self.axes_k4c[1]), \
-                        float(self.axes_k4c[2]), \
-                        float(self.axes_k4c[3])] 
-        elif self.geom_name == "E6C":
-            values_w = [float(self.axes_e6c[0]), \
-                        float(self.axes_e6c[1]), \
-                        float(self.axes_e6c[2]), \
-                        float(self.axes_e6c[3]), \
-                        float(self.axes_e6c[4]), \
-                        float(self.axes_e6c[5])] 
-        elif self.geom_name == "K6C":
-            values_w = [float(self.axes_k6c[0]), \
-                        float(self.axes_k6c[1]), \
-                        float(self.axes_k6c[2]), \
-                        float(self.axes_k6c[3]), \
-                        float(self.axes_k6c[4]), \
-                        float(self.axes_k6c[5])] 
-        try:
-            self.set_axis_limits()
-            self.geometry.axis_values_set(values_w, Hkl.UnitEnum.USER)
-            ct = datetime.datetime.now().isoformat()
-            self.errors=[ord(c) for c in str(ct)] # success
-        except Exception as e:
-            ct = datetime.datetime.now().isoformat()
-            self.errors=[ord(c) for c in str(ct + '\n' + str(e))] # failure
-            print(f'forward() error: {e}') 
-            return
-
+        self.set_axes_to_sample()
         self.engines.get()
+        self.set_engine_parameters()
         ### common to all geoms
         # hkl
         values_hkl = self.engine_hkl.pseudo_axis_values_get(Hkl.UnitEnum.USER)
@@ -412,9 +399,50 @@ class hklCalculator():
                 values_eulerians
         self.get_UB_matrix()
 
+
     def set_axes_to_sample(self):
         #TODO rename? sets diffractometer to ready adding a reflection
-        print("Forward UB function start")
+        print("Set axes to sample function start")
+        self.set_axis_limits()
+        if (self.geom==0) or (self.geom==1):
+            values_w = [float(self.axes_e4c[0]), \
+                        float(self.axes_e4c[1]), \
+                        float(self.axes_e4c[2]), \
+                        float(self.axes_e4c[3])] 
+        elif (self.geom == 2):
+            values_w = [float(self.axes_k4c[0]), \
+                        float(self.axes_k4c[1]), \
+                        float(self.axes_k4c[2]), \
+                        float(self.axes_k4c[3])] 
+        elif (self.geom == 3):
+            values_w = [float(self.axes_e6c[0]), \
+                        float(self.axes_e6c[1]), \
+                        float(self.axes_e6c[2]), \
+                        float(self.axes_e6c[3]), \
+                        float(self.axes_e6c[4]), \
+                        float(self.axes_e6c[5])] 
+        elif (self.geom == 4):
+            values_w = [float(self.axes_k6c[0]), \
+                        float(self.axes_k6c[1]), \
+                        float(self.axes_k6c[2]), \
+                        float(self.axes_k6c[3]), \
+                        float(self.axes_k6c[4]), \
+                        float(self.axes_k6c[5])] 
+        try:
+            #TODO check if this is how UB calculation is done in hkl package
+            # currently need to run this function when adding reflections for some reason
+            print(f'geom {self.geom}')
+            print(f'values {values_w}')
+            self.geometry.axis_values_set(values_w, Hkl.UnitEnum.USER)
+        except Exception as e:
+            ct = datetime.datetime.now().isoformat()
+            self.errors = [ord(c) for c in str(ct + '\n' + str(e))]
+            print(f'set_axes_to_sample() error: {e}')
+            return
+
+    def set_axes_to_sample_UB(self):
+        #TODO rename? sets diffractometer to ready adding a reflection
+        print("Set axes to sample UB function start")
         if (self.geom==0) or (self.geom==1):
             values_w = [float(self.axes_UB_e4c[0]), \
                         float(self.axes_UB_e4c[1]), \
@@ -448,14 +476,12 @@ class hklCalculator():
         except Exception as e:
             ct = datetime.datetime.now().isoformat()
             self.errors = [ord(c) for c in str(ct + '\n' + str(e))]
-            print(f'set_axes_to_sample() error: {e}')
+            print(f'set_axes_to_sample_UB() error: {e}')
             return
 
-    def backward(self):
-        print("Backward function start")
-        self.reset_axes_solns()
-        # set mode
-        if (self.geom == 0) or (self.geom==1) or (self.geom==2):
+    def set_constraints(self):
+        # set constraint mode
+        if (self.geom==0) or (self.geom==1) or (self.geom==2):
             if self.mode_4c == 0:
                 self.engine_hkl.current_mode_set('bissector')
             elif self.mode_4c == 1:
@@ -464,63 +490,360 @@ class hklCalculator():
                 self.engine_hkl.current_mode_set('constant_chi')
             elif self.mode_4c == 3:
                 self.engine_hkl.current_mode_set('constant_phi')
-        elif self.geom == (3 or 4):
-            if self.mode_6c == 0: 
-                self.engine_hkl.current_mode_set('bissector_vertical')
-            if self.mode_6c == 1: 
-                self.engine_hkl.current_mode_set('constant_omega_vertical')
-            if self.mode_6c == 2: 
-                self.engine_hkl.current_mode_set('constant_chi_vertical')
-            if self.mode_6c == 3: 
-                self.engine_hkl.current_mode_set('constant_phi_vertical')
+            elif self.mode_4c == 4:
+                self.engine_hkl.current_mode_set('double_diffraction')
+            elif self.mode_4c == 5:
+                self.engine_hkl.current_mode_set('psi_constant')
 
+        elif (self.geom==3):
+            if self.mode_e6c == 0: 
+                self.engine_hkl.current_mode_set('bissector_vertical')
+            if self.mode_e6c == 1: 
+                self.engine_hkl.current_mode_set('constant_omega_vertical')
+            if self.mode_e6c == 2: 
+                self.engine_hkl.current_mode_set('constant_chi_vertical')
+            if self.mode_e6c == 3: 
+                self.engine_hkl.current_mode_set('constant_phi_vertical')
+            if self.mode_e6c == 4: 
+                self.engine_hkl.current_mode_set('lifting_detector_phi')
+            if self.mode_e6c == 5: 
+                self.engine_hkl.current_mode_set('lifting_detector_omega')
+            if self.mode_e6c == 6: 
+                self.engine_hkl.current_mode_set('lifting_detector_mu')
+            if self.mode_e6c == 7: 
+                self.engine_hkl.current_mode_set('double_diffraction_vertical')
+            if self.mode_e6c == 8: 
+                self.engine_hkl.current_mode_set('bissector_horizontal')
+            if self.mode_e6c == 9:
+                self.engine_hkl.current_mode_set('double_diffraction_horizontal')
+            if self.mode_e6c == 10: 
+                self.engine_hkl.current_mode_set('psi_constant_vertical')
+            if self.mode_e6c == 11: 
+                self.engine_hkl.current_mode_set('psi_constant_horizontal')
+            if self.mode_e6c == 12:
+                self.engine_hkl.current_mode_set('constant_mu_horizontal')
+
+        elif (self.geom==4):
+            if self.mode_k6c == 0: 
+                self.engine_hkl.current_mode_set('bissector_vertical')
+            if self.mode_k6c == 1: 
+                self.engine_hkl.current_mode_set('constant_omega_vertical')
+            if self.mode_k6c == 2: 
+                self.engine_hkl.current_mode_set('constant_chi_vertical')
+            if self.mode_k6c == 3: 
+                self.engine_hkl.current_mode_set('constant_phi_vertical')
+            if self.mode_k6c == 4: 
+                self.engine_hkl.current_mode_set('lifting_detector_kphi')
+            if self.mode_k6c == 5: 
+                self.engine_hkl.current_mode_set('lifting_detector_komega')
+            if self.mode_k6c == 6: 
+                self.engine_hkl.current_mode_set('lifting_detector_mu')
+            if self.mode_k6c == 7: 
+                self.engine_hkl.current_mode_set('double_diffraction_vertical')
+            if self.mode_k6c == 8: 
+                self.engine_hkl.current_mode_set('bissector_horizontal')
+            if self.mode_k6c == 9:
+                self.engine_hkl.current_mode_set('constant_phi_horizontal')
+            if self.mode_k6c == 10:
+                self.engine_hkl.current_mode_set('constant_kphi_horizontal')
+            if self.mode_k6c == 11: 
+                self.engine_hkl.current_mode_set('double_diffraction_horizontal')
+            if self.mode_k6c == 12: 
+                self.engine_hkl.current_mode_set('psi_constant_horizontal')
+            if self.mode_k6c == 13:
+                self.engine_hkl.current_mode_set("constant_incidence")
+
+
+    def set_engine_parameters(self):
+        if (self.geom==0) or (self.geom==1):
+            self.engine_psi.parameters_values_set([self.pseudoaxes_psi_h2, \
+                                                  self.pseudoaxes_psi_k2, \
+                                                  self.pseudoaxes_psi_l2], \
+                                                  Hkl.UnitEnum.USER)
+            self.engine_incidence.parameters_values_set([self.pseudoaxes_incidence_x, \
+                                                         self.pseudoaxes_incidence_y, \
+                                                         self.pseudoaxes_incidence_z], \
+                                                         Hkl.UnitEnum.USER)
+            self.engine_emergence.parameters_values_set([self.pseudoaxes_emergence_x, \
+                                                         self.pseudoaxes_emergence_y, \
+                                                         self.pseudoaxes_emergence_z], \
+                                                         Hkl.UnitEnum.USER)
+        elif (self.geom==2):
+            self.engine_eulerians.parameters_values_set([self.pseudoaxes_eulerians_solns], \
+                                                         Hkl.UnitEnum.USER)
+            self.engine_psi.parameters_values_set([self.pseudoaxes_psi_h2, \
+                                                  self.pseudoaxes_psi_k2, \
+                                                  self.pseudoaxes_psi_l2], \
+                                                  Hkl.UnitEnum.USER)
+            self.engine_incidence.parameters_values_set([self.pseudoaxes_incidence_x, \
+                                                         self.pseudoaxes_incidence_y, \
+                                                         self.pseudoaxes_incidence_z], \
+                                                         Hkl.UnitEnum.USER)
+            self.engine_emergence.parameters_values_set([self.pseudoaxes_emergence_x, \
+                                                         self.pseudoaxes_emergence_y, \
+                                                         self.pseudoaxes_emergence_z], \
+                                                         Hkl.UnitEnum.USER)
+        elif (self.geom==3):
+            self.engine_psi.parameters_values_set([self.pseudoaxes_psi_h2, \
+                                                  self.pseudoaxes_psi_k2, \
+                                                  self.pseudoaxes_psi_l2], \
+                                                  Hkl.UnitEnum.USER)
+            self.engine_qperqpar.parameters_values_set([self.pseudoaxes_qperqpar_x, \
+                                                        self.pseudoaxes_qperqpar_y, \
+                                                        self.pseudoaxes_qperqpar_z], \
+                                                        Hkl.UnitEnum.USER)
+            self.engine_incidence.parameters_values_set([self.pseudoaxes_incidence_x, \
+                                                         self.pseudoaxes_incidence_y, \
+                                                         self.pseudoaxes_incidence_z], \
+                                                         Hkl.UnitEnum.USER)
+            self.engine_emergence.parameters_values_set([self.pseudoaxes_emergence_x, \
+                                                         self.pseudoaxes_emergence_y, \
+                                                         self.pseudoaxes_emergence_z], \
+                                                         Hkl.UnitEnum.USER)
+        elif (self.geom==4):
+            self.engine_eulerians.parameters_values_set([self.pseudoaxes_eulerians_solns], \
+                                                         Hkl.UnitEnum.USER)
+            self.engine_psi.parameters_values_set([self.pseudoaxes_psi_h2, \
+                                                  self.pseudoaxes_psi_k2, \
+                                                  self.pseudoaxes_psi_l2], \
+                                                  Hkl.UnitEnum.USER)
+            self.engine_qperqpar.parameters_values_set([self.pseudoaxes_qperqpar_x, \
+                                                        self.pseudoaxes_qperqpar_y, \
+                                                        self.pseudoaxes_qperqpar_z], \
+                                                        Hkl.UnitEnum.USER)
+            self.engine_incidence.parameters_values_set([self.pseudoaxes_incidence_x, \
+                                                         self.pseudoaxes_incidence_y, \
+                                                         self.pseudoaxes_incidence_z], \
+                                                         Hkl.UnitEnum.USER)
+            self.engine_emergence.parameters_values_set([self.pseudoaxes_emergence_x, \
+                                                         self.pseudoaxes_emergence_y, \
+                                                         self.pseudoaxes_emergence_z], \
+                                                         Hkl.UnitEnum.USER)
+
+
+    def apply_axes_solns(self, solutions):
+        values_w_all = []
+        len_solns = len(solutions.items())
+        #TODO set len sol to a PV, display in backward tab
+        for i, item in enumerate(solutions.items()):
+            read = item.geometry_get().axis_values_get(Hkl.UnitEnum.USER)
+            values_w_all.append(read)
+        if len_solns > self.num_axes_solns: # truncate if above max available soln slots
+            len_solns = self.num_axes_solns -1
+        if (self.geom == 0) or (self.geom==1):
+            for i in range(len_solns): 
+                self.axes_solns_omega_e4c[i], \
+                self.axes_solns_chi_e4c[i], \
+                self.axes_solns_phi_e4c[i], \
+                self.axes_solns_tth_e4c[i] = values_w_all[i]         
+        elif self.geom == 2:
+            for i in range(len_solns): 
+                self.axes_solns_komega_k4c[i], \
+                self.axes_solns_kappa_k4c[i], \
+                self.axes_solns_kphi_k4c[i], \
+                self.axes_solns_tth_k4c[i] = values_w_all[i]         
+        elif self.geom == 3:
+            for i in range(len_solns): 
+                self.axes_solns_mu_e6c[i], \
+                self.axes_solns_omega_e6c[i], \
+                self.axes_solns_chi_e6c[i], \
+                self.axes_solns_phi_e6c[i], \
+                self.axes_solns_gamma_e6c[i], \
+                self.axes_solns_delta_e6c[i] = values_w_all[i]       
+        elif self.geom==4:  
+             for i in range(len_solns): 
+                self.axes_solns_mu_k6c[i], \
+                self.axes_solns_komega_k6c[i], \
+                self.axes_solns_kappa_k6c[i], \
+                self.axes_solns_kphi_k6c[i], \
+                self.axes_solns_gamma_k6c[i], \
+                self.axes_solns_delta_k6c[i] = values_w_all[i]
+    
+
+    def backward_hkl(self):
+        print("Backward hkl function start")
+        self.reset_axes_solns()
+        self.set_constraints()
+        self.set_engine_parameters()
         values_hkl = [float(self.pseudoaxes_h), \
                       float(self.pseudoaxes_k), \
                       float(self.pseudoaxes_l)]
         try:
             self.set_axis_limits()
             solutions = self.engine_hkl.pseudo_axis_values_set(values_hkl, Hkl.UnitEnum.USER)
-            values_w_all = []
-            len_solns = len(solutions.items())
-            for i, item in enumerate(solutions.items()):
-                read = item.geometry_get().axis_values_get(Hkl.UnitEnum.USER)
-                values_w_all.append(read)
-            if len_solns > self.num_axes_solns: # truncate if above max available soln slots
-                len_solns = self.num_axes_solns -1
-            if (self.geom == 0) or (self.geom==1):
-                for i in range(len_solns): 
-                    self.axes_solns_omega_e4c[i], \
-                    self.axes_solns_chi_e4c[i], \
-                    self.axes_solns_phi_e4c[i], \
-                    self.axes_solns_tth_e4c[i] = values_w_all[i]         
-            elif self.geom == 2:
-                for i in range(len_solns): 
-                    self.axes_solns_komega_k4c[i], \
-                    self.axes_solns_kappa_k4c[i], \
-                    self.axes_solns_kphi_k4c[i], \
-                    self.axes_solns_tth_k4c[i] = values_w_all[i]         
-            elif self.geom == 3:
-                for i in range(len_solns): 
-                    self.axes_solns_mu_e6c[i], \
-                    self.axes_solns_omega_e6c[i], \
-                    self.axes_solns_chi_e6c[i], \
-                    self.axes_solns_phi_e6c[i], \
-                    self.axes_solns_gamma_e6c[i], \
-                    self.axes_solns_delta_e6c[i] = values_w_all[i]       
-            elif self.geom==4:  
-                 for i in range(len_solns): 
-                    self.axes_solns_mu_k6c[i], \
-                    self.axes_solns_komega_k6c[i], \
-                    self.axes_solns_kappa_k6c[i], \
-                    self.axes_solns_kphi_k6c[i], \
-                    self.axes_solns_gamma_k6c[i], \
-                    self.axes_solns_delta_k6c[i] = values_w_all[i]
+            self.apply_axes_solns(solutions)
+            #TODO does running this calculation change other pseudoaxes values?
+            # if so, I need to update all other pseudoaxes here (with self.update_pseudoaxes)     
             ct = datetime.datetime.now().isoformat()
             self.errors = [ord(c) for c in str(ct)] # success
         except Exception as e:
             ct = datetime.datetime.now().isoformat()
             self.errors = [ord(c) for c in str(ct + '\n' + str(e))] # failure
-            print(f'backward() error: {e}')
+            print(f'backward_hkl() error: {e}')
+
+    def backward_psi(self):
+        print("Backward psi function start")
+        self.reset_axes_solns()
+        self.set_engine_parameters()
+        values_psi = [float(self.pseudoaxes_psi)]
+        try:
+            self.set_axis_limits()
+            solutions = self.engine_psi.pseudo_axis_values_set(values_psi, Hkl.UnitEnum.USER)
+            self.apply_axes_solns(solutions)
+            #TODO does running this calculation change other pseudoaxes values?
+            # if so, I need to update all other pseudoaxes here (with self.update_pseudoaxes)     
+            ct = datetime.datetime.now().isoformat()
+            self.errors = [ord(c) for c in str(ct)] # success
+        except Exception as e:
+            ct = datetime.datetime.now().isoformat()
+            self.errors = [ord(c) for c in str(ct + '\n' + str(e))] # failure
+            print(f'backward_psi() error: {e}')
+
+    def backward_q(self):
+        print("Backward q function start")
+        self.reset_axes_solns()
+        self.set_engine_parameters()
+        values_q = [float(self.pseudoaxes_q)]
+        try:
+            self.set_axis_limits()
+            solutions = self.engine_q.pseudo_axis_values_set(values_q, Hkl.UnitEnum.USER)
+            self.apply_axes_solns(solutions)
+            #TODO does running this calculation change other pseudoaxes values?
+            # if so, I need to update all other pseudoaxes here (with self.update_pseudoaxes)     
+            ct = datetime.datetime.now().isoformat()
+            self.errors = [ord(c) for c in str(ct)] # success
+        except Exception as e:
+            ct = datetime.datetime.now().isoformat()
+            self.errors = [ord(c) for c in str(ct + '\n' + str(e))] # failure
+            print(f'backward_q() error: {e}')
+
+    def backward_q2(self):
+        print("Backward q2 function start")
+        self.reset_axes_solns()
+        self.set_engine_parameters()
+        values_q2 = [float(self.pseudoaxes_q2), float(self.pseudoaxes_alpha)]
+        try:
+            self.set_axis_limits()
+            solutions = self.engine_q2.pseudo_axis_values_set(values_q2, Hkl.UnitEnum.USER)
+            self.apply_axes_solns(solutions)
+            #TODO does running this calculation change other pseudoaxes values?
+            # if so, I need to update all other pseudoaxes here (with self.update_pseudoaxes)     
+            ct = datetime.datetime.now().isoformat()
+            self.errors = [ord(c) for c in str(ct)] # success
+        except Exception as e:
+            ct = datetime.datetime.now().isoformat()
+            self.errors = [ord(c) for c in str(ct + '\n' + str(e))] # failure
+            print(f'backward_q2() error: {e}')
+
+    def backward_qperqpar(self):
+        print("Backward qperqpar function start")
+        self.reset_axes_solns()
+        self.set_engine_parameters()
+        values_qperqpar = [float(self.pseudoaxes_qper), float(self.pseudoaxes_qpar)]
+        try:
+            self.set_axis_limits()
+            solutions = self.engine_qperqpar.pseudo_axis_values_set(values_qperqpar, Hkl.UnitEnum.USER)
+            self.apply_axes_solns(solutions)
+            #TODO does running this calculation change other pseudoaxes values?
+            # if so, I need to update all other pseudoaxes here (with self.update_pseudoaxes)     
+            ct = datetime.datetime.now().isoformat()
+            self.errors = [ord(c) for c in str(ct)] # success
+        except Exception as e:
+            ct = datetime.datetime.now().isoformat()
+            self.errors = [ord(c) for c in str(ct + '\n' + str(e))] # failure
+            print(f'backward_qperqpar() error: {e}')
+
+    def backward_tth(self):
+        print("Backward tth function start")
+        self.reset_axes_solns()
+        self.set_engine_parameters()
+        values_tth = [float(self.pseudoaxes_tth), float(self.pseudoaxes_tth_alpha)]
+        try:
+            self.set_axis_limits()
+            solutions = self.engine_tth.pseudo_axis_values_set(values_tth, Hkl.UnitEnum.USER)
+            self.apply_axes_solns(solutions)
+            #TODO does running this calculation change other pseudoaxes values?
+            # if so, I need to update all other pseudoaxes here (with self.update_pseudoaxes)     
+            ct = datetime.datetime.now().isoformat()
+            self.errors = [ord(c) for c in str(ct)] # success
+        except Exception as e:
+            ct = datetime.datetime.now().isoformat()
+            self.errors = [ord(c) for c in str(ct + '\n' + str(e))] # failure
+            print(f'backward_tth() error: {e}')
+
+    def backward_eulerians(self):
+        print("Backward tth function start")
+        self.reset_axes_solns()
+        self.set_engine_parameters()
+        values_eulerians = [float(self.pseudoaxes_omega), \
+                            float(self.pseudoaxes_chi), \
+                            float(self.pseudoaxes_phi)]
+        try:
+            self.set_axis_limits()
+            solutions = self.engine_eulerians.pseudo_axis_values_set(values_eulerians, Hkl.UnitEnum.USER)
+            self.apply_axes_solns(solutions)
+            #TODO does running this calculation change other pseudoaxes values?
+            # if so, I need to update all other pseudoaxes here (with self.update_pseudoaxes)     
+            ct = datetime.datetime.now().isoformat()
+            self.errors = [ord(c) for c in str(ct)] # success
+        except Exception as e:
+            ct = datetime.datetime.now().isoformat()
+            self.errors = [ord(c) for c in str(ct + '\n' + str(e))] # failure
+            print(f'backward_eulerians() error: {e}')
+
+
+    def update_pseudoaxes(self):
+        self.set_engine_parameters()
+        #TODO this is temporary, not currently used
+        values_hkl = self.engine_hkl.pseudo_axis_values_get(Hkl.UnitEnum.USER)
+        self.pseudoaxes_solns_h, self.pseudoaxes_solns_k, self.pseudoaxes_solns_l = values_hkl
+        #psi
+        values_psi = self.engine_psi.pseudo_axis_values_get(Hkl.UnitEnum.USER)
+        self.pseudoaxes_psi = values_psi[0] # [0] required otherwise assigns as list
+        # incidence
+        values_incidence = self.engine_incidence.pseudo_axis_values_get(Hkl.UnitEnum.USER)
+        self.pseudoaxes_incidence, self.pseudoaxes_azimuth1 = values_incidence
+        # emergence
+        values_emergence = self.engine_emergence.pseudo_axis_values_get(Hkl.UnitEnum.USER)
+        self.pseudoaxes_emergence, self.pseudoaxes_azimuth2 = values_emergence
+        if (self.geom == 0) or (self.geom == 1):
+            # q
+            values_q = self.engine_q.pseudo_axis_values_get(Hkl.UnitEnum.USER)
+            print(f'values q: {values_q[0]}')
+            self.pseudoaxes_q = values_q[0]
+        elif self.geom == 2:
+            # q
+            values_q = self.engine_q.pseudo_axis_values_get(Hkl.UnitEnum.USER)
+            self.pseudoaxes_q = values_q[0]
+            # eulerians #TODO add to screens
+            values_eulerians = self.engine_eulerians.pseudo_axis_values_get(Hkl.UnitEnum.USER)
+            self.pseudoaxes_omega, self.pseudoaxes_chi, self.pseudoaxes_phi = \
+                values_eulerians
+        elif self.geom == 3:
+            # q2
+            values_q2 = self.engine_q2.pseudo_axis_values_get(Hkl.UnitEnum.USER)
+            self.pseudoaxes_q, self.pseudoaxes_alpha = values_q2
+            #qper, qpar
+            values_qper_qpar = self.engine_qper_qpar.pseudo_axis_values_get(Hkl.UnitEnum.USER)
+            self.pseudoaxes_qper, self.pseudoaxes_qpar = values_qper_qpar
+            # tth2
+            values_tth2 = self.engine_tth2.pseudo_axis_values_get(Hkl.UnitEnum.USER)
+            self.pseudoaxes_tth2, self.pseudoaxes_alpha2 = values_tth2
+        elif self.geom == 4:
+            # q2
+            values_q2 = self.engine_q2.pseudo_axis_values_get(Hkl.UnitEnum.USER)
+            self.pseudoaxes_q, self.pseudoaxes_alpha = values_q2
+            #qper, qpar
+            values_qper_qpar = self.engine_qper_qpar.pseudo_axis_values_get(Hkl.UnitEnum.USER)
+            self.pseudoaxes_qper, self.pseudoaxes_qpar = values_qper_qpar
+            # tth2
+            values_tth2 = self.engine_tth2.pseudo_axis_values_get(Hkl.UnitEnum.USER)
+            self.pseudoaxes_tth2, self.pseudoaxes_alpha2 = values_tth2
+            #eulerians
+            values_eulerians = self.engine_eulerians.pseudo_axis_values_get(Hkl.UnitEnum.USER)
+            self.pseudoaxes_omega, self.pseudoaxes_chi, self.pseudoaxes_phi = \
+                values_eulerians
+
 
     def set_axis_limits(self):
         axes = self.geometry.axis_names_get()
@@ -613,7 +936,7 @@ class hklCalculator():
         elif (self.geom==4):
             for i in range(6):
                 self.axes_UB_k6c[i] = self.refl1_input_k6c[(i+3)]
-        self.set_axes_to_sample()
+        self.set_axes_to_sample_UB()
         if (self.geom==0) or (self.geom==1):
             self.refl1 = self.sample.add_reflection(self.geometry, \
                                                     self.detector, \
@@ -668,7 +991,7 @@ class hklCalculator():
         elif (self.geom==4):
             for i in range(6):
                 self.axes_UB_k6c[i] = self.refl2_input_k6c[(i+3)]
-        self.set_axes_to_sample()
+        self.set_axes_to_sample_UB()
         # Hkl.SampleReflection(self.geometry, self.detector, h, k, l)
         if (self.geom==0) or (self.geom==1):
             self.refl2 = self.sample.add_reflection(self.geometry, \
@@ -793,7 +1116,7 @@ class hklCalculator():
         elif (self.geom==4):
             for i in range(6):
                 self.axes_UB_k6c[i] = self.refl_refine_input_k6c[(i+3)]
-        self.set_axes_to_sample()
+        self.set_axes_to_sample_UB()
         if (self.geom==0) or (self.geom==1) and (self.curr_refl_index_e4c<9):
             print(f'curr index: {self.curr_refl_index_e4c}')
             #self.refl_refine = self.sample.add_reflection(self.geometry, \

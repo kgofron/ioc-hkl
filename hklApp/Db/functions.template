@@ -1,12 +1,55 @@
+record(ao, "$(P)$(R)set_motor") {
+    field(DTYP, "pydev")
+    field(OUT, "@hkl_calc.set_axes_to_sample()")
+    field(TPRO, "1")
+}
+
 record(ao, "$(P)$(R)forward") {
     field(DTYP, "pydev")
     field(OUT, "@hkl_calc.forward()")
     field(TPRO, "1")
 }
 
-record(ao, "$(P)$(R)backward") {
+record(ao, "$(P)$(R)backward_hkl") {
     field(DTYP, "pydev")
-    field(OUT, "@hkl_calc.backward()")
+    field(OUT, "@hkl_calc.backward_hkl()")
+    field(TPRO, "1")
+}
+
+record(ao, "$(P)$(R)backward_psi") {
+    field(DTYP, "pydev")
+    field(OUT, "@hkl_calc.backward_psi()")
+    field(TPRO, "1")
+}
+
+record(ao, "$(P)$(R)backward_q") {
+    field(DTYP, "pydev")
+    field(OUT, "@hkl_calc.backward_q()")
+    field(TPRO, "1")
+}
+
+record(ao, "$(P)$(R)backward_q2") {
+    field(DTYP, "pydev")
+    field(OUT, "@hkl_calc.backward_q2()")
+    field(TPRO, "1")
+}
+
+record(ao, "$(P)$(R)backward_qperqpar") {
+    field(DTYP, "pydev")
+    field(OUT, "@hkl_calc.backward_qperqpar()")
+    field(TPRO, "1")
+}
+
+record(ao, "$(P)$(R)backward_tth") {
+    field(DTYP, "pydev")
+    field(OUT, "@hkl_calc.backward_tth()")
+    field(TPRO, "1")
+}
+
+
+record(ao, "$(P)$(R)backward_eulerians") {
+    field(DTYP, "pydev")
+    field(OUT, "@hkl_calc.backward_eulerians()")
     field(TPRO, "1")
 }
 

@@ -2,27 +2,12 @@
 <display version="2.0.0">
   <name>Backward_input</name>
   <width>1175</width>
-  <height>310</height>
-  <widget type="embedded" version="2.0.0">
-    <name>Embedded Display_5</name>
-    <file>../axis/TwoCpseudoAxes.bob</file>
-    <width>550</width>
-    <height>310</height>
-    <visible>false</visible>
-    <rules>
-      <rule name="Visible" prop_id="visible" out_exp="false">
-        <exp bool_exp="pv0==6">
-          <value>true</value>
-        </exp>
-        <pv_name>$(Sys)geom</pv_name>
-      </rule>
-    </rules>
-  </widget>
+  <height>545</height>
   <widget type="embedded" version="2.0.0">
     <name>Embedded Display_6</name>
     <file>../axis/E4CHpseudoAxes.bob</file>
-    <width>550</width>
-    <height>310</height>
+    <width>1170</width>
+    <height>355</height>
     <visible>false</visible>
     <rules>
       <rule name="Visible" prop_id="visible" out_exp="false">
@@ -36,8 +21,8 @@
   <widget type="embedded" version="2.0.0">
     <name>Embedded Display_7</name>
     <file>../axis/E4CVpseudoAxes.bob</file>
-    <width>550</width>
-    <height>310</height>
+    <width>1170</width>
+    <height>355</height>
     <visible>false</visible>
     <rules>
       <rule name="Visible" prop_id="visible" out_exp="false">
@@ -51,8 +36,8 @@
   <widget type="embedded" version="2.0.0">
     <name>Embedded Display_8</name>
     <file>../axis/K4CVpseudoAxes.bob</file>
-    <width>550</width>
-    <height>310</height>
+    <width>1170</width>
+    <height>355</height>
     <visible>false</visible>
     <rules>
       <rule name="Visible" prop_id="visible" out_exp="false">
@@ -66,8 +51,8 @@
   <widget type="embedded" version="2.0.0">
     <name>Embedded Display_9</name>
     <file>../axis/E6CpseudoAxes.bob</file>
-    <width>550</width>
-    <height>310</height>
+    <width>1170</width>
+    <height>355</height>
     <visible>false</visible>
     <rules>
       <rule name="Visible" prop_id="visible" out_exp="false">
@@ -81,8 +66,8 @@
   <widget type="embedded" version="2.0.0">
     <name>Embedded Display_10</name>
     <file>../axis/K6CpseudoAxes.bob</file>
-    <width>550</width>
-    <height>310</height>
+    <width>1170</width>
+    <height>355</height>
     <visible>false</visible>
     <rules>
       <rule name="Visible" prop_id="visible" out_exp="false">
@@ -94,98 +79,40 @@
     </rules>
   </widget>
   <widget type="embedded" version="2.0.0">
-    <name>Embedded Display_11</name>
-    <file>../axis/ZAXISpseudoAxes.bob</file>
-    <width>480</width>
-    <height>310</height>
-    <visible>false</visible>
-    <rules>
-      <rule name="Visible" prop_id="visible" out_exp="false">
-        <exp bool_exp="pv0==5">
-          <value>true</value>
-        </exp>
-        <pv_name>$(Sys)geom</pv_name>
-      </rule>
-    </rules>
+    <name>Embedded Display</name>
+    <file>forward_input.bob</file>
+    <x>300</x>
+    <y>355</y>
+    <width>860</width>
+    <height>185</height>
   </widget>
-  <widget type="embedded" version="2.0.0">
-    <name>Embedded Display_12</name>
-    <file>../axis/E4CH_mode_limits.bob</file>
-    <x>510</x>
-    <width>660</width>
-    <height>310</height>
-    <visible>false</visible>
-    <rules>
-      <rule name="Visible" prop_id="visible" out_exp="false">
-        <exp bool_exp="pv0==0">
-          <value>true</value>
-        </exp>
-        <pv_name>$(Sys)geom</pv_name>
-      </rule>
-    </rules>
+  <widget type="label" version="2.0.0">
+    <name>Label</name>
+    <text>Set motor position</text>
+    <x>60</x>
+    <y>380</y>
+    <width>160</width>
+    <height>30</height>
+    <font>
+      <font name="Header 3" family="Liberation Sans" style="BOLD" size="16.0">
+      </font>
+    </font>
   </widget>
-  <widget type="embedded" version="2.0.0">
-    <name>Embedded Display_13</name>
-    <file>../axis/E4CV_mode_limits.bob</file>
-    <x>510</x>
-    <width>660</width>
-    <height>310</height>
-    <visible>false</visible>
-    <rules>
-      <rule name="Visible" prop_id="visible" out_exp="false">
-        <exp bool_exp="pv0==1">
-          <value>true</value>
-        </exp>
-        <pv_name>$(Sys)geom</pv_name>
-      </rule>
-    </rules>
-  </widget>
-  <widget type="embedded" version="2.0.0">
-    <name>Embedded Display_14</name>
-    <file>../axis/K4CV_mode_limits.bob</file>
-    <x>510</x>
-    <width>660</width>
-    <height>310</height>
-    <visible>false</visible>
-    <rules>
-      <rule name="Visible" prop_id="visible" out_exp="false">
-        <exp bool_exp="pv0==2">
-          <value>true</value>
-        </exp>
-        <pv_name>$(Sys)geom</pv_name>
-      </rule>
-    </rules>
-  </widget>
-  <widget type="embedded" version="2.0.0">
-    <name>Embedded Display_15</name>
-    <file>../axis/E6C_mode_limits.bob</file>
-    <x>510</x>
-    <width>660</width>
-    <height>310</height>
-    <visible>false</visible>
-    <rules>
-      <rule name="Visible" prop_id="visible" out_exp="false">
-        <exp bool_exp="pv0==3">
-          <value>true</value>
-        </exp>
-        <pv_name>$(Sys)geom</pv_name>
-      </rule>
-    </rules>
-  </widget>
-  <widget type="embedded" version="2.0.0">
-    <name>Embedded Display_16</name>
-    <file>../axis/K6C_mode_limits.bob</file>
-    <x>510</x>
-    <width>660</width>
-    <height>310</height>
-    <visible>false</visible>
-    <rules>
-      <rule name="Visible" prop_id="visible" out_exp="false">
-        <exp bool_exp="pv0==4">
-          <value>true</value>
-        </exp>
-        <pv_name>$(Sys)geom</pv_name>
-      </rule>
-    </rules>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button</name>
+    <actions>
+      <action type="write_pv">
+        <description>Write PV</description>
+        <pv_name>$(Sys)set_motor</pv_name>
+        <value>1</value>
+      </action>
+    </actions>
+    <pv_name>$(Sys)set_motor</pv_name>
+    <text>Set motor</text>
+    <x>70</x>
+    <y>420</y>
+    <width>130</width>
+    <height>40</height>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
 </display>

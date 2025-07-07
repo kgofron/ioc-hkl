@@ -8,7 +8,7 @@
     <x>20</x>
     <y>10</y>
     <width>840</width>
-    <height>800</height>
+    <height>830</height>
     <line_color>
       <color name="Header_Background" red="77" green="77" blue="77">
       </color>
@@ -22,16 +22,17 @@
     <name>Embedded Display_4</name>
     <file>../windows/forward_input.bob</file>
     <x>40</x>
-    <y>20</y>
+    <y>50</y>
     <width>810</width>
-    <height>250</height>
+    <height>190</height>
   </widget>
   <widget type="embedded" version="2.0.0">
     <name>Embedded Display_6</name>
     <file>../windows/forward_output.bob</file>
     <x>40</x>
-    <y>280</y>
-    <height>520</height>
+    <y>250</y>
+    <width>410</width>
+    <height>580</height>
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>Text Input_1</name>
@@ -39,7 +40,7 @@
     <x>460</x>
     <y>650</y>
     <width>382</width>
-    <height>150</height>
+    <height>180</height>
     <background_color>
       <color red="255" green="255" blue="255">
       </color>
@@ -67,7 +68,7 @@
     <name>Label_13</name>
     <text>hkl intensities</text>
     <x>600</x>
-    <y>290</y>
+    <y>251</y>
     <width>90</width>
     <height>26</height>
   </widget>
@@ -75,9 +76,9 @@
     <name>Text Input_2</name>
     <pv_name>$(Sys)intensities</pv_name>
     <x>460</x>
-    <y>310</y>
+    <y>272</y>
     <width>382</width>
-    <height>310</height>
+    <height>348</height>
     <background_color>
       <color red="255" green="255" blue="255">
       </color>
@@ -92,5 +93,16 @@
       <color red="0" green="128" blue="255">
       </color>
     </border_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_14</name>
+    <text>Real space input</text>
+    <x>372</x>
+    <y>21</y>
+    <width>169</width>
+    <font>
+      <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+      </font>
+    </font>
   </widget>
 </display>
