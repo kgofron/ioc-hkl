@@ -3,8 +3,9 @@ TOP=..
 include $(TOP)/configure/CONFIG
 include $(TOP)/configure/CONFIG_SITE
 
-TARGETS = $(CONFIG_TARGETS) CONFIG.PyDevice
+TARGETS = $(CONFIG_TARGETS)
 CONFIGS += $(subst ../,,$(wildcard $(CONFIG_INSTALLS)))
+CONFIGS += CONFIG.PyDevice
 
 include $(TOP)/configure/RULES
 
@@ -17,5 +18,5 @@ endif
 PYDEV_USR_CXXFLAGS = $(filter -I%,$(shell $(PYTHON_CONFIG) --cflags))
 
 CONFIG.PyDevice:
-	@echo "SYS_PROD_LIBS += $(PYDEV_SYS_PROD_LIBS)" > $(TOP)/configure/$@
-	@echo "USR_CXXFLAGS += $(PYDEV_USR_CXXFLAGS)" >> $(TOP)/configure/$@
+	@echo "SYS_PROD_LIBS += $(PYDEV_SYS_PROD_LIBS)" > $@
+	@echo "USR_CXXFLAGS += $(PYDEV_USR_CXXFLAGS)" >> $@
