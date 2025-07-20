@@ -165,10 +165,24 @@ static long getIointInfo(int /*direction*/, waveformRecord *rec, IOSCANPVT* io)
 
 std::string arrayOfStrToStr(const std::vector<std::string>& val)
 {
-    std::string value = "[";
+    if (val.empty()) {
+        return "[]";
+    }
+    
+    // Pre-allocate string capacity to avoid multiple reallocations
+    size_t estimated_size = 2; // "[]"
+    for (const auto& v: val) {
+        estimated_size += 4 + v.length() * 2; // "b\"", "\",", plus escape chars
+    }
+    
+    std::string value;
+    value.reserve(estimated_size);
+    value = "[";
+    
     for (const auto& v: val) {
         value += "b\"" +  Util::escape(v) + "\",";
     }
+    
     if (value.back() == ',') {
         value.back() = ']';
     } else {

@@ -380,7 +380,9 @@ bool PyWrapper::exec(const std::string& line, bool debug, std::vector<double>& a
         arr = out.vf;
         return true;
     } else if (out.type == MultiTypeValue::Type::VECTOR_INTEGER) {
-        arr = std::vector<double>(out.vi.begin(), out.vi.end());
+        arr.clear();
+        arr.reserve(out.vi.size());
+        arr.assign(out.vi.begin(), out.vi.end());
         return true;
     }
     return false;
@@ -393,7 +395,9 @@ bool PyWrapper::exec(const std::string& line, bool debug, std::vector<long>& arr
         arr = out.vi;
         return true;
     } else if (out.type == MultiTypeValue::Type::VECTOR_FLOAT) {
-        arr = std::vector<long>(out.vf.begin(), out.vf.end());
+        arr.clear();
+        arr.reserve(out.vf.size());
+        arr.assign(out.vf.begin(), out.vf.end());
         return true;
     }
     return false;
