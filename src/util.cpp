@@ -45,12 +45,25 @@ std::map<std::string, std::string> getFields(const std::string& text)
 
 std::string replaceFields(const std::string& text, const std::map<std::string, std::string>& fields)
 {
+    if (fields.empty()) {
+        return text;
+    }
+    
     const std::string delimiter = "%";
     std::string out = text;
+    
+    // Pre-allocate capacity to avoid multiple reallocations
+    size_t estimated_size = text.length();
+    for (const auto& field: fields) {
+        if (field.second.length() > field.first.length()) {
+            estimated_size += field.second.length() - field.first.length();
+        }
+    }
+    out.reserve(estimated_size);
 
     bool replaced = false;
     for (size_t pos = 0; pos < out.length(); pos++) {
-        for (auto& field: fields) {
+        for (const auto& field: fields) {
             std::string token;
 
             // Try exact match first, ie. VAL, but needs to be surrounded by non-alnum characters
@@ -111,11 +124,30 @@ std::string escape(const std::string& text)
 
 std::string join(const std::vector<std::string>& tokens, const std::string& glue)
 {
-    std::string out;
-    for (auto& token: tokens) {
-        out += token + glue;
+    if (tokens.empty()) {
+        return "";
     }
-    return out.substr(0, out.length() - glue.length());
+    if (tokens.size() == 1) {
+        return tokens[0];
+    }
+    
+    // Pre-calculate total size to avoid reallocations
+    size_t total_size = 0;
+    for (const auto& token: tokens) {
+        total_size += token.length();
+    }
+    total_size += glue.length() * (tokens.size() - 1);
+    
+    std::string out;
+    out.reserve(total_size);
+    
+    for (size_t i = 0; i < tokens.size(); ++i) {
+        out += tokens[i];
+        if (i < tokens.size() - 1) {
+            out += glue;
+        }
+    }
+    return out;
 }
 
 long getEnvConfig(const std::string& name, long defval)

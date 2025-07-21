@@ -75,16 +75,11 @@ class hklCalculator():
         self.refl_refine_input_k4c = [0., 0., 0., 0., 0., 0., 0.]
         self.refl_refine_input_e6c = [0., 0., 0., 0., 0., 0., 0., 0., 0.]
         self.refl_refine_input_k6c = [0., 0., 0., 0., 0., 0., 0., 0., 0.]
-        self.refl_refine_input_list_e4c = []
-        self.refl_refine_input_list_k4c = []
-        self.refl_refine_input_list_e6c = []
-        self.refl_refine_input_list_k6c = []
-
-        for i in range(self.num_reflections):
-            self.refl_refine_input_list_e4c.append([0., 0., 0., 0., 0., 0., 0.])
-            self.refl_refine_input_list_k4c.append([0., 0., 0., 0., 0., 0., 0.])
-            self.refl_refine_input_list_e6c.append([0., 0., 0., 0., 0., 0., 0., 0., 0.])
-            self.refl_refine_input_list_k6c.append([0., 0., 0., 0., 0., 0., 0., 0., 0.])
+        # Pre-allocate lists to avoid multiple append operations
+        self.refl_refine_input_list_e4c = [[0., 0., 0., 0., 0., 0., 0.] for _ in range(self.num_reflections)]
+        self.refl_refine_input_list_k4c = [[0., 0., 0., 0., 0., 0., 0.] for _ in range(self.num_reflections)]
+        self.refl_refine_input_list_e6c = [[0., 0., 0., 0., 0., 0., 0., 0., 0.] for _ in range(self.num_reflections)]
+        self.refl_refine_input_list_k6c = [[0., 0., 0., 0., 0., 0., 0., 0., 0.] for _ in range(self.num_reflections)]
 
         self.refl_list_e4c = [] #TODO maybe delete - depends if the list returned and stored in the_refl_list is in the correct order everytime it is received - store reflection objects, for deleting
         self.refl_list_k4c = [] #TODO maybe delete store reflection objects, for deleting
